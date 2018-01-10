@@ -1,0 +1,46 @@
+<div class="layui-main site-inline">
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>用户列表</legend>
+  </fieldset>
+  <div class="layui-form">
+    <table class="layui-table">
+      <colgroup>
+        <col width="150">
+        <col width="150">
+        <col width="200">
+        <col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>头像</th>
+          <th>姓名</th>
+          <th>考勤号</th>
+          <th>是否激活</th>
+          <th>创建时间</th>
+          <th>操作</th>
+          <th>操作</th>
+        </tr> 
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.avatar_url %></td>
+            <td><%= user.name %></td>
+            <td><%= user.attendance %></td>
+            <td><%= user.is_active %></td>
+            <td><%= user.created_at %></td>
+            <td><%= link_to '修改', edit_user_path(user) %></td>
+            <td><%= link_to '删除', user_path(user), method: :delete, data: { confirm: '你确定要删除吗?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+    
+</div>
+
+
+
+
+
+

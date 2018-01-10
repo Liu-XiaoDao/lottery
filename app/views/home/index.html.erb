@@ -1,0 +1,448 @@
+<style>
+  body { 
+    background-color: #050505; 
+    background: radial-gradient(ellipse at center,  rgba(43,45,48,1) 0%,rgba(0,0,0,1) 100%);;  }
+  .userbox {
+    width: 300px;
+    height: 300px;
+    background: url() #fff center center no-repeat;
+    background-size: contain;
+    border-radius: 10px;
+    border: 1px solid rgba(127,255,255,0.25);
+    cursor: default;
+  }
+
+  .userbox:hover, .userbox_selected {
+    box-shadow: 0px 0px 50px rgba(255,255,255,0.55);
+    border: 2px solid rgba(255,255,255,0.75);
+  }
+
+  .userbox .username {
+    position: absolute;
+    top: 270px;
+    width: 100%;
+    font-size: 14px;
+    text-align: right;
+    right: 30px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .light {
+    width: 1060px;
+    height: 1060px;
+    background: url('/media/light.png') transparent center center no-repeat;
+  }
+
+  .luckbg {
+    width: 800px;
+    height: 518px;
+    background: url('/media/luckbg.png') transparent center center no-repeat;
+  }
+
+  .lottery {
+    text-align: center;
+    color: #FCF80B;
+    width: 800px; 
+    font-size: 50px;
+  }
+
+  #progressbar { 
+    position: fixed; width: 1000px;  border: 1px solid #fff; border-radius: 5px; height: 30px; line-height: 30px;
+    color: #fff;
+    left: 50%;
+    margin-left: -500px;
+    bottom: 50px;
+    z-index: 999;
+  }
+  #bar { width: 0px; background: #fff; height: 30px;  }
+  #nav { color: #fff; z-index:999; position: fixed; left: 0; top: 50px; }
+  #nav button, #nav select { font-size: 15px; display: block; margin: 5px; 
+  padding: 5px 10px; color: #fff; z-index:999; background: #333; 
+  border: 1px #aaa solid; width: 100px; text-align: center; }
+  #nav button.btn-selected { background: #FE393A; color: #FCF80B; }
+
+</style>
+<div id="nav">
+<button  value=2' class="btn" id="btn3">三等奖</button>
+<button  value='4'  class="btn" id="btn2">二等奖</button>
+<button  value='8' class="btn"  id="btn1">一等奖</button>
+<button  value='16'  class="btn" id="btn4">特等奖</button>
+<button  value='1'  class="btn" id="btn5">幸运奖</button>
+</div>
+<div id="progressbar"><div id="bar"></div></div>
+<script>
+if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+    var lottery_code = 0;
+    var lottery_str = '';
+    $(function(){
+      $('.btn').click(function(){
+        hide_luckbg_light();
+        lottery_code = $(this).attr('value');
+        lottery_str = $(this).text();
+        $(this).addClass('btn-selected');
+      });
+    });
+    var render, scene, camera, controls, light;
+    var mouseX = 0, mouseY = 0
+    var font;
+    var angleOfview = 75;
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+    var ratio=window.innerWidth/window.innerHeight;
+   	 
+    var objects = [], indexes = [], group, users, lottery_users = [], lottery_level=0; 
+    var targets = { table: [], sphere: [], helix: [], grid: [] };
+  
+    var maxW = 30;
+    var maxH = 10;
+    var imageW = 300, imageH = 300;
+    var unitW = unitH = 350;
+    var cameraZ = 4000;
+
+    var timer, tween, action_step = 0;
+    var count_loaded = 0, count = 0;
+
+    var api_base = '/',
+        // background = '<?php echo URL::site('media/background.jpg', null, false); ?>';
+        // api_sound_url = '<?php echo URL::site('media/sound.ogg', null, false); ?>',
+        // api_font_url = '<?php echo URL::site('media/font.json', null, false); ?>',
+        api_user_url = '<%= json_users_users_path %>';
+    
+    render = new THREE.CSS3DRenderer();
+    scene  = new THREE.Scene();
+
+    init();
+    load_award();
+    load_user();
+    animate();
+
+    function init() {
+        render.setSize(window.innerWidth, window.innerHeight);
+        render.domElement.style.position = 'absolute';
+        render.domElement.style.top = 0;
+        //render.domElement.style.backgroundImage = 'url('+backgroundImage_url+')';
+        render.domElement.style.backgroundColor = '#050505';
+        render.domElement.style.backgroundImage = '-webkit-radial-gradient(center, ellipse cover,  rgba(43,45,48,1) 0%,rgba(0,0,0,1) 100%)';
+        camera=new THREE.PerspectiveCamera(angleOfview, ratio, 1, 10000);
+        camera.position.x = 0;
+        camera.position.y = 0;
+        camera.position.z = cameraZ;
+        scene.add(camera);
+        group = new THREE.Group();
+        scene.add(group);
+        camera.lookAt(new THREE.Vector3 (0, 0, -1000000000));
+        document.body.appendChild( render.domElement );
+        window.addEventListener( 'resize', onWindowResize, false );
+    }
+
+    var oceanAmbientSound; 
+    function load_sound() {
+      var audioListener = new THREE.AudioListener();
+      camera.add( audioListener );
+      oSound = new THREE.Audio( audioListener );
+      scene.add( oSound );
+      var loader = new THREE.AudioLoader();
+      loader.load( api_sound_url, function( buffer ) {
+        oSound.setBuffer( buffer );
+        oSound.play();
+      }); 
+    }
+
+    var obj_light;
+    var obj_luckbg;
+    var obj_lottery;
+    var obj_group_1;
+    var obj_group_2;
+    function load_award() {
+      obj_group_1 = new THREE.Group();
+      obj_group_2 = new THREE.Group();
+      var element_1 = document.createElement( 'div' );
+      var element_2 = document.createElement( 'div' );
+      var element_3 = document.createElement( 'div' );
+      element_1.className = 'light';
+      element_2.className = 'luckbg';
+      element_3.className = 'lottery';
+      obj_light = new THREE.CSS3DObject( element_1 );
+      obj_luckbg = new THREE.CSS3DObject( element_2 );
+      obj_lottery = new THREE.CSS3DObject( element_3 );
+      obj_lottery.position.y = -150;
+      obj_group_1.add(obj_luckbg);
+      obj_group_1.add(obj_lottery);
+      obj_group_2.add(obj_light);
+      obj_light.element.style.display = 'none';
+      obj_luckbg.element.style.display = 'none';
+      obj_lottery.element.style.display = 'none';
+      scene.add(obj_group_1);
+      scene.add(obj_group_2);
+
+    }
+
+
+    function show_luckbg_light(obj, str) {
+      tween.onComplete(function(){
+      obj_luckbg.element.style.display = 'block';
+      obj_lottery.element.style.display = 'block';
+
+      obj_lottery.element.textContent = str;
+
+      obj_group_1.position = obj.position;
+      obj_group_1.position.y -= 1000;
+      obj_group_1.position.z = obj.position.z-1;
+
+      new TWEEN.Tween( obj_group_1.position )
+        .to( { x: obj.position.x+5, y: obj.position.y - 60, z: obj_group_1.position.z }, 500)
+        .easing( TWEEN.Easing.Sinusoidal.InOut )
+        .onComplete(function(){
+            obj_light.element.style.display = 'block';
+            obj_light.position.x = obj.position.x;
+            obj_light.position.y = obj.position.y;
+            obj_light.position.z = obj.position.z-2;
+          })
+        .start();
+      });
+    }
+
+    function hide_luckbg_light() {
+      timer = null;
+      obj_light.element.style.display = 'none';
+      obj_luckbg.element.style.display = 'none';
+      obj_lottery.element.style.display = 'none';
+    }
+
+    function load_user() {
+      ajax_request(api_user_url, function(json) {
+        users = json.info;
+        count = users.length;
+        var key;
+        for(key in users) {
+          var row = parseInt(key/maxW);
+          var col = key%maxW;
+          var _x = ( col - maxW/2 ) * unitW + unitW/2;
+          var _y = ( maxH/2 - row ) * unitH - unitH/2;
+          (function() {
+            var i = key;
+            var x = _x;
+            var y = _y;
+            var z = 0;
+						var object = new THREE.Object3D();
+						object.position.x = x;
+						object.position.y = y;
+						object.position.z = z;
+						targets.table.push( object );
+            var img = new Image();
+            img.src = users[i].avatar_url;
+            img.onload = function() {
+              var element = document.createElement( 'div' );
+              element.className = 'userbox';
+              element.style.backgroundImage = 'url('+img.src+')';
+              var username = document.createElement( 'div' );
+              username.className = 'username';
+              username.textContent = users[i].name;
+              element.appendChild( username );
+
+              var obj = new THREE.CSS3DObject( element );
+              obj.position.x = x;
+              obj.position.y = y;
+              obj.user = users[i];
+              obj.position.z = z;
+              group.add (obj);
+              objects.push( obj );
+              count_loaded += 1;
+              document.getElementById('bar').style.width = 1000* (count_loaded/count)+'px';
+              if (count == count_loaded) {
+                document.getElementById('progressbar').style.display = 'none';
+                load_position();
+                tween = transform( targets.sphere, 3000);
+                tween.onUpdate(function() {
+                  action_step = 1; 
+                });
+                tween.onComplete(function() {
+                  update_selecting_me();
+                });
+                new TWEEN.Tween( camera.position )
+                  .to( { x: camera.position.x, y: camera.position.y, z: camera.position.z-1000 },  3000 )
+                  .easing( TWEEN.Easing.Quadratic.Out )
+                  .onComplete(function(){
+                    window.addEventListener( 'keyup', process_keyup, false );
+                  })
+                  .start();
+              }
+            }
+          })();
+        }
+      });
+    }
+
+    function load_position() {
+			var col = 8, row = 8, depth = 0;
+      for ( var i = 0; i < objects.length; i ++ ) {
+				var _col = i % col;
+				var _row = parseInt( i/col) % row;
+				var _depth = parseInt( i/(col*row));
+        var object = new THREE.Object3D();
+        object.position.x =  (( _col - col/2 ) + 1/2) *unitW * 3;
+        object.position.y = (( row/2 - _row ) - 1/2) * unitH * 3;
+        object.position.z = -_depth*1000 + 1000;
+        targets.grid.push( object );
+      }
+      //sphere
+      var radius = cameraZ - 2000;
+      var vector = new THREE.Vector3();
+      for ( var i = 0, l = objects.length; i < l; i ++ ) {
+        var phi = Math.acos( -1 + ( 2 * i ) / l );
+        var theta = Math.sqrt( l * Math.PI ) * phi;
+        var object = new THREE.Object3D();
+        object.position.x = radius * Math.cos( theta ) * Math.sin( phi );
+        object.position.y = radius * Math.sin( theta ) * Math.sin( phi );
+        object.position.z = radius * Math.cos( phi );
+        vector.copy( object.position ).multiplyScalar( 2 );
+        object.lookAt( vector );
+        targets.sphere.push( object );
+      }
+    }
+
+
+    function onWindowResize() 
+    {
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        render.setSize( window.innerWidth, window.innerHeight );
+    }
+
+  function transform( targets, duration ) {
+    for ( var i = 0; i < objects.length; i ++ ) {
+      var object = objects[ i ];
+      var target = targets[ i ];
+      new TWEEN.Tween( object.position )
+        .to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
+        .easing( TWEEN.Easing.Exponential.InOut )
+        .start();
+
+      new TWEEN.Tween( object.rotation )
+        .to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+        .easing( TWEEN.Easing.Exponential.InOut )
+        .start();
+    }
+    return new TWEEN.Tween( this )
+      .to( {}, duration * 2 )
+      .start();
+  }
+
+  function ajax_request(url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if ( xhr.readyState == 4 ) {
+            if ( xhr.status == 200 || xhr.status == 0 ) {
+                try {
+                    var json = JSON.parse( xhr.responseText );
+                    callback(json);
+                } 
+                catch ( error ) {
+                    console.error( error );
+                    console.warn( "DEPRECATED: [" + url + "] seems to be using old model format" );
+                }
+            } 
+            else {
+                console.error( "Couldn't load [" + url + "] [" + xhr.status + "]" );
+            }
+        }
+      };
+      xhr.open( "POST", url, true );
+      xhr.overrideMimeType( "text/plain; charset=utf8" );
+      xhr.setRequestHeader( "Content-Type", "text/plain" );
+      xhr.send( null );
+  }
+
+
+  function renderer()
+  {
+    render.render(scene, camera);
+  }
+  
+  function animate() {
+    switch(action_step) {
+    case 1:
+        update_show_me();
+        break;
+    }
+    obj_light.rotation.z += 1.3;
+    requestAnimationFrame( animate );
+    TWEEN.update();
+    renderer();
+  }
+
+  var rotation_step = 0.002;
+  var rotation_step_small = 0.00003;
+  var _rotation_step = 0;
+  function update_show_me() {
+    if (_rotation_step < rotation_step) {
+      _rotation_step += rotation_step_small;
+    }
+    else {
+      _rotation_step = rotation_step;
+    }
+    group.rotation.y -= _rotation_step*2;
+    group.rotation.x = Math.sin(group.rotation.y);
+  }
+
+  var keyup_count = 0;
+  var selected = null;
+  var obj_selected;
+  function process_keyup(e) {
+    if (action_step == 1)  { action_step = 2; }
+    if (lottery_str == '') { return false; }
+    keyup_count += 1;
+    switch (keyup_count) {
+    case 1: 
+        group.lookAt(camera.position);
+        tween = transform(targets.grid, 3000);
+        return false;
+      break;
+    case 2: 
+        update_selecting_me();
+        return false;
+      break;
+    }
+    var next = keyup_count % 2;
+    if (next) { 
+      hide_luckbg_light();
+      update_selecting_me();
+    }
+    else {
+      lottery_users.push(selected);
+      obj_selected = objects[selected];
+      show_luckbg_light(obj_selected, lottery_str);
+
+        console.log(obj_selected.user);
+      ajax_request('<?php echo URL::site("api/user/lottery?phone="); ?>'+obj_selected.user.phone+'&lottery='+lottery_code, function(ret){
+        console.log(ret);
+      });
+    }
+  }
+
+  function update_selecting_me()
+  {
+    if (keyup_count%2 == 0) return false;
+    var obj;
+    while(1) {
+      selected = parseInt(Math.random()*count);
+      if ($.inArray(selected, lottery_users) > -1) {
+        continue;
+      }
+      obj = objects[selected];
+      break;
+    }
+    tween = new TWEEN.Tween( camera.position )
+      .to( { x: obj.position.x, y: obj.position.y, z: obj.position.z + 400 },  200 )
+      .easing( TWEEN.Easing.Exponential.InOut)
+      .onComplete(function() {
+        camera.lookAt(obj.position);
+        update_selecting_me();
+      })
+      .start();
+  }
+
+</script>
+
