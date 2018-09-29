@@ -1,12 +1,19 @@
 <div class="register-box">
   <h1 class="title">请填写以下信息</h1>
   <%= form_for :register, url: register_index_path, method: :post, html: { class: "uk-form uk-form-stacked" } do |f| %>
+
     <div class="uk-form-row">
       <label class="uk-form-label" for="">工牌号</label>
       <div class="uk-form-controls">
-          <input type="number" id="id" value="20170020" name="post[attendance]" class="uk-width-1-1" placeholder="请输入五位数字工牌号码">
+        <span class="id-pre">
+        <select id="pre" name="post[pre]">
+        <option value="SWN-">XXX-</option>
+        <option value="XXX-">SWN-</option>
+        </select></span>
+        <input type="number" id="id" value="20170020" name="post[attendance]" class="uk-width-1-1" placeholder="请输入五位数字工牌号码">
       </div>
     </div>
+
     <div class="uk-form-row">
       <label class="uk-form-label" for="">姓名</label>
       <div class="uk-form-controls">
@@ -44,7 +51,18 @@
     </div>
   <% end %>
 </div>
- 
+
+
+<%= javascript_include_tag '/media/Jcrop.min.js' %>
+<%= javascript_include_tag '/media/js/components/upload.min.js' %>
+<%= javascript_include_tag '/media/js/components/notify.min.js' %>
+
+
+<%= stylesheet_link_tag '/media/Jcrop.min.css' %>
+<%= stylesheet_link_tag '/media/css/components/form-file.min.css' %>
+<%= stylesheet_link_tag '/media/css/components/progress.min.css' %>
+<%= stylesheet_link_tag '/media/css/components/notify.min.css' %>
+
 <script>
 $(function(){
 
@@ -55,7 +73,7 @@ $(function(){
       submit      = $('#btn_submit'),
       bar         = progressbar.find('.uk-progress-bar'),
       settings    = {
-          action: '<%= register_upload_img_path %>', // upload url     
+          action: '<%= register_upload_img_path %>', // upload url
           allow : '*.(jpg|jpeg|png)', // allow only images
           param: 'photo',
           notallowed: function() {

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :register
 
+  resources :welcome
+
   post '/register/upload_img' => 'register#upload_img'
 end
-  
