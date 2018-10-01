@@ -1,29 +1,20 @@
 class RegisterController < ApplicationController
-	layout 'template'
-	def index
-		@user = User.new
-	end
+  layout 'template'
+  def index
+    @user = User.new
+  end
+  
+  def new
 
-	def new
+  end
 
-	end
+  def create
+   # "post"=>{"pre"=>"SWN-", "attendance"=>"20170020", "username"=>"dxx", "phone"=>"18106322292", "photo"=>"/images/service/201809/e558cbe7316b3bc782477e5c1e35b568.jpg", "cropx"=>"66", "cropy"=>"153", "cropw"=>"200", "croph"=>"200"}, "photo"=>"425322168076235771.jpg"}
 
-	def create
-	  @user = User.new
-    @user.name = params[:post][:username]
-    @user.attendance = params[:post][:attendance]
-    @user.avatar_url = params[:post][:photo]
-    @user.is_active = 0
-    @user.save
-
-    "post"=>{"pre"=>"SWN-", "attendance"=>"20170020", "username"=>"dxx", "phone"=>"18106322292", "photo"=>"/images/service/201809/e558cbe7316b3bc782477e5c1e35b568.jpg", "cropx"=>"66", "cropy"=>"153", "cropw"=>"200", "croph"=>"200"}, "photo"=>"425322168076235771.jpg"}
-
-    yk_id = yk_user(:pre) + yk_user(:yk_user)
+    yk_id = yk_user(:pre) + yk_user(:attendance)
     if check_phone(yk_user(:phone)) && check_id(yk_id) && yk_user(:username) && yk_user(:photo) && yk_user(:cropw) && yk_user(:croph) && yk_user(:phone)
-
       thumb = "#{Rails.root}/public#{yk_user(:photo)}"
-      photo ="#{File::dirname(thumb)}/#{File::basename(filename).gsub('-thumb','')}"
-
+      photo ="#{File::dirname(thumb)}/#{File::basename(thumb).gsub('-thumb','')}"
       if File::file?(thumb) && File::file?(photo)
         thumb_width = MiniMagick::Image.open(thumb).width
         thumb_height = MiniMagick::Image.open(thumb).height
@@ -40,28 +31,35 @@ class RegisterController < ApplicationController
         temp_img.crop "#{w}x#{h}+#{x}+#{y}"
         temp_img.resize "512x512"
         temp_img.write thumb
-
+	3330.times do
+          @user = User.new
+          @user.name = params[:post][:username]
+          @user.attendance = params[:post][:attendance]
+          @user.avatar_url = params[:post][:photo]
+          @user.age = 18	
+          @user.year =  2018
+          @user.is_active = 0
+          @user.save
+	end 
       end
+      redirect_to root_url
+
     end
 
 
     #user: username,pre,attache,phone,photo,year,age
 
-    $post['year'] = $this->year;
-    $swn_user = $this->swn->company->findOne(['id'=>$swn_id]);
-    $post['age'] = Arr::get($swn_user, 'age', 0);
-    $res = $this->swn->user->insertOne($post);
-    $_id = (string) $res->getInsertedId();
-    $this->redirect('/?_id='.$_id);
+    #$this->redirect('/?_id='.$_id);
 
 
-	end
+   end
 
-	#上传维保相关的一些图片
+  #上传维保相关的一些图片
   def upload_img
     filename = save_img(params[:photo])
     if filename
-      thumb = "#{File::dirname(filename)}/#{File::basename(filename)}-thumb#{File::extname(filename)}"
+      thumb = "#{File::dirname(filename)}/#{File::basename(filename).gsub(File::extname(filename),"")}-thumb#{File::extname(filename)}"
+    #binding.pry
       image = MiniMagick::Image.open(filename)
       image.resize "360x360"
       image.write thumb
@@ -90,11 +88,11 @@ class RegisterController < ApplicationController
     end
 
     def check_id(id)
-
+      return true
     end
 
     def check_phone(phone)
-
+      return true
     end
 
 
