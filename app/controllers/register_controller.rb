@@ -31,12 +31,14 @@ class RegisterController < ApplicationController
         temp_img.crop "#{w}x#{h}+#{x}+#{y}"
         temp_img.resize "512x512"
         temp_img.write thumb
-	3330.times do
+	30.times do
           @user = User.new
           @user.name = params[:post][:username]
           @user.attendance = params[:post][:attendance]
           @user.avatar_url = params[:post][:photo]
-          @user.age = 18	
+          @user.age = 18
+	  @user.pre = params[:post][:pre]
+	  @user.phone = params[:post][:phone]
           @user.year =  2018
           @user.is_active = 0
           @user.save

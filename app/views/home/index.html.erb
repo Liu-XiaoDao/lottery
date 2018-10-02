@@ -103,9 +103,9 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
     var count_loaded = 0, count = 0;
 
     var api_base = '/',
-        // background = '<?php echo URL::site('media/background.jpg', null, false); ?>';
-        // api_sound_url = '<?php echo URL::site('media/sound.ogg', null, false); ?>',
-        // api_font_url = '<?php echo URL::site('media/font.json', null, false); ?>',
+        background = '<%= asset_path("background.jpg") %>';
+        api_sound_url = '<%= asset_path("sound.ogg") %>',
+	api_font_url = '<%= asset_path("font.json") %>',
         api_user_url = '<%= json_users_users_path %>';
     
     render = new THREE.CSS3DRenderer();

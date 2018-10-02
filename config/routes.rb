@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     post 'json_users', on: :collection
+    get 'delete', on: :collection
+    get 'active', on: :collection
   end
 
   resources :register
 
   resources :welcome
 
+  resources :signin
   post '/register/upload_img' => 'register#upload_img'
 end
