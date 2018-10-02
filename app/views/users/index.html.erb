@@ -1,46 +1,26 @@
-<div class="layui-main site-inline">
-  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>用户列表</legend>
-  </fieldset>
-  <div class="layui-form">
-    <table class="layui-table">
-      <colgroup>
-        <col width="150">
-        <col width="150">
-        <col width="200">
-        <col>
-      </colgroup>
-      <thead>
-        <tr>
-          <th>头像</th>
-          <th>姓名</th>
-          <th>考勤号</th>
-          <th>是否激活</th>
-          <th>创建时间</th>
-          <th>操作</th>
-          <th>操作</th>
-        </tr> 
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= image_tag user.avatar_url %></td>
-            <td><%= user.name %></td>
-            <td><%= user.attendance %></td>
-            <td><%= user.is_active %></td>
-            <td><%= user.created_at %></td>
-            <td><%= link_to '修改', edit_user_path(user) %></td>
-            <td><%= link_to '删除', user_path(user), method: :delete, data: { confirm: '你确定要删除吗?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-    
-</div>
-
-
-
-
+<% if @users.present? %>
+<table class="uk-table uk-table-hover">
+  <thead>
+    <tr>
+      <th>头像</th>
+      <th>姓名</th>
+      <th>电话</th>
+      <th>工牌</th>
+      <th>激活</th>
+      <th>删除</th>
+    </tr>
+  </thead>
+  <% @users.each do |user| %>
+      <tr>
+        <td><img src="<%= user.avatar_url %>" style="height:50px; border: 1px #eee solid; border-radius: 5px;" /></td>
+	<td><%= user.name %></td>
+	<td><%= user.phone %></td>
+	<td><%= "#{user.pre}#{user.attendance}" %></td>
+	<td><%= user.is_active ? "已激活" : "<a href='/users/active?id=#{user.id}'>激活</a>".html_safe %></td>
+	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>
+      </tr>
+  <% end %>
+</table>
+<% end %>
 
 
