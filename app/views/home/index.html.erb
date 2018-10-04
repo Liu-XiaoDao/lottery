@@ -416,7 +416,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
       show_luckbg_light(obj_selected, lottery_str);
 
         console.log(obj_selected.user);
-      ajax_request('<?php echo URL::site("api/user/lottery?phone="); ?>'+obj_selected.user.phone+'&lottery='+lottery_code, function(ret){
+      ajax_request('<%= "/users/lottery?phone=" %>'+obj_selected.user.phone+'&lottery='+lottery_code, function(ret){
         console.log(ret);
       });
     }

@@ -42,7 +42,7 @@ class RegisterController < ApplicationController
           @user.save
 	end 
       end
-      redirect_to root_url
+      redirect_to welcome_index_url(_id: @user.id)
 
     end
 

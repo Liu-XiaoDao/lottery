@@ -18,4 +18,10 @@ class UsersController < ApplicationController
     @users = User.all
     render json: {info:@users}
   end
+  def lottery
+    @user = User.find_by_phone params[:phone]
+    @user.lottery = 1
+    @user.save
+    render json: {code: 1,info: ''}
+  end
 end
