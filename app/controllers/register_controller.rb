@@ -20,18 +20,16 @@ class RegisterController < ApplicationController
         thumb_height = MiniMagick::Image.open(thumb).height
         width = MiniMagick::Image.open(photo).width
         height = MiniMagick::Image.open(photo).height
-
-        ratio = width/thumb_width
-        x = yk_user(:cropx) * ratio
-        y = yk_user(:cropy) * ratio
-        w = yk_user(:cropw) * ratio
-        h = yk_user(:croph) * ratio
-
+        ratio = width/thumb_width.to_f
+        x = yk_user(:cropx).to_i * ratio
+        y = yk_user(:cropy).to_i * ratio
+        w = yk_user(:cropw).to_i * ratio
+        h = yk_user(:croph).to_i * ratio
         temp_img = MiniMagick::Image.open(photo)
         temp_img.crop "#{w}x#{h}+#{x}+#{y}"
         temp_img.resize "512x512"
         temp_img.write thumb
-	30.times do
+	1.times do
           @user = User.new
           @user.name = params[:post][:username]
           @user.attendance = params[:post][:attendance]
