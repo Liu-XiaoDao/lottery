@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :register
 
   resources :welcome
-
+  resources :draw
   resources :signin
   post '/register/upload_img' => 'register#upload_img'
 end
