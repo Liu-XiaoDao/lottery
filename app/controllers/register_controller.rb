@@ -57,9 +57,9 @@ class RegisterController < ApplicationController
   #上传维保相关的一些图片
   def upload_img
     filename = save_img(params[:photo])
+    imageturn(filename)
     if filename
       thumb = "#{File::dirname(filename)}/#{File::basename(filename).gsub(File::extname(filename),"")}-thumb#{File::extname(filename)}"
-    #binding.pry
       image = MiniMagick::Image.open(filename)
       image.resize "360x360"
       image.write thumb
@@ -81,6 +81,15 @@ class RegisterController < ApplicationController
     file_path
   end
 
+  def imageturn(filename)
+    image = MiniMagick::Image.open(filename)
+    if image.data["orientation"] == "RightTop"
+      #image.rotate "90"
+      #image.data["orientation"] = "Undefined"
+      image.auto_orient
+      image.write filename
+    end
+  end
   private
 
     def yk_user(key)
