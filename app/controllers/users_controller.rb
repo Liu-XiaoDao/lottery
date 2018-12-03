@@ -15,12 +15,12 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
   def json_users
-    @users = User.all
+    @users = User.where(is_active: true)
     render json: {info:@users}
   end
   def lottery
     @user = User.find_by_phone params[:phone]
-    @user.lottery = 1
+    @user.lottery = params[:lottery]
     @user.save
     render json: {code: 1,info: ''}
   end
