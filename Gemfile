@@ -16,6 +16,8 @@ gem 'will_paginate'   #分页
 gem 'rails-i18n'   #多语言
 gem 'mini_magick'
 gem 'pry', '~> 0.11.3'
+gem 'mina', '~> 1.2', '>= 1.2.3'
+gem 'mina-puma', require: false
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

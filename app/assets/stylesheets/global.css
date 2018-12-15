@@ -9,4 +9,4 @@ h1,h2,h3{font-size: 14px;}
 
 .header .layui-nav{position: absolute; right: 0; top: 0; padding: 0; background: none;}
 .header .layui-nav .layui-nav-item{margin: 0 20px; }
-.header .layui-nav .layui-nav-item[mobile]{display: none;}00
+.header .layui-nav .layui-nav-item[mobile]{display: none;}
