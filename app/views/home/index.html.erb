@@ -1,6 +1,6 @@
 <style>
-  body { 
-    background-color: #050505; 
+  body {
+    background-color: #050505;
     background: radial-gradient(ellipse at center,  rgba(43,45,48,1) 0%,rgba(0,0,0,1) 100%);;  }
   .userbox {
     width: 300px;
@@ -42,11 +42,11 @@
   .lottery {
     text-align: center;
     color: #FCF80B;
-    width: 800px; 
+    width: 800px;
     font-size: 50px;
   }
 
-  #progressbar { 
+  #progressbar {
     position: fixed; width: 1000px;  border: 1px solid #fff; border-radius: 5px; height: 30px; line-height: 30px;
     color: #fff;
     left: 50%;
@@ -56,14 +56,14 @@
   }
   #bar { width: 0px; background: #fff; height: 30px;  }
   #nav { color: #fff; z-index:999; position: fixed; left: 0; top: 50px; }
-  #nav button, #nav select { font-size: 15px; display: block; margin: 5px; 
-  padding: 5px 10px; color: #fff; z-index:999; background: #333; 
+  #nav button, #nav select { font-size: 15px; display: block; margin: 5px;
+  padding: 5px 10px; color: #fff; z-index:999; background: #333;
   border: 1px #aaa solid; width: 100px; text-align: center; }
   #nav button.btn-selected { background: #FE393A; color: #FCF80B; }
 
 </style>
 <div id="nav">
-<button  value=2' class="btn" id="btn3">三等奖</button>
+<button  value='2' class="btn" id="btn3">三等奖</button>
 <button  value='4'  class="btn" id="btn2">二等奖</button>
 <button  value='8' class="btn"  id="btn1">一等奖</button>
 <button  value='16'  class="btn" id="btn4">特等奖</button>
@@ -89,10 +89,10 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
     var windowHalfX = window.innerWidth / 2;
     var windowHalfY = window.innerHeight / 2;
     var ratio=window.innerWidth/window.innerHeight;
-   	 
-    var objects = [], indexes = [], group, users, lottery_users = [], lottery_level=0; 
+
+    var objects = [], indexes = [], group, users, lottery_users = [], lottery_level=0;
     var targets = { table: [], sphere: [], helix: [], grid: [] };
-  
+
     var maxW = 30;
     var maxH = 10;
     var imageW = 300, imageH = 300;
@@ -107,7 +107,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
         api_sound_url = '<%= asset_path("sound.ogg") %>',
 	api_font_url = '<%= asset_path("font.json") %>',
         api_user_url = '<%= json_users_users_path %>';
-    
+
     render = new THREE.CSS3DRenderer();
     scene  = new THREE.Scene();
 
@@ -135,7 +135,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
         window.addEventListener( 'resize', onWindowResize, false );
     }
 
-    var oceanAmbientSound; 
+    var oceanAmbientSound;
     function load_sound() {
       var audioListener = new THREE.AudioListener();
       camera.add( audioListener );
@@ -145,7 +145,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
       loader.load( api_sound_url, function( buffer ) {
         oSound.setBuffer( buffer );
         oSound.play();
-      }); 
+      });
     }
 
     var obj_light;
@@ -254,7 +254,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
                 load_position();
                 tween = transform( targets.sphere, 3000);
                 tween.onUpdate(function() {
-                  action_step = 1; 
+                  action_step = 1;
                 });
                 tween.onComplete(function() {
                   update_selecting_me();
@@ -302,7 +302,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
     }
 
 
-    function onWindowResize() 
+    function onWindowResize()
     {
         windowHalfX = window.innerWidth / 2;
         windowHalfY = window.innerHeight / 2;
@@ -338,12 +338,12 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
                 try {
                     var json = JSON.parse( xhr.responseText );
                     callback(json);
-                } 
+                }
                 catch ( error ) {
                     console.error( error );
                     console.warn( "DEPRECATED: [" + url + "] seems to be using old model format" );
                 }
-            } 
+            }
             else {
                 console.error( "Couldn't load [" + url + "] [" + xhr.status + "]" );
             }
@@ -360,7 +360,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
   {
     render.render(scene, camera);
   }
-  
+
   function animate() {
     switch(action_step) {
     case 1:
@@ -395,18 +395,18 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
     if (lottery_str == '') { return false; }
     keyup_count += 1;
     switch (keyup_count) {
-    case 1: 
+    case 1:
         group.lookAt(camera.position);
         tween = transform(targets.grid, 3000);
         return false;
       break;
-    case 2: 
+    case 2:
         update_selecting_me();
         return false;
       break;
     }
     var next = keyup_count % 2;
-    if (next) { 
+    if (next) {
       hide_luckbg_light();
       update_selecting_me();
     }
@@ -445,4 +445,3 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
   }
 
 </script>
-

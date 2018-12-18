@@ -3,7 +3,7 @@ class RegisterController < ApplicationController
   def index
     @user = User.new
   end
-  
+
   def new
 
   end
@@ -29,18 +29,16 @@ class RegisterController < ApplicationController
         temp_img.crop "#{w}x#{h}+#{x}+#{y}"
         temp_img.resize "512x512"
         temp_img.write thumb
-	1.times do
-          @user = User.new
-          @user.name = params[:post][:username]
-          @user.attendance = params[:post][:attendance]
-          @user.avatar_url = params[:post][:photo]
-          @user.age = 18
-	  @user.pre = params[:post][:pre]
-	  @user.phone = params[:post][:phone]
-          @user.year =  2018
-          @user.is_active = 0
-          @user.save
-	end 
+        @user = User.new
+        @user.name = params[:post][:username]
+        @user.attendance = params[:post][:attendance]
+        @user.avatar_url = params[:post][:photo]
+        @user.age = 18
+        @user.pre = params[:post][:pre]
+        @user.phone = params[:post][:phone]
+        @user.year =  2018
+        @user.is_active = 0
+        @user.save
       end
       redirect_to welcome_index_url(_id: @user.id)
 

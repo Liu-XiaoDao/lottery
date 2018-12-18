@@ -1,6 +1,6 @@
 
 <div class="welcome-box">
-  <h2 class="title">abcam 20 years anniversary celebration</h2>
+  <h2 class="title"><%= @web_config["web_name"] %></h2>
   <% if @user.present? %>
     <p style="text-align: center;">
       <img src="<%= @user.avatar_url %>" style="width: 100px; border: 1px #eee solid; border-radius: 5px;" />
@@ -19,7 +19,7 @@
     <a href="/register">报名入口</a>
   </p>
   <p>
-    活动日期：2018年12月6日 12:15--12:55 <br />
-    活动地点：Open Office
+    活动日期：<%= @web_config["time"] %> <br />
+    活动地点：<%= @web_config["address"] %>
   </p>
 </div>
