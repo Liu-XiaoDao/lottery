@@ -14,7 +14,7 @@ set :application_name, 'lottery'
 set :domain, '106.12.96.28'
 set :deploy_to, '/home/xiaodao/web/lottery'
 set :repository, 'git@github.com:Liu-XiaoDao/lottery.git'
-set :branch, 'mina'
+set :branch, 'master'
 set :rails_env, 'production'
 # Optional settings:
 set :user, 'xiaodao'          # Username in the server to SSH to.
@@ -65,6 +65,7 @@ task :deploy do
       in_path(fetch(:current_path)) do
         command %{mkdir -p tmp/}
         command %{touch tmp/restart.txt}
+        invoke :'puma:stop'
         invoke :'puma:start'
       end
     end
@@ -72,46 +73,6 @@ task :deploy do
 
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
   # run(:local){ say 'done' }
-end
-
-task :docker_exec do
-  command %{docker exec -i -t lottery /bin/zsh}
-end
-
-namespace :docker do
-  task build_image: :environment do
-    # command %{docker build -t mina_docker_deploy .}
-  end
-
-  task start: :environment do
-    command %{docker run -d --rm --name lottery -p 3000:3000 lottery}
-  end
-
-  task stop: :environment do
-    command %{docker stop mina_docker_deploy || echo 'stop docker'}
-  end
-
-  task exec: :environment do
-    command %{docker exec -i -t lottery /bin/zsh}
-  end
-
-  task deploy: :environment do
-    deploy do
-      invoke :'git:clone'
-      # invoke :'deploy:link_shared_paths'
-      # invoke :'bundle:install'
-      # invoke :'rails:db_migrate'
-      # invoke :'rails:assets_precompile'
-      invoke :'deploy:cleanup'
-
-      on :launch do
-        invoke :'docker:build_image'
-        invoke :'docker:stop'
-        invoke :'docker:stop'
-        invoke :'docker:start'
-      end
-    end
-  end
 end
 
 # For help in making your deploy script, see the Mina documentation:
