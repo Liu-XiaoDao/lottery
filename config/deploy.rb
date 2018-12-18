@@ -2,7 +2,6 @@ require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 require 'mina/rvm'    # for rvm support. (https://rvm.io)
-require 'mina/puma'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -43,8 +42,6 @@ end
 # All paths in `shared_dirs` and `shared_paths` will be created on their own.
 task :setup do
   # command %{rbenv install 2.3.0 --skip-existing}
-  command %(mkdir -p "#{fetch(:deploy_to)}/shared/tmp/pids")
-  command %(mkdir -p "#{fetch(:deploy_to)}/shared/tmp/sockets")
 end
 
 desc "Deploys the current version to the server."
@@ -65,8 +62,6 @@ task :deploy do
       in_path(fetch(:current_path)) do
         command %{mkdir -p tmp/}
         command %{touch tmp/restart.txt}
-        invoke :'puma:stop'
-        invoke :'puma:start'
       end
     end
   end
