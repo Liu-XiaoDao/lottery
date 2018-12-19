@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     get 'active', on: :collection
   end
 
+  resources :user_lists do
+    post :import,         on: :collection
+    post :import_preview, on: :collection
+  end
   resources :register
 
   resources :welcome

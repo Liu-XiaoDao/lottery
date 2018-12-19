@@ -18,6 +18,10 @@ gem 'mini_magick'
 gem 'pry', '~> 0.11.3'
 gem 'mina', '~> 1.2', '>= 1.2.3'
 
+#excel相关
+gem "rubyXL"
+gem 'roo', "~> 1.13.2"
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

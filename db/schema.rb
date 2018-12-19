@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181004174736) do
+ActiveRecord::Schema.define(version: 20181219015044) do
+
+  create_table "user_lists", force: :cascade do |t|
+    t.string "name", limit: 20
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
