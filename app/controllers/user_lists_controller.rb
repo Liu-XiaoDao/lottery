@@ -25,7 +25,6 @@ class UserListsController < ApplicationController
   def import
     cr, er = 0, 0
     @user_lists = Rails.cache.read(params[:cache_key])
-    binding.pry
     @user_lists.map do |t|
       t.save ? cr += 1 : er += 1
     end
