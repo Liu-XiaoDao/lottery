@@ -4,3 +4,18 @@ body { background: url() #fff top center repeat;   }
 .welcome-box { margin-top: 100px; text-align: center; }
 
 
+*+.uk-placeholder {
+ margin-top:15px
+}
+
+.uk-placeholder {
+ margin-bottom:15px;
+ padding:15px;
+ border:1px dashed #e5e5e5;
+ background:#fafafa;
+ color:#666
+}
+
+.uk-text-center {
+ text-align:center!important
+}

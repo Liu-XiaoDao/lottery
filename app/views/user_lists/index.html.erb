@@ -7,14 +7,9 @@
     <p><%= msg %></p>
   </div>
 <% end %>
-<div class="uk-grid" data-uk-grid-margin="">
-  <div class="uk-width-medium-1-1 uk-row-first">
-    <div class="uk-panel uk-panel-box uk-text-center">
-      <div id="upload-drop" class="uk-placeholder uk-text-center">
-        <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将文件拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select" type="file"></a>.
-      </div>
-    </div>
-  </div>
+
+<div id="upload-drop" class="uk-placeholder uk-text-center">
+  <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将文件拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select" type="file"></a>.
 </div>
 
 <% if @user_lists.present? %>
@@ -36,6 +31,7 @@
 
 <%= stylesheet_link_tag    '/media/css/components/upload.css' %>
 <%= javascript_include_tag '/media/js/components/upload.min.js' %>
+<%= stylesheet_link_tag '/media/css/components/form-file.min.css' %>
 
 <script type="text/javascript">
 $(function(){
