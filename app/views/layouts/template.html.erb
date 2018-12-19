@@ -6,6 +6,9 @@
     <title><%= @web_config["web_name"] %></title>
 
     <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <%= stylesheet_link_tag    '/media/css/uikit.almost-flat.min.css' %>
     <%= stylesheet_link_tag    '/media/default.css' %>
     <%= javascript_include_tag '/media/jquery-3.1.1.min.js' %>

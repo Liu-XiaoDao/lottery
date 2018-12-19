@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :user_lists do
-    post :import,         on: :collection
-    post :import_preview, on: :collection
+    get :import,         on: :collection
+    post :upload, on: :collection
+    get :import_preview, on: :collection
   end
   resources :register
 

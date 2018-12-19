@@ -1,34 +1,38 @@
 <% provide :c_active, "user_lists" %>
 <%= render 'shared/navigation' %>
 
+<% flash.each do |name, msg| %>
+  <div class="uk-alert uk-alert-<%= name %>" data-uk-alert="">
+    <a href="" class="uk-alert-close uk-close"></a>
+    <p><%= msg %></p>
+  </div>
+<% end %>
+<div class="uk-grid" data-uk-grid-margin="">
+  <div class="uk-width-medium-1-1 uk-row-first">
+    <div class="uk-panel uk-panel-box uk-text-center">
+      <div id="upload-drop" class="uk-placeholder uk-text-center">
+        <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将文件拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select" type="file"></a>.
+      </div>
+    </div>
+  </div>
+</div>
 
-<% if @users.present? %>
+<% if @user_lists.present? %>
 <table class="uk-table uk-table-hover">
   <thead>
     <tr>
-      <th>头像</th>
       <th>姓名</th>
-      <th>电话</th>
-      <th>工牌</th>
-      <th>激活</th>
-      <th>删除</th>
+      <th>操作</th>
     </tr>
   </thead>
-  <% @users.each do |user| %>
+  <% @user_lists.each do |user_list| %>
       <tr>
-        <td><img src="<%= user.avatar_url %>" style="height:50px; border: 1px #eee solid; border-radius: 5px;" /></td>
-      	<td><%= user.name %></td>
-      	<td><%= user.phone %></td>
-      	<td><%= "#{user.pre}#{user.attendance}" %></td>
-      	<td><%= user.is_active ? "已激活" : "<a href='/users/active?id=#{user.id}'>激活</a>".html_safe %></td>
-      	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>
+      	<td><%= user_list.name %></td>
+      	<td><%= link_to '删除', user_list_path(user_list), method: :delete, data: { confirm: '你确定要删除吗?' } %></td>
       </tr>
   <% end %>
 </table>
 <% end %>
-
-
-
 
 <%= stylesheet_link_tag    '/media/css/components/upload.css' %>
 <%= javascript_include_tag '/media/js/components/upload.min.js' %>
@@ -39,7 +43,7 @@ $(function(){
   var progressbar = $("#progressbar"),
       bar         = progressbar.find('.uk-progress-bar'),
       settings    = {
-        action: '/user_lists/import_preview', // 上传路径 url
+        action: '/user_lists/upload', // 上传路径 url
         allow : '*.(jpg|jpeg|gif|png|xlsx)', // 只允许上传图片
         loadstart: function() {
             bar.css("width", "0%").text("0%");
@@ -54,7 +58,9 @@ $(function(){
             setTimeout(function(){
                 progressbar.addClass("uk-hidden");
             }, 250);
-            alert("Upload Completed")
+            console.log(response);
+            console.log(typeof(response));
+            location.href = '/user_lists/import_preview?cache_key=' + response;
         }
     };
 

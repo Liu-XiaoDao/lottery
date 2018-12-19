@@ -1,6 +1,13 @@
 <% provide :c_active, "user_lists" %>
 <%= render 'shared/navigation' %>
 
+<div class="uk-grid" data-uk-grid-margin="">
+  <div class="uk-width-medium-1-1 uk-row-first">
+    <div class="uk-panel uk-panel-box uk-text-center">
+      <p><strong>请确认下面名单是否正确！</strong> 确认无误后点右侧按钮导入. <a class="uk-button uk-button-primary uk-margin-left" href="/user_lists/import?cache_key=<%=@user_lists_cache_key%>">Import</a></p>
+    </div>
+  </div>
+</div>
 
 <% if @user_lists.present? %>
   <table class="uk-table uk-table-hover">
