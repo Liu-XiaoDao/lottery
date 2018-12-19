@@ -12,12 +12,3 @@
 //
 //= require rails-ujs
 //= require turbolinks
-
-
-
-//这里不导入也是一样的
-//= require jquery-3.1.1.min   
-//= require three/three.min
-//= require three/Detector
-//= require three/tween.min
-//= require three/CSS3DRenderer

@@ -5,22 +5,13 @@
 	<meta charset="utf-8">
 	<%= csrf_meta_tags %>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= stylesheet_link_tag    'global', media: 'all', 'data-turbolinks-track': 'reload' %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 
-	<%= javascript_include_tag 'upload/uikit.min', 'data-turbolinks-track': 'reload' %>
-	<%= javascript_include_tag 'upload/Jcrop.min', 'data-turbolinks-track': 'reload' %>
-	<%= javascript_include_tag 'upload/notify.min', 'data-turbolinks-track': 'reload' %>
-	<%= javascript_include_tag 'upload/upload.min', 'data-turbolinks-track': 'reload' %>
-
-
-	<%= stylesheet_link_tag    'upload/default', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= stylesheet_link_tag    'upload/form-file.min', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= stylesheet_link_tag    'upload/Jcrop.min', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= stylesheet_link_tag    'upload/notify.min', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= stylesheet_link_tag    'upload/progress.min', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= stylesheet_link_tag    'upload/uikit.almost-flat.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    '/media/css/uikit.almost-flat.min.css' %>
+  <%= stylesheet_link_tag    '/media/default.css' %>
+  <%= javascript_include_tag '/media/jquery-3.1.1.min.js' %>
+  <%= javascript_include_tag '/media/js/uikit.min.js' %>
 </head>
 
 <body>
