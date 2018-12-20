@@ -60,7 +60,21 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "lottery_#{Rails.env}"
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
+  ###############邮件设定##################
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "http://lottery.liuxiaodao.top" }
+  config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
+  ###########异常通知############
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[抽奖 #{Rails.env} Error Notifier] ",
+    :sender_address => %{<liu_xiaodao@163.com>},
+    :exception_recipients => %w{957419420@qq.com}
+  }
+  ###############################
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

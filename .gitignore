@@ -23,3 +23,6 @@
 .byebug_history
 
 /public/images
+
+# Ignore email config.
+email.yml
