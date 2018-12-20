@@ -9,47 +9,28 @@ class RegisterController < ApplicationController
   end
 
   def create
-   # "post"=>{"pre"=>"SWN-", "attendance"=>"20170020", "username"=>"dxx", "phone"=>"18106322292", "photo"=>"/images/service/201809/e558cbe7316b3bc782477e5c1e35b568.jpg", "cropx"=>"66", "cropy"=>"153", "cropw"=>"200", "croph"=>"200"}, "photo"=>"425322168076235771.jpg"}
+    if check_phone(yk_user(:phone)) && check_attendance(yk_user(:pre),yk_user(:attendance)) && yk_user(:cropw) && yk_user(:croph)
 
-    yk_id = yk_user(:pre) + yk_user(:attendance)
-    if check_phone(yk_user(:phone)) && check_id(yk_id) && yk_user(:username) && yk_user(:photo) && yk_user(:cropw) && yk_user(:croph) && yk_user(:phone)
       thumb = "#{Rails.root}/public#{yk_user(:photo)}"
       photo ="#{File::dirname(thumb)}/#{File::basename(thumb).gsub('-thumb','')}"
-      if File::file?(thumb) && File::file?(photo)
-        thumb_width = MiniMagick::Image.open(thumb).width
-        thumb_height = MiniMagick::Image.open(thumb).height
-        width = MiniMagick::Image.open(photo).width
-        height = MiniMagick::Image.open(photo).height
-        ratio = width/thumb_width.to_f
-        x = yk_user(:cropx).to_i * ratio
-        y = yk_user(:cropy).to_i * ratio
-        w = yk_user(:cropw).to_i * ratio
-        h = yk_user(:croph).to_i * ratio
-        temp_img = MiniMagick::Image.open(photo)
-        temp_img.crop "#{w}x#{h}+#{x}+#{y}"
-        temp_img.resize "512x512"
-        temp_img.write thumb
-        @user = User.new
-        @user.name = params[:post][:username]
-        @user.attendance = params[:post][:attendance]
-        @user.avatar_url = params[:post][:photo]
-        @user.age = 18
-        @user.pre = params[:post][:pre]
-        @user.phone = params[:post][:phone]
-        @user.year =  2018
-        @user.is_active = 0
-        @user.save
-      end
-      redirect_to welcome_index_url(_id: @user.id)
 
+      crop_img(thumb, photo)
+      create_user
+      redirect_to welcome_index_url(_id: @user.id)
     end
 
+   end
 
-    #user: username,pre,attache,phone,photo,year,age
-
-    #$this->redirect('/?_id='.$_id);
-
-
+   def create_user
+     @user = User.new
+     @user.name = params[:post][:username]
+     @user.attendance = params[:post][:attendance]
+     @user.avatar_url = params[:post][:photo]
+     @user.pre = params[:post][:pre]
+     @user.phone = params[:post][:phone]
+     @user.year =  Date.today.year
+     @user.is_active = 0
+     @user.save
    end
 
   #上传维保相关的一些图片
@@ -88,44 +69,42 @@ class RegisterController < ApplicationController
       image.write filename
     end
   end
-  private
 
+  def crop_img(thumb, photo)
+    if File::file?(thumb) && File::file?(photo)
+      thumb_width = MiniMagick::Image.open(thumb).width
+      thumb_height = MiniMagick::Image.open(thumb).height
+      width = MiniMagick::Image.open(photo).width
+      height = MiniMagick::Image.open(photo).height
+      ratio = width/thumb_width.to_f
+      x = yk_user(:cropx).to_i * ratio
+      y = yk_user(:cropy).to_i * ratio
+      w = yk_user(:cropw).to_i * ratio
+      h = yk_user(:croph).to_i * ratio
+      temp_img = MiniMagick::Image.open(photo)
+      temp_img.crop "#{w}x#{h}+#{x}+#{y}"
+      temp_img.resize "512x512"
+      temp_img.write thumb
+    end
+  end
+
+  private
     def yk_user(key)
       params[:post][key]
     end
 
-    def check_id(id)
+    def check_attendance(pre,attendance)
+      if User.find_by_pre_and_attendance(pre,attendance)
+        raise "该工牌号码#{pre}#{attendance}已被#{user.name}注册！"
+      end
       return true
     end
 
     def check_phone(phone)
+      if User.find_by_phone(phone).present?
+        raise "该电话号码#{phone}已注册！"
+      end
       return true
     end
-
-
-  #   private function check_id($id)
-  # {
-  #   if ($id == 'XXX-20170020') {
-  #     return true;
-  #   }
-  #   $res = $this->swn->company->findOne(['id'=>$id]);
-  #   if(empty($res)) {
-  #     throw new HTTP_Exception_403(sprintf('该工牌号码 %s 不存在！', $id));
-  #   }
-  #   $user = $this->swn->user->findOne(['id'=>$id]+$this->filters);
-  #   if($user) {
-  #     throw new HTTP_Exception_403(sprintf('该工牌号码 %s 已被 %s 注册！', $id, $user->username));
-  #   }
-  #   return true;
-  # }
-  #
-  # private function check_phone($phone)
-  # {
-  #   $count = $this->swn->user->count(['phone'=>$phone]+$this->filters);
-  #   if($count) {
-  #     throw new HTTP_Exception_403(sprintf('该电话号码 %s 已注册！', $phone));
-  #   }
-  #   return true;
-  # }
 
 end
