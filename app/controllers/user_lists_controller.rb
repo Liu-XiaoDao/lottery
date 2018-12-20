@@ -5,6 +5,30 @@ class UserListsController < ApplicationController
     @user_lists = UserList.all
   end
 
+  def create
+    @user_list = UserList.new(params.require(:user_list).permit(:name))
+    if @user_list.save
+      flash["success"] = "添加成功"
+    else
+      flash["danger"] = "添加失败"
+    end
+    redirect_to user_lists_url
+  end
+
+  def edit
+    @user_list = UserList.find params[:id]
+  end
+
+  def update
+    @user_list = UserList.find params[:id]
+    if @user_list.update_attributes(params.require(:user_list).permit(:name))
+      flash["success"] = "添加成功"
+    else
+      flash["danger"] = "添加失败"
+    end
+    redirect_to user_lists_url
+  end
+
   def upload
     # binding.pry
     if !params[:files][0]

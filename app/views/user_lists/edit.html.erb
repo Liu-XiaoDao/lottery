@@ -1,0 +1,19 @@
+<% provide :c_active, "user_lists" %>
+<%= render 'shared/navigation' %>
+<br/>
+<div class="uk-panel uk-panel-box">
+  <%= form_for @user_list, html: { class: "uk-form uk-form-stacked" } do |f| %>
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">姓名:</label>
+      <div class="uk-form-controls">
+        <%= f.text_field :name, placeholder: "姓名 ", class: "uk-width-1-1" %>
+      </div>
+    </div>
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="btn_submit">
+      <a class="uk-button uk-button-primary" href="/user_lists">返回</a>
+      <button class="uk-button uk-button-primary uk-margin-left" id="btn_submit" type="submit">保存</button>
+      </label>
+    </div>
+  <% end %>
+</div>

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     post 'lottery', on: :collection
     get 'delete', on: :collection
     get 'active', on: :collection
+    get 'reset', on: :collection
+    post 'admin_create', on: :collection
   end
 
   resources :user_lists do

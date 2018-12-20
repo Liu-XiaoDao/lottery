@@ -1,4 +1,6 @@
 class UserList < ApplicationRecord
+  default_scope { order(id: :desc) }
+
   def self.to_xlsx(records)
     export_fields = ["name"]
     SpreadsheetService.new.generate(export_fields, records)
