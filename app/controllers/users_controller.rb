@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new
     @user.name = params[:user][:username]
     @user.attendance = params[:user][:attendance]
-    @user.avatar_url = "/default_avatar.jpg"
+    @user.avatar_url = "/default_avatar-thumb.jpg"
     @user.pre = params[:user][:pre]
     @user.phone = params[:user][:phone]
     @user.year =  Date.today.year
