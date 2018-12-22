@@ -3,11 +3,11 @@
   <ul class="uk-navbar-nav uk-hidden-small">
     <li class="<%= check_if_active 'users',yield(:c_active) %>"><a href="/users">抽奖列表</a></li>
     <li class="<%= check_if_active 'user_lists',yield(:c_active) %>"><a href="/user_lists">员工列表</a></li>
-    <li class="uk-parent" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
+    <li class="uk-parent <%= check_if_active 'home',yield(:c_active) %>" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
       <a href="">系统设置 <i class="uk-icon-caret-down"></i></a>
       <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" style="top: 40px; left: 0px;">
         <ul class="uk-nav uk-nav-navbar">
-          <li><a href="#">Item</a></li>
+          <li><a href="/home/qrcode">二维码</a></li>
           <li><a href="#">Another item</a></li>
           <li class="uk-nav-header">Header</li>
           <li><a href="#">Item</a></li>

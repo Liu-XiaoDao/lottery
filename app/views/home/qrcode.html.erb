@@ -1,0 +1,136 @@
+<% provide :c_active, "home" %>
+<%= render 'shared/navigation' %>
+
+<!-- 添加弹框 -->
+<div class="uk-alert" data-uk-alert="">
+  <a class="uk-button uk-button-primary uk-margin-left" target="_blank" href="https://cli.im/">生成二维码</a>
+</div>
+
+<div class="uk-grid uk-grid-width-medium-1-2" data-uk-grid-margin="">
+  <div class="uk-row-first">
+    <div id="upload-drop-register" class="uk-placeholder uk-text-center">
+      <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将注册二维码拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select-register" type="file"></a>.
+    </div>
+    <div id="progressbar-register" class="uk-progress uk-hidden">
+        <div class="uk-progress-bar" style="width: 0%;">...</div>
+    </div>
+  </div>
+  <div>
+    <div id="upload-drop-signin" class="uk-placeholder uk-text-center">
+      <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将签到二维码拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select-signin" type="file"></a>.
+    </div>
+    <div id="progressbar-signin" class="uk-progress uk-hidden">
+        <div class="uk-progress-bar" style="width: 0%;">...</div>
+    </div>
+  </div>
+</div>
+
+
+<br>
+<div class="uk-width-1-1 uk-row-first">
+  <p class="uk-text-large">复制下面链接到生成二维码页面生成二维码</p>
+  <p class="uk-text">注册二维码:<span class="uk-text-success"><%=request.host%></span></p>
+  <p class="uk-text">激活二维码:<span class="uk-text-success"><%=request.host%>/signin</span></p>
+</div>
+
+<div class="uk-grid uk-grid-width-medium-1-4" data-uk-grid-margin="">
+  <div class="uk-row-first">
+    <a href="/register.png" data-uk-lightbox="{group:'group1'}" title="年会注册">
+      <img src="/register.png" width="800" height="600" alt="">
+    </a>
+  </div>
+  <div>
+    <a href="/signin.png" data-lightbox-type="image" data-uk-lightbox="{group:'group1'}" title="现场签到">
+      <img src="/signin.png" width="800" height="600" alt="">
+    </a>
+  </div>
+</div>
+
+<%= javascript_include_tag '/media/js/components/lightbox.min.js' %>
+<%= stylesheet_link_tag '/media/css/components/slidenav.css' %>
+
+<%= stylesheet_link_tag    '/media/css/components/upload.css' %>
+<%= javascript_include_tag '/media/js/components/upload.min.js' %>
+<%= stylesheet_link_tag '/media/css/components/progress.min.css' %>
+<%= javascript_include_tag '/media/js/components/notify.min.js' %>
+<%= stylesheet_link_tag '/media/css/components/notify.min.css' %>
+<%= stylesheet_link_tag '/media/css/components/form-file.min.css' %>
+
+<script type="text/javascript">
+$(function(){
+  //注册二维码上传
+  var progressbar_register = $("#progressbar-register"),
+      bar_register       = progressbar_register.find('.uk-progress-bar'),
+      settings_register    = {
+        action: '/home/upload_register', // 上传路径 url
+        allow : '*.(jpg|jpeg|gif|png)', // 只允许上传图片
+        notallowed: function() {
+          UIkit.notify('请选择允许的图片格式（jpg|jpeg|png）', {status:'warning'});
+        },
+        loadstart: function() {
+            bar_register.css("width", "0%").text("0%");
+            progressbar_register.removeClass("uk-hidden");
+        },
+        progress: function(percent) {
+            percent = Math.ceil(percent);
+            bar_register.css("width", percent+"%").text(percent+"%");
+        },
+        allcomplete: function(response) {
+            bar_register.css("width", "100%").text("100%");
+            setTimeout(function(){
+                progressbar_register.addClass("uk-hidden");
+            }, 250);
+            res = $.parseJSON(response);
+            if (res.suc == 1 ) {
+              UIkit.notify(res.msg, {status:'success'});
+              setTimeout('window.location.reload();',2000);
+            } else {
+              UIkit.notify(res.msg, {status:'warning'});
+            }
+        },
+        error: function(e) {
+          UIkit.notify(e);
+        }
+    };
+  var select_register = UIkit.uploadSelect($("#upload-select-register"), settings_register),
+      drop_register   = UIkit.uploadDrop($("#upload-drop-register"), settings_register);
+
+
+  //签到二维码上传
+  var progressbar_signin = $("#progressbar-signin"),
+      bar_signin         = progressbar_signin.find('.uk-progress-bar'),
+      settings_signin    = {
+        action: '/home/upload_signin', // 上传路径 url
+        allow : '*.(jpg|jpeg|gif|png)', // 只允许上传图片
+        notallowed: function() {
+          UIkit.notify('请选择允许的图片格式（jpg|jpeg|png）', {status:'warning'});
+        },
+        loadstart: function() {
+            bar_signin.css("width", "0%").text("0%");
+            progressbar_signin.removeClass("uk-hidden");
+        },
+        progress: function(percent) {
+            percent = Math.ceil(percent);
+            bar_signin.css("width", percent+"%").text(percent+"%");
+        },
+        allcomplete: function(response) {
+            bar_signin.css("width", "100%").text("100%");
+            setTimeout(function(){
+                progressbar_signin.addClass("uk-hidden");
+            }, 250);
+            res = $.parseJSON(response);
+            if (res.suc == 1 ) {
+              UIkit.notify(res.msg, {status:'success'});
+              setTimeout('window.location.reload();',2000);
+            } else {
+              UIkit.notify(res.msg, {status:'warning'});
+            }
+        },
+        error: function(e) {
+          UIkit.notify(e);
+        }
+    };
+  var select_signin = UIkit.uploadSelect($("#upload-select-signin"), settings_signin),
+      drop_signin   = UIkit.uploadDrop($("#upload-drop-signin"), settings_signin);
+});
+</script>

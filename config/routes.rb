@@ -24,4 +24,8 @@ Rails.application.routes.draw do
   resources :draw
   resources :signin
   post '/register/upload_img' => 'register#upload_img'
+
+  get '/home/qrcode' => 'home#qrcode'
+  post '/home/upload_register' => 'home#upload_register'
+  post '/home/upload_signin' => 'home#upload_signin'
 end
