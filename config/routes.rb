@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  get '/home/index' => 'home#index'
-  get '/home/index_old' => 'home#index_old'
+  get '/lottery/index' => 'lottery#index'
+  get '/lottery/index_old' => 'lottery#index_old'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     post 'json_users', on: :collection
