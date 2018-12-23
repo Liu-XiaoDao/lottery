@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get '/lottery/index' => 'lottery#index'
   get '/lottery/index_old' => 'lottery#index_old'
+  get '/lottery/signin' => 'lottery#signin'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     post 'json_users', on: :collection

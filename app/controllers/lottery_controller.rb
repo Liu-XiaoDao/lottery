@@ -5,4 +5,8 @@ class LotteryController < ApplicationController
 
   def index_old
   end
+
+  def signin
+    render layout: false
+  end
 end
