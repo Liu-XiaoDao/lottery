@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   root 'welcome#index'
 
   get '/lottery/index' => 'lottery#index'
