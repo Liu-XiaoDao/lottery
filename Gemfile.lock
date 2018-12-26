@@ -139,6 +139,7 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redis (3.3.5)
     roo (1.13.2)
       nokogiri
       rubyzip
@@ -218,6 +219,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 5.1.4)
   rails-i18n
+  redis (~> 3.0)
   roo (~> 1.13.2)
   rubyXL
   sass-rails (~> 5.0)

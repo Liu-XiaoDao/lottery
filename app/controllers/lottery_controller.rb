@@ -19,6 +19,7 @@ class LotteryController < ApplicationController
   end
 
   def signin_test
-    render layout: false
+    ActionCable.server.broadcast 'signin', message: "render_message()"
+    render plain: "wewewewe"
   end
 end

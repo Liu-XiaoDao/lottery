@@ -25,6 +25,9 @@ gem 'roo', "~> 1.13.2"
 gem 'exception_notification'#这个是发生异常后，发送邮件给开发者
 gem 'rack-mini-profiler'  #这个是在左上角显示性能检测信息
 
+#redis
+gem 'redis', "~>3.0"
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
