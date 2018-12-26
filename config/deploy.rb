@@ -24,6 +24,7 @@ set :forward_agent, true     # SSH forward_agent.
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
 # set :shared_dirs, fetch(:shared_dirs, []).push('public/assets')
+set :shared_dirs, fetch(:shared_dirs, []).push('public/images')
 # set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
 set :shared_files, fetch(:shared_files, []).push('db/production.sqlite3', 'config/email.yml')
 
