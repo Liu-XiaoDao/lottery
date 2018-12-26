@@ -3,4 +3,8 @@ module ApplicationHelper
   def check_if_active(text,path)
     text == path ? "uk-active" : ""
   end
+
+  def fetch_script
+    binding.pry
+  end
 end
