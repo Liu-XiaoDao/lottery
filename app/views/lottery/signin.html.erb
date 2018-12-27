@@ -100,15 +100,17 @@
 				color: #000000;
 				background-color: rgba(0,255,255,0.75);
 			}
-			.show_info{position:fixed;background-color:rgba(0,0,0,.6);padding:10px;width:300px;margin:0 auto;left: 0;right:0;border-radius: 5px;box-shadow: 0 0 10px 0 #fff;top:30%;}
-			.show_info img{display:block;margin:auto;border-radius: 5px;box-shadow: 0 0 10px 0 #888;}
-			.show_info .intro{color:#fff;text-indent:20px;margin-top:10px;height:65px;overflow:hidden;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}
+			.show_info{position:fixed;background-color:rgba(0,0,0,.6);padding:10px;width:300px;z-index: 11;margin:0 auto;left: 0;right:0;border-radius: 5px;box-shadow: 0 0 10px 0 #fff;top:30%;}
+			.show_info img{display:block;margin:auto;border-radius: 5px;box-shadow: 0 0 10px 0 #888;width: 150px;height: 150px;}
+      .show_info .intro{color:#fff;font-size: 30px;text-align: center;text-indent:20px;height:50px;overflow:hidden;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}
+			.show_info .intro_name{color:#fff;font-size: 25px;text-align: center;margin-top: 10px;text-indent:20px;height:40px;overflow:hidden;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}
 			.show_info .info_my{text-align: center;}
 			.show_info .info_my > *{display:inline-block !important;vertical-align: middle;}
 			.show_info .info_my .info_mem{color:#fff;max-width:120px;}
 			.show_info .info_my .info_mem > div{text-align: left;}
 			.show_info .info_my .info_mem > div.nickname{max-width: 120px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-		</style>
+      .signin_count{position:fixed;background-color:rgba(0,0,0,.6);padding:10px;width:210px;z-index: 11;margin:0 auto;left: 10px;border-radius: 5px;top:10px;color: white;font-size: 20px;text-align: center;}
+    </style>
 		<link rel="stylesheet" href="/3d_show/css/animate.min.css">
 	</head>
 	<body>
@@ -120,54 +122,73 @@
 
 		<div id="container"></div>
 		<div id="info">abcam年会签到</div>
+    <div class="signin_count">激活 / 参加：<span id="signin_count">0</span> / 234</div>
 
 		<div class="show_info animated" style="display:none;">
 			<div class="info_my">
-				<img src="/3d_show/img/a.png" />
-				<div class="info_mem">
-					<div class="nickname">smile的微笑</div>
-					<div class="id">ID:123</div>
-					<div class="vote">票数：123</div>
-				</div>
+				<img id="user_img" src="" />
 			</div>
-			<div class="intro">曾经，在一个很远很远的地方，那里绿水长青，没有现在都市的喧哗，犹如室外桃园。。。想知道更多精彩内容吗?</div>
+			<div id="user_nickname" class="intro_name"></div>
 		</div>
+
+
+    <!-- 星空背景 -->
+    <link href="/starsky/css/index_style.css" rel="stylesheet" type="text/css">
+
+    <!---HEADER STAR----->
+    <div class="header" id="demo">
+      <div class="top_logo">
+        <img src="/signin.png" alt="">
+      </div>
+      <div class="canvaszz"></div>
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <!--音乐 START-->
+      <audio controls autoplay class="audio">
+        <source src="/starsky/css/Music.mp3" type="audio/mp3">
+        <source src="/starsky/css/Music.ogg" type="audio/ogg">
+        <source src="/starsky/css/Music.aac" type="audio/mp4">
+      </audio>
+    <!--音乐 END-->
+    <!-- 星空背景 -->
 
 		<script>
 			var personArray = new Array;
+      var signinPersonArray = new Array;
     	var CurPersonNum = 0;
     	// animate
     	var _in = ['bounceIn','bounceInDown','bounceInLeft','bounceInRight','bounceInUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft','fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight','slideInDown','slideInLeft','slideInRight'];
     	var _out = ['bounceOut','bounceOutDown','bounceOutLeft','bounceOutRight','bounceOutUp','fadeOut','fadeOutDown','fadeOutDownBig','fadeOutLeft','fadeOutLeftBig','fadeOutRight','fadeOutRightBig','fadeOutUp','fadeOutUpBig','rotateOut','rotateOutDownLeft','rotateOutDownRight','rotateOutUpLeft','rotateOutUpRight','slideOutDown','slideOutLeft','slideOutRight'];
 
-    		// 模拟推送数据
-			var s = setInterval(function(){
-				// get animate
-				var rand_in = parseInt(Math.random() * _in.length,10);
-    		var rand_out = parseInt(Math.random() * _out.length,10);
-				if(CurPersonNum >= personArray.length){
-					CurPersonNum = 0;
-				}
-				$('.show_info').show();
-				$('.show_info').addClass(_in[rand_in]);
-				setTimeout(function(){
-					$('.show_info').removeClass(_in[rand_in]);
-					// 更改展示的图片
-					var img = document.getElementsByClassName('element')[CurPersonNum].getElementsByTagName('img')[0];
-					img.setAttribute('src','/default_avatar-thumb.jpg');
-					++CurPersonNum;
-					setTimeout(function(){
-						$('.show_info').addClass(_out[rand_out]);
-						setTimeout(function(){
-							$('.show_info').removeClass(_out[rand_out]);
-							$('.show_info').hide();
-						},1000);
-					},1500);
-				},1000);
-			},4500);
+      var s = setInterval(function(){
+        if (signinPersonArray === undefined || signinPersonArray.length == 0) {
+          console.log("数组空");
+          return;
+        } else {
+          console.log(signinPersonArray);
+          $('#user_img').attr({ src: signinPersonArray[0]['avatar_url'] });
+          $('#user_nickname').html(signinPersonArray[0]['name'] + "  签到成功")
+          signinPersonArray.shift();
+        }
+      	var rand_in = parseInt(Math.random() * _in.length,10);
+      	var rand_out = parseInt(Math.random() * _out.length,10);
+      	$('.show_info').show();
+      	$('.show_info').addClass(_in[rand_in]);
+      	setTimeout(function(){
+      		$('.show_info').removeClass(_in[rand_in]);
+      		setTimeout(function(){
+      			$('.show_info').addClass(_out[rand_out]);
+      			setTimeout(function(){
+      				$('.show_info').removeClass(_out[rand_out]);
+      				$('.show_info').hide();
+      			},1000);
+      		},1500);
+      	},1000);
+      },4500);
 
 			// 生成虚拟数据
-	    for(var i=0;i<199;i++){
+	    for(var i=0;i<240;i++){
 				personArray.push({
 		      image: "/default_avatar-thumb.jpg"
 		    });
@@ -334,25 +355,6 @@
 			}
 
 		</script>
-
-
-
-<link href="/starsky/css/index_style.css" rel="stylesheet" type="text/css">
-
-<!---HEADER STAR----->
-<div class="header" id="demo">
-  <div class="top_logo"></div>
-  <div class="canvaszz">hhhhhhhhhhhhhhhhhhhhh </div>
-  <canvas id="canvas"></canvas>
-</div>
-
-<!--音乐 START-->
-  <audio controls autoplay class="audio">
-    <source src="/starsky/css/Music.mp3" type="audio/mp3">
-    <source src="/starsky/css/Music.ogg" type="audio/ogg">
-    <source src="/starsky/css/Music.aac" type="audio/mp4">
-  </audio>
-<!--音乐 END-->
 
 
 <script>

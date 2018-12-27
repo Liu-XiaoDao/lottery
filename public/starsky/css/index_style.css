@@ -42,11 +42,11 @@ body {margin:0 auto;overflow:hidden;}
   opacity: 0.3;
   display: none;
 }
-.header .top_logo{
+.header .top_logo img{
   background-image: url(/signin.png);
   margin:0 auto;
-  width:300px;
-  height:300px;
+  width:200px;
+  height:200px;
   position:absolute;
   z-index:30;
   top:10px;
