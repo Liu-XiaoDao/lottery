@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181219015044) do
+ActiveRecord::Schema.define(version: 20181227103315) do
+
+  create_table "request_stats", force: :cascade do |t|
+    t.string "path"
+    t.integer "count"
+    t.text "params_stats"
+    t.float "max_time"
+    t.float "min_time"
+    t.float "avg_time"
+    t.datetime "last_requested_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_lists", force: :cascade do |t|
     t.string "name", limit: 20
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_requests", force: :cascade do |t|
+    t.integer "request_stat_id"
+    t.string "url"
+    t.float "time"
+    t.integer "memory_usage"
+    t.string "path"
+    t.text "params"
+    t.string "remote_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

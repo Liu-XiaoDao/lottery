@@ -1,0 +1,40 @@
+<% provide :c_active, "home" %>
+<%= render 'shared/navigation' %>
+
+<% flash.each do |name, msg| %>
+  <div class="uk-alert uk-alert-<%= name %>" data-uk-alert="">
+    <a href="" class="uk-alert-close uk-close"></a>
+    <p><%= msg %></p>
+  </div>
+<% end %>
+
+<% if @request_stats.present? %>
+<table class="uk-table uk-table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Path</th>
+      <th>Count</th>
+      <th>params_stats</th>
+      <th>max_time</th>
+      <th>min_time</th>
+      <th>avg_time</th>
+      <th>last_requested_at</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <% @request_stats.each do |request_stat| %>
+      <tr>
+        <td><%= request_stat.id %></td>
+        <td><%= request_stat.path %></td>
+        <td><%= request_stat.count %></td>
+        <td><%= request_stat.params_stats %></td>
+        <td><%= request_stat.max_time %></td>
+        <td><%= request_stat.min_time %></td>
+        <td><%= request_stat.avg_time %></td>
+        <td><%= request_stat.last_requested_at %></td>
+      	<td><%= link_to '删除', request_stat_path(request_stat), method: :delete, data: { confirm: '你确定要删除吗?' } %></td>
+      </tr>
+  <% end %>
+</table>
+<% end %>

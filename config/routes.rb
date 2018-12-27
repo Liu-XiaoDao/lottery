@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   end
   resources :register
 
+  resources :user_requests
+  resources :request_stats
+
   resources :welcome
   resources :draw
   resources :signin
