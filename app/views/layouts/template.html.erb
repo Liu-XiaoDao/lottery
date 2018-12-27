@@ -14,10 +14,10 @@
     <%= javascript_include_tag '/media/jquery-3.1.1.min.js' %>
     <%= javascript_include_tag '/media/js/uikit.min.js' %>
 
-    <%#= content_for?("#{params[:controller]}/scripts") ? render("#{params[:controller]}/scripts") : nil %>
-    <% fetch_script %>
-    <%= template_exists?("#{params[:controller]}/scripts") ? render("#{params[:controller]}/scripts") : nil %>
-    <!-- <%= render "#{params[:controller]}/scripts" %> -->
+    <%# if lookup_context.template_exists?("_scripts", params[:controller]) %>
+      <%#= render "#{params[:controller]}/scripts" %>
+    <%# end %>
+    <%= render "shared/scripts" %>
 
   </head>
 
