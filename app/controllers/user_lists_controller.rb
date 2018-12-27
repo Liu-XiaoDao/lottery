@@ -2,7 +2,7 @@ class UserListsController < ApplicationController
   layout 'template'
 
   def index
-    @user_lists = UserList.all
+    @user_lists = UserList.all.paginate page: params[:page], per_page: 18
   end
 
   def create

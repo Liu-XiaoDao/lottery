@@ -37,4 +37,5 @@
       </tr>
   <% end %>
 </table>
+<%= will_paginate @request_stats, renderer: WillPaginate::ActionView::BlogLinkRenderer %>
 <% end %>

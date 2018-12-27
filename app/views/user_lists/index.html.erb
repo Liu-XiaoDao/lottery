@@ -55,6 +55,7 @@
       </tr>
   <% end %>
 </table>
+<%= will_paginate @user_lists, renderer: WillPaginate::ActionView::BlogLinkRenderer %>
 <% end %>
 
 <!-- 之前_scripts中内容在这 -->

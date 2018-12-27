@@ -74,4 +74,5 @@
       </tr>
     <% end %>
   </table>
+  <%= will_paginate @users, renderer: WillPaginate::ActionView::BlogLinkRenderer %>
 <% end %>
