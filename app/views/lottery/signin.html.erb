@@ -122,7 +122,7 @@
 
 		<div id="container"></div>
 		<div id="info">abcam年会签到</div>
-    <div class="signin_count">激活 / 参加：<span id="signin_count">0</span> / 234</div>
+    <div class="signin_count">激活 / 参加：<span id="signin_count"><%= User.signin_count %></span> / <%= User.count %></div>
 
 		<div class="show_info animated" style="display:none;">
 			<div class="info_my">

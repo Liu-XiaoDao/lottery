@@ -8,7 +8,7 @@ class SigninController < ApplicationController
       @user = User.find_by_phone params[:post][:phone]
       @user.is_active = 1
       if @user.save
-        @user.send_message
+        # ActionCable.server.broadcast 'signin', message: {user_info: @user, signin_count: User.signin_count}
         redirect_to "/welcome?active=1&_id=#{@user.id}"
       else
         '没有找到此用户'

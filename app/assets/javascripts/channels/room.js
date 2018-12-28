@@ -9,8 +9,9 @@
     },
     received: function(data) {
       console.log(data['message']);
-      signinPersonArray.push(data['message']);
-      return $('#messages').append(data['message']);
+      signinPersonArray.push(data['message']['user_info']);
+      $('#signin_count').html(data['message']['signin_count']);
+      return $('#messages').append(data['message']['signin_count']);
     },
     speak: function(message) {
       return this.perform('speak', {
