@@ -1,22 +1,20 @@
 class RegisterController < ApplicationController
   layout 'template'
+  before_action :check_params, only: [:create]
+
   def index
     @user = User.new
   end
 
-  def new
-
-  end
-
   def create
-    if check_phone(yk_user(:phone)) && check_attendance(yk_user(:pre),yk_user(:attendance)) && yk_user(:cropw) && yk_user(:croph)
-
+    if check_phone(yk_user(:phone)) && check_user(yk_user(:username))
       thumb = "#{Rails.root}/public#{yk_user(:photo)}"
       photo ="#{File::dirname(thumb)}/#{File::basename(thumb).gsub('-thumb','')}"
-
       crop_img(thumb, photo)
       create_user
       redirect_to welcome_index_url(_id: @user.id)
+    else
+      redirect_to register_index_url
     end
 
    end
@@ -24,9 +22,7 @@ class RegisterController < ApplicationController
    def create_user
      @user = User.new
      @user.name = params[:post][:username]
-     @user.attendance = params[:post][:attendance]
      @user.avatar_url = params[:post][:photo]
-     @user.pre = params[:post][:pre]
      @user.phone = params[:post][:phone]
      @user.year =  Date.today.year
      @user.is_active = 0
@@ -89,20 +85,31 @@ class RegisterController < ApplicationController
   end
 
   private
+    def check_params
+      if params[:post].present? && params[:post][:username].present? && params[:post][:phone].present? && params[:post][:photo].present? && params[:post][:cropx].present? && params[:post][:cropy].present? && params[:post][:cropw].present? && params[:post][:croph].present?
+        return true
+      else
+        flash["danger"] = "参数缺失，注册失败"
+        redirect_to register_index_url
+      end
+    end
+
     def yk_user(key)
       params[:post][key]
     end
 
-    def check_attendance(pre,attendance)
-      if User.find_by_pre_and_attendance(pre,attendance)
-        raise "该工牌号码#{pre}#{attendance}已被#{user.name}注册！"
+    def check_user(username)
+      if UserList.find_by_name(username).blank?
+        flash["danger"] = "该员工#{username}不存在！"
+        return nil
       end
       return true
     end
 
     def check_phone(phone)
       if User.find_by_phone(phone).present?
-        raise "该电话号码#{phone}已注册！"
+        flash["danger"] = "该电话号码#{phone}已注册！"
+        return nil
       end
       return true
     end
