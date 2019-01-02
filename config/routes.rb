@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get '/lottery/index' => 'lottery#index'
+  get '/lottery/index_test' => 'lottery#index_test'
   get '/lottery/index_old' => 'lottery#index_old'
   get '/lottery/universe' => 'lottery#universe'
   get '/lottery/milky_way' => 'lottery#milky_way'

@@ -1,0 +1,457 @@
+html {
+	font-family: 'Microsoft YaHei', '宋体', Avenir, arial;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%
+}
+
+body {
+	margin: 0
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+	display: block
+}
+
+audio, canvas, progress, video {
+	display: inline-block;
+	vertical-align: baseline
+}
+
+audio:not([controls]) {
+	display: none;
+	height: 0
+}
+
+[hidden], template {
+	display: none
+}
+
+a {
+	background-color: transparent
+}
+
+a:active, a:hover {
+	outline: 0
+}
+
+abbr[title] {
+	border-bottom: 1px dotted
+}
+
+b, strong {
+	font-weight: 700
+}
+
+dfn {
+	font-style: italic
+}
+
+h1 {
+	font-size: 2em;
+	margin: .67em 0
+}
+
+mark {
+	background: #ff0;
+	color: #000
+}
+
+small {
+	font-size: 80%
+}
+
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline
+}
+
+sup {
+	top: -.5em
+}
+
+sub {
+	bottom: -.25em
+}
+
+img {
+	border: 0
+}
+
+svg:not(:root) {
+	overflow: hidden
+}
+
+figure {
+	margin: 1em 40px
+}
+
+hr {
+	box-sizing: content-box;
+	height: 0
+}
+
+pre {
+	overflow: auto
+}
+
+code, kbd, pre, samp {
+	font-family: monospace, monospace;
+	font-size: 1em
+}
+
+button, input, optgroup, select, textarea {
+	color: inherit;
+	font: inherit;
+	margin: 0
+}
+
+button {
+	overflow: visible
+}
+
+button, select {
+	text-transform: none
+}
+
+button, html input[type=button], input[type=reset], input[type=submit] {
+	-webkit-appearance: button;
+	cursor: pointer
+}
+
+button[disabled], html input[disabled] {
+	cursor: default
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+	border: 0;
+	padding: 0
+}
+
+input {
+	line-height: normal
+}
+
+input[type=checkbox], input[type=radio] {
+	box-sizing: border-box;
+	padding: 0
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+	height: auto
+}
+
+input[type=search] {
+	-webkit-appearance: textfield;
+	box-sizing: content-box
+}
+
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+	-webkit-appearance: none
+}
+
+fieldset {
+	border: 1px solid silver;
+	margin: 0 2px;
+	padding: .35em .625em .75em
+}
+
+legend {
+	border: 0;
+	padding: 0
+}
+
+textarea {
+	overflow: auto
+}
+
+optgroup {
+	font-weight: 700
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+td, th {
+	padding: 0
+}
+
+body, html {
+	height: 100%
+}
+
+body {
+	margin: 0;
+	font-family: Helvetica, sans-serif;
+	overflow: hidden;
+	background: #000 url('./img/bg2.jpg') no-repeat center center;
+	background-size: cover;
+}
+
+a {
+	color: #fff
+}
+
+ul,li{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.element {
+	box-sizing: border-box;
+	width: 120px;
+	height: 120px;
+	padding-top: 20px;
+	box-shadow: 0 0 12px rgba(0, 255, 255, .5);
+	border: 1px solid rgba(127, 255, 255, .25);
+	text-align: center;
+	cursor: default
+}
+
+.element:hover {
+	box-shadow: 0 0 12px rgba(0, 255, 255, .75);
+	border: 1px solid rgba(127, 255, 255, .75)
+}
+
+.element.active, .element.chou {
+	box-shadow: 0 0 12px rgba(0, 255, 255, .9) !important;
+	border: 1px solid rgba(204, 204, 204, .9) !important;
+	background-color: rgba(127, 255, 255, .9) !important
+}
+
+.element.active .name,
+.element.active .jobno {
+	color: #fff !important
+}
+
+.element.chou .name {
+	color: #fff !important
+}
+
+.element .img {
+	display: block;
+	width: 120px;
+	height: 120px
+}
+
+.element .name,
+.element .jobno {
+	width: 120px;
+	height: 40px;
+	color: rgba(127, 255, 255, .75);
+	font-size: 30px;
+	line-height: 40px;
+	text-align: center
+}
+
+#menu {
+	color: #fff;
+	position: absolute;
+	display: none;
+	left: 20px;
+	bottom: 20px;
+	text-align: center;
+}
+#count{
+	width: 30px;
+	height: 24px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	background: rgba(0, 0, 0, 0);
+	border: 0;
+	text-align: center;
+	outline: 2px solid rgba(127, 255, 255, .75);
+}
+
+button {
+	color: rgba(127, 255, 255, .75);
+	background: rgba(0, 0, 0, 0);
+	outline: 1px solid rgba(127, 255, 255, .75);
+	border: 0;
+	padding: 5px 10px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+button:hover {
+	background-color: rgba(0, 255, 255, .5)
+}
+
+button:active {
+	color: #000;
+	background-color: rgba(0, 255, 255, .75)
+}
+#info{
+	position: absolute;
+	color: #fff;
+	font-size: 20px;
+	top: 10px;
+	left: 10px;
+	z-index: 9;
+}
+
+#list {
+	z-index: 99999;
+	position: absolute;
+	display: none;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-color: rgba(0,0,0, .6);
+}
+.level{
+	margin: 0;
+	width: 100%;
+	height: 30px;
+	color: #fff;
+	font-size: 16px;
+	line-height: 30px;
+	text-align: center;
+	border-top: 1px solid rgba(127, 255, 255, .7);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+.list-item {
+	display: none;
+	width: 100%;
+	height: 24px;
+	color: #fff;
+	font-size: 14px;
+	line-height: 24px;
+	text-align: center;
+	border-top: 1px solid rgba(127, 255, 255, .7);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.title {
+	padding: 20px 0 0;
+	display: block;
+	border-top: 0;
+	height: 30px;
+	color: #fff;
+	font-size: 26px;
+	line-height: 26px;
+	text-align: center;
+}
+.list-box{
+	padding: 20px;
+	color: #fff;
+}
+.list-box h6{
+	font-size: 24px;
+	margin-bottom: 6px;
+}
+.list-box ul{
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+.list-box li{
+	width: 120px;
+	float: left;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.list-item.ex {
+	display: block
+}
+
+#tip {
+	position: absolute;
+	display: none;
+	top: 50%;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	width: 400px;
+	margin: 0 auto;
+	transform:translate(0,-50%);
+}
+
+.luckyer-list {
+	overflow: hidden;
+	width: 100%;
+	text-align: center;
+	box-shadow: 0 0 12px rgba(255, 255, 255, .9);
+	/* border: 1px solid rgba(255, 255, 255, .9); */
+	background: rgba(0,0,0,.8);
+	/* filter: contrast(100%) brightness(220%) hue-rotate(-35deg);
+	background-size: cover; */
+	padding: 40px 0;
+	min-height: 200px;
+}
+
+.luckyer-list h2{
+	font-size: 30px;
+	margin: 0;
+	margin-bottom: 20px;
+	color: #fff;
+	font-weight: normal;
+}
+
+
+.luckyer-list .luckyer-item1,
+.luckyer-list .luckyer-item2,
+.luckyer-list .luckyer-item4 {
+	color: #fff;
+	font-size: 26px;
+	line-height: 1.4
+}
+.luckyer-list .luckyer-item2 {
+	float: left;
+	width: 50%;
+}
+.luckyer-list .luckyer-item4{
+	float: left;
+	width: 25%;
+}
+#tip.wide{
+	width: 800px;
+}
+#tip2 {
+	box-sizing: border-box;
+	position: absolute;
+	display: none;
+	top: 20%;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	width: 400px;
+	margin: 0 auto;
+	transform:translate(0,-50%);
+	padding-left: 80px;
+	box-shadow: 1px solid rgba(127, 255, 255, .25);
+	border: 1px solid rgba(204, 204, 204, .9);
+	background: rgba(0, 127, 127, 0.9);
+	overflow: hidden;
+}
+.lottery-text {
+	padding: 20px 0;
+	font-size: 30px;
+	color: rgba(255, 255, 255, .9);
+}
+#countdown{
+	z-index: 1000;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	font-size: 300px;
+	opacity: 0;
+	color: #fff;
+	font-weight: bold;
+}

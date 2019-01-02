@@ -3,6 +3,9 @@ class LotteryController < ApplicationController
   def index
   end
 
+  def index_test
+  end
+
   def index_old
   end
 
