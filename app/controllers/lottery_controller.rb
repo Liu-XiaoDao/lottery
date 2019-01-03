@@ -9,6 +9,14 @@ class LotteryController < ApplicationController
   def index_old
   end
 
+  def lottery_batch_new
+    render layout: false
+  end
+
+  def lottery_batch
+    render layout: false
+  end
+
   def universe
     render layout: false
   end
