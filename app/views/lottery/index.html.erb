@@ -105,7 +105,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
     var api_base = '/',
         background = '<%= asset_path("background.jpg") %>';
         api_sound_url = '<%= asset_path("sound.ogg") %>',
-	api_font_url = '<%= asset_path("font.json") %>',
+	      api_font_url = '<%= asset_path("font.json") %>',
         api_user_url = '<%= json_users_users_path %>';
 
     render = new THREE.CSS3DRenderer();
@@ -120,9 +120,10 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
         render.setSize(window.innerWidth, window.innerHeight);
         render.domElement.style.position = 'absolute';
         render.domElement.style.top = 0;
-        //render.domElement.style.backgroundImage = 'url('+backgroundImage_url+')';
+        render.domElement.style.left = 0;
+        render.domElement.style.backgroundImage = 'url('+background+')';
         render.domElement.style.backgroundColor = '#050505';
-        render.domElement.style.backgroundImage = '-webkit-radial-gradient(center, ellipse cover,  rgba(43,45,48,1) 0%,rgba(0,0,0,1) 100%)';
+        // render.domElement.style.backgroundImage = '-webkit-radial-gradient(center, ellipse cover,  rgba(43,45,48,1) 0%,rgba(0,0,0,1) 100%)';
         camera=new THREE.PerspectiveCamera(angleOfview, ratio, 1, 10000);
         camera.position.x = 0;
         camera.position.y = 0;
@@ -211,7 +212,18 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
     function load_user() {
       ajax_request(api_user_url, function(json) {
-        users = json.info;
+        // users = json.info;
+        var users = [];
+        for(var i = 0; i < 200; i++){
+  				users.push({
+  					name: 'sanye',
+  					attendance: '00' + i,
+            avatar_url: '/default_avatar.jpg',
+  					age: '18',
+  					deptName: 'xxx',
+  					dept4Name: 'xxxx'
+  				});
+  			}
         count = users.length;
         var key;
         for(key in users) {
