@@ -8,9 +8,6 @@ class RegisterController < ApplicationController
 
   def create
     if check_phone(yk_user(:phone)) && check_user(yk_user(:username))
-      thumb = "#{Rails.root}/public#{yk_user(:photo)}"
-      photo ="#{File::dirname(thumb)}/#{File::basename(thumb).gsub('-thumb','')}"
-      crop_img(thumb, photo)
       create_user
       redirect_to welcome_index_url(_id: @user.id)
     else

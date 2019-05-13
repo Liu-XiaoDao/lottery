@@ -1,0 +1,23 @@
+<% if user_lists.present? %>
+<table class="uk-table uk-table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>姓名</th>
+      <th>组长</th>
+      <th colspan="2">操作</th>
+    </tr>
+  </thead>
+  <% user_lists.each do |user_list| %>
+      <tr>
+        <td><%= user_list.id %></td>
+      	<td><%= user_list.name %></td>
+      	<td><%= user_list.leader_id %></td>
+        <td><%= link_to '修改', edit_user_list_path(user_list) %></td>
+      	<td><%= link_to '删除', user_list_path(user_list), method: :delete, data: { confirm: '你确定要删除吗?' } %></td>
+      </tr>
+  <% end %>
+</table>
+<% end %>
+
+

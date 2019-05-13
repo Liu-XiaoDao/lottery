@@ -5,6 +5,9 @@ class UserListsController < ApplicationController
     @user_lists = UserList.all.paginate page: params[:page], per_page: 18
   end
 
+  def leader_index()
+  end
+
   def create
     @user_list = UserList.new(params.require(:user_list).permit(:name))
     if @user_list.save

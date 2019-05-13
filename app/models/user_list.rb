@@ -1,5 +1,6 @@
 class UserList < ApplicationRecord
-  default_scope { order(id: :desc) }
+  #default_scope { order(id: :desc) }
+  #belongs_to :leader, class_name: "UserList"
 
   def self.to_xlsx(records)
     export_fields = ["name"]

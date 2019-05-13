@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :user_lists do
+    get :leader_index,   on: :collection
     get :import,         on: :collection
     post :upload, on: :collection
     get :import_preview, on: :collection

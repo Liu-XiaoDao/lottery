@@ -1,0 +1,69 @@
+<% provide :c_active, "user_lists" %>
+<%= render 'shared/navigation' %>
+
+<% flash.each do |name, msg| %>
+  <div class="uk-alert uk-alert-<%= name %>" data-uk-alert="">
+    <a href="" class="uk-alert-close uk-close"></a>
+    <p><%= msg %></p>
+  </div>
+<% end %>
+
+<!-- 添加弹框 -->
+<div class="uk-alert" data-uk-alert="">
+  <a class="uk-button uk-button-primary uk-margin-left" href="/user_lists">全员名单</a>
+</div>
+
+<div class="uk-row-first">
+    <ul class="uk-tab" data-uk-tab="{connect:'#tab-content'}">
+        <li class="uk-active" aria-expanded="true"><a href="#">刘春良</a></li>
+        <li aria-expanded="false" class=""><a href="#">楼航超</a></li>
+        <li aria-expanded="false" class=""><a href="#">陈艳莉</a></li>
+        <li aria-expanded="false" class=""><a href="#">徐美瑶</a></li>
+        <li aria-expanded="false" class=""><a href="#">张玉川</a></li>
+        <li aria-expanded="false" class=""><a href="#">骆燕</a></li>
+        <li aria-expanded="false" class=""><a href="#">章红芳</a></li>
+        <li aria-expanded="false" class=""><a href="#">沈平</a></li>
+    </ul>
+    <ul id="tab-content" class="uk-switcher uk-margin">
+      <li class="uk-active" aria-hidden="false"><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 1)} %></li>
+      <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 33)} %></li>
+      <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 63)} %></li>
+      <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 94)} %></li>
+      <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 125)} %></li>
+      <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 156)} %></li>
+      <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 187)} %></li>
+      <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 220)} %></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+$(function(){
+
+  var progressbar = $("#progressbar"),
+      bar         = progressbar.find('.uk-progress-bar'),
+      settings    = {
+        action: '/user_lists/upload', // 上传路径 url
+        allow : '*.(jpg|jpeg|gif|png|xlsx)', // 只允许上传图片
+        loadstart: function() {
+            bar.css("width", "0%").text("0%");
+            progressbar.removeClass("uk-hidden");
+        },
+        progress: function(percent) {
+            percent = Math.ceil(percent);
+            bar.css("width", percent+"%").text(percent+"%");
+        },
+        allcomplete: function(response) {
+            bar.css("width", "100%").text("100%");
+            setTimeout(function(){
+                progressbar.addClass("uk-hidden");
+            }, 250);
+            console.log(response);
+            console.log(typeof(response));
+            location.href = '/user_lists/import_preview?cache_key=' + response;
+        }
+    };
+
+  var select = UIkit.uploadSelect($("#upload-select"), settings),
+      drop   = UIkit.uploadDrop($("#upload-drop"), settings);
+});
+</script>
