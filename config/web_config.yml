@@ -1,9 +1,9 @@
 # 下面是系統配置
 development:
-  web_name: 测试-abcam 20 years anniversary celebration
-  address: Open Office
-  time: 2018年12月6日 12:15--12:55
+  web_name: 测试-“绿色梦想，青春六月”---西湖花圃健步走活动
+  address: 杭州花圃
+  time: 2019年6月1日 09:30--12:00
 production:
-  web_name: 2018 abcam 年会
-  address: 待定
-  time: 2019年1月18日 18:00--21:00
+  web_name: “绿色梦想，青春六月”---西湖花圃健步走活动
+  address: 杭州花圃
+  time: 2019年6月1日 09:30--12:00

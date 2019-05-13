@@ -2,16 +2,6 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   root 'welcome#index'
 
-  get '/lottery/index' => 'lottery#index'
-  get '/lottery/index_test' => 'lottery#index_test'
-  get '/lottery/index_old' => 'lottery#index_old'
-  get '/lottery/lottery_batch_new' => 'lottery#lottery_batch_new'
-  get '/lottery/lottery_batch' => 'lottery#lottery_batch'
-  get '/lottery/universe' => 'lottery#universe'
-  get '/lottery/milky_way' => 'lottery#milky_way'
-  get '/lottery/signin' => 'lottery#signin'
-  get '/lottery/signin_test' => 'lottery#signin_test'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     post 'json_users', on: :collection
