@@ -2,9 +2,9 @@
 <div class="welcome-box">
   <h2 class="title"><%= @web_config["web_name"] %></h2>
   <% if @user.present? %>
-    <p style="text-align: center;">
-      <img src="<%= @user.avatar_url %>" style="width: 100px; border: 1px #eee solid; border-radius: 5px;" />
-    </p>
+    <!-- <p style="text-align: center;">
+      <img src="<%#= @user.avatar_url %>" style="width: 100px; border: 1px #eee solid; border-radius: 5px;" />
+    </p> -->
     <h3>
       热烈欢迎 "<%=@user.name%>" 的加入
       <br>
