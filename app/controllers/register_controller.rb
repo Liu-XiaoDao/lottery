@@ -24,7 +24,9 @@ class RegisterController < ApplicationController
      if @user.save
        families = params[:post][:families]
        families.each do |people|
-         @user.families.create(name: people[:name], family_type: people[:type])
+         if people[:name].present?
+           @user.families.create(name: people[:name], family_type: people[:type])
+         end
        end
      end
 
