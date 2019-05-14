@@ -1,6 +1,16 @@
 class UserList < ApplicationRecord
   #default_scope { order(id: :desc) }
-  #belongs_to :leader, class_name: "UserList"
+  belongs_to :leader, class_name: "UserList"
+  has_one :user
+
+
+  def leader_name
+    leader.try(:name)
+  end
+
+  def user_name
+    user.try(:name)
+  end
 
   def self.to_xlsx(records)
     export_fields = ["name"]

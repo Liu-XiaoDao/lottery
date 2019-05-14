@@ -44,6 +44,7 @@
     <tr>
       <th>ID</th>
       <th>姓名</th>
+      <th>组长</th>
       <th colspan="2">操作</th>
     </tr>
   </thead>
@@ -51,6 +52,7 @@
       <tr>
         <td><%= user_list.id %></td>
       	<td><%= user_list.name %></td>
+        <td><%= user_list.leader_name %></td>
         <td><%= link_to '修改', edit_user_list_path(user_list) %></td>
       	<td><%= link_to '删除', user_list_path(user_list), method: :delete, data: { confirm: '你确定要删除吗?' } %></td>
       </tr>

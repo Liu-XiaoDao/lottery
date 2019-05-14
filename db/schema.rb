@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190513170608) do
+ActiveRecord::Schema.define(version: 20190514043209) do
 
   create_table "families", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "family_type"
     t.integer "user_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "request_stats", force: :cascade do |t|
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20190513170608) do
     t.string "pre"
     t.string "phone"
     t.integer "lottery"
+    t.integer "user_list_id"
   end
 
 end

@@ -19,11 +19,15 @@ class RegisterController < ApplicationController
    def create_user
      @user = User.new
      @user.name = params[:post][:username]
-     @user.avatar_url = params[:post][:photo]
      @user.phone = params[:post][:phone]
-     @user.year =  Date.today.year
-     @user.is_active = 0
-     @user.save
+     @user.user_list = UserList.find_by_name params[:post][:username]
+     if @user.save
+       families = params[:post][:families]
+       families.each do |people|
+         @user.families.create(name: people[:name], family_type: people[:type])
+       end
+     end
+
    end
 
   private

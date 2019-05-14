@@ -6,12 +6,9 @@
       <img src="<%= @user.avatar_url %>" style="width: 100px; border: 1px #eee solid; border-radius: 5px;" />
     </p>
     <h3>
-      系统欢迎 "<%=@user.name%>" 的加入,
-      <% if @user.is_active %>
-        你的信息已被激活生效
-      <% else %>
-        请在会场签到激活你的信息
-      <% end %>
+      热烈欢迎 "<%=@user.name%>" 的加入
+      <br>
+      有任何问题可以联系你的小组长(<span style="color:red;"><%=@user.user_list.try(:leader_name)%></span>)，或者公会成员
     </h3>
   <% end %>
   <p>当前参加：<%=@count%>人</p>

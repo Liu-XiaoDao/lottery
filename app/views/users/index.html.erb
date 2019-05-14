@@ -55,7 +55,8 @@
       <tr>
         <th>姓名</th>
         <th>电话</th>
-        <th>激活</th>
+        <th>家属</th>
+        <th>组长</th>
         <th>删除</th>
       </tr>
     </thead>
@@ -63,7 +64,12 @@
       <tr>
       	<td><%= user.name %></td>
       	<td><%= user.phone %></td>
-      	<td><%= user.is_active ? "已激活" : "<a href='/users/active?id=#{user.id}'>激活</a>".html_safe %></td>
+      	<td>
+          <% user.families.each do |family| %>
+            姓名:<%= family.name %>, 类型:<%= family.family_type %><br>
+          <% end %>
+        </td>
+        <td><%= user.user_list.try(:leader_name)%></td>
       	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>
       </tr>
     <% end %>
