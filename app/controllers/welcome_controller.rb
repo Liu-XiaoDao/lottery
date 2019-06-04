@@ -7,4 +7,8 @@ class WelcomeController < ApplicationController
     @count = User.count
     @count_active = User.where(is_active: true).count
   end
+
+  def scan_code
+    render layout: false
+  end
 end

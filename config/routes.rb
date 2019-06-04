@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   resources :user_requests
   resources :request_stats
 
-  resources :welcome
+  resources :welcome do
+    get :scan_code,   on: :collection
+  end
   resources :draw
   resources :signin
   post '/register/upload_img' => 'register#upload_img'

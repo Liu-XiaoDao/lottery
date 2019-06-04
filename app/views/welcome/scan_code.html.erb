@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>图书扫描</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	  <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
+    <meta name="viewport" content="width=width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+  </head>
+
+  <body class="dingwrapper">
+      <div class="container">
+        <div class="row">
+
+          <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <span id="display1"></span>
+          </div>
+
+                <div class="span12">
+                  <div class="content">
+                    <div class="module">
+                        <div class="module-head">
+                          <h3>冰箱温度</h3>
+                        </div>
+                        <div class="module-body">
+
+
+                          <%= form_for :bingxiang, url: "#", html: { class: "form-horizontal row-fluid", id: "create_question_form" }  do |q| %>
+                            <div class="control-group">
+                              <label class="control-label" for="basicinput">Title</label>
+                              <div class="controls">
+                                <%= q.text_field  :title, placeholder: "Type something here...", class: "span8" %>
+                                <!-- <span class="help-inline">Minimum 5 Characters</span> -->
+                              </div>
+                            </div>
+
+                            <div class="control-group">
+                              <label class="control-label" for="basicinput">Author</label>
+                              <div class="controls">
+                                <%= q.text_field  :author, placeholder: "input author...", class: "span8" %>
+                                <!-- <span class="help-inline">Minimum 5 Characters</span -->
+                              </div>
+                            </div>
+
+                            <div class="control-group">
+                              <label class="control-label" for="basicinput">Content</label>
+                              <div class="controls">
+                                <%= q.text_area  :content, rows: 8, class: "span8", style: "display:none;" %>
+                                <%= q.text_area  :content_html, rows: 8, class: "span8", style: "display:none;" %>
+                                <div id="editor">
+                                </div>
+                              </div>
+
+                            </div>
+
+                            <div class="control-group">
+                              <div class="controls">
+                                <button type="submit" class="btn btn-primary">Submit Form</button>
+                              </div>
+                            </div>
+                          <% end %>
+                      </div>
+                    </div>
+
+                  </div><!--/.content-->
+                </div><!--/.span9-->
+
+
+
+
+        </div>
+      </div><!--/.container-->
+    <style type="text/css">
+      .dingwrapper {
+        background: #eee;
+        padding: 30px 0
+      }
+    </style>
+    <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+    <script>
+      // $(".btn-box").click(function () {
+      //   DingTalkPC.biz.util.openLink({
+      //       url: $(this).attr("dinghref"),//要打开链接的地址
+      //       onSuccess : function(result) {
+      //         window.location.reload()
+      //       },
+      //       onFail : function() {
+      //         window.location.reload()
+      //       }
+      //   });
+      // });
+      dd.ready(function(){
+        dd.biz.util.scan({
+          type: "all" ,
+          tips: "请扫描冰箱二维码",  //进入扫码页面显示的自定义文案
+          onSuccess: function(data) {
+          //onSuccess将在扫码成功之后回调
+            /* data结构
+              { 'text': String}
+            */
+            $("#display1").html(data['text']);
+          },
+         onFail : function(err) {
+         }
+      })
+    });
+    </script>
+  </body
+</html>
