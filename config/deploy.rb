@@ -10,13 +10,13 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'lottery'
-set :domain, '106.12.96.28'
-set :deploy_to, '/home/xiaodao/web/labour_union'
+set :domain, '117.50.59.164'
+set :deploy_to, '/home/ubuntu/web/labour_union'
 set :repository, 'git@github.com:Liu-XiaoDao/lottery.git'
 set :branch, 'labour_union'
 set :rails_env, 'production'
 # Optional settings:
-set :user, 'xiaodao'          # Username in the server to SSH to.
+set :user, 'ubuntu'          # Username in the server to SSH to.
 #   set :port, '30000'           # SSH port number.
 set :forward_agent, true     # SSH forward_agent.
 
