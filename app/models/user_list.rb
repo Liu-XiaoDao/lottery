@@ -25,7 +25,7 @@ class UserList < ApplicationRecord
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[headers, spreadsheet.row(i).map(&:to_s)].transpose]
       user_list = new
-      user_list.attributes = row.to_hash.slice(*["name"])
+      user_list.attributes = row.to_hash.slice(*["name", "leader_id"])
       create_record << user_list
     end
     create_record
