@@ -13,7 +13,7 @@ class UserListsController < ApplicationController
     if @user_list.save
       flash["success"] = "添加成功"
     else
-      flash["danger"] = "添加失败"
+      flash["danger"] = "添加失败#{@user_list.errors}"
     end
     redirect_to user_lists_url
   end
