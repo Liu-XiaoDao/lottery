@@ -11,4 +11,9 @@ class WelcomeController < ApplicationController
   def scan_code
     render layout: false
   end
+
+  # 活动详情
+  def activity_introduction
+
+  end
 end
