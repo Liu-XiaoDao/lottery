@@ -14,25 +14,26 @@ class RegisterController < ApplicationController
       redirect_to register_index_url
     end
 
-   end
+  end
 
-   def create_user
-     @user = User.new
-     @user.name = params[:post][:username]
-     @user.is_attendance = params[:post][:is_attendance]
-     @user.is_car = params[:post][:is_car]
-     @user.is_lunch = params[:post][:is_lunch]
-     @user.user_list = UserList.find_by_name params[:post][:username]
-     if @user.save
-       families = params[:post][:families]
-       families.each do |people|
-         if people[:name].present?
-           @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number], height: people[:height], is_car: people[:is_car], is_lunch: people[:is_lunch])
-         end
-       end
-     end
+  def create_user
+    @user = User.new
+    @user.name = params[:post][:username]
+    @user.is_attendance = params[:post][:is_attendance]
+    @user.is_car = params[:post][:is_car]
+    @user.is_lunch = params[:post][:is_lunch]
+    @user.user_list = UserList.find_by_name params[:post][:username]
+    @user.save
 
-   end
+    families = params[:post][:families]
+    if families.present?
+      families.each do |people|
+        if people[:name].present?
+          @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number], height: people[:height], is_car: people[:is_car], is_lunch: people[:is_lunch])
+        end
+      end
+    end
+  end
 
   private
     def check_params
