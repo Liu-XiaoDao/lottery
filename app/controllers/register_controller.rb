@@ -7,7 +7,7 @@ class RegisterController < ApplicationController
   end
 
   def create
-    if check_phone(yk_user(:phone)) && check_user(yk_user(:username))
+    if check_user(yk_user(:username))
       create_user
       redirect_to welcome_index_url(_id: @user.id)
     else
@@ -19,13 +19,15 @@ class RegisterController < ApplicationController
    def create_user
      @user = User.new
      @user.name = params[:post][:username]
-     @user.phone = params[:post][:phone]
+     @user.is_attendance = params[:post][:is_attendance]
+     @user.is_car = params[:post][:is_car]
+     @user.is_lunch = params[:post][:is_lunch]
      @user.user_list = UserList.find_by_name params[:post][:username]
      if @user.save
        families = params[:post][:families]
        families.each do |people|
          if people[:name].present?
-           @user.families.create(name: people[:name], family_type: people[:type])
+           @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number], height: people[:height])
          end
        end
      end
@@ -34,7 +36,7 @@ class RegisterController < ApplicationController
 
   private
     def check_params
-      if params[:post].present? && params[:post][:username].present? && params[:post][:phone].present?
+      if params[:post].present? && params[:post][:username].present?
         return true
       else
         flash["danger"] = "参数缺失，注册失败"

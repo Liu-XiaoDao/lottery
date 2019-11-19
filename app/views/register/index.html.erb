@@ -15,11 +15,54 @@
       </div>
     </div>
     <div class="uk-form-row">
+      <label class="uk-form-label" for="">是否参加</label>
+      <div class="uk-form-controls">
+         <span class="id-pre uk-width-1-1">
+           <select id="pre" name="post[is_attendance]">
+             <option value="参加">参加</option>
+             <option value="不参加">不参加</option>
+          </select>
+         </span>
+      </div>
+    </div>
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">是否乘车</label>
+      <div class="uk-form-controls">
+         <span class="id-pre uk-width-1-1">
+           <select id="pre" name="post[is_car]">
+             <option value="乘坐大巴">乘坐大巴</option>
+             <option value="自驾">自驾</option>
+          </select>
+         </span>
+      </div>
+    </div>
+
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">是否用午餐</label>
+      <div class="uk-form-controls">
+         <span class="id-pre uk-width-1-1">
+           <select id="pre" name="post[is_lunch]">
+             <option value="用餐">用餐</option>
+             <option value="不用餐">不用餐</option>
+          </select>
+         </span>
+      </div>
+    </div>
+
+    <!--<div class="uk-form-row">
       <label class="uk-form-label" for="">手机号码</label>
       <div class="uk-form-controls">
         <input type="number" id="phone" value="" name="post[phone]" class="uk-width-1-1" placeholder="请输入你的手机号码">
       </div>
     </div>
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">身份证号</label>
+      <div class="uk-form-controls">
+        <input type="text" id="phone" value="" name="post[id_number]" class="uk-width-1-1" placeholder="身份证号，请认真填写">
+      </div>
+    </div>-->
 
     <h3 class="tm-article-subtitle">家属</h3>
     <div class="uk-form-row families-div">
@@ -31,6 +74,8 @@
           </select>
          </span>
          <input type="text" value="" name="post[families][][name]" class="uk-width-3-4" placeholder="请输入家属姓名">
+         <input type="text" value="" name="post[families][][height]" class="uk-width-1-1" style="margin-top:5px;" placeholder="如果是儿童请输入身高">
+         <input type="text" id="phone" value="" name="post[families][][id_number]" class="uk-width-1-1" style="margin-top:5px;" placeholder="身份证号，请认真填写">
        </div>
     </div>
 
@@ -74,6 +119,8 @@ $(function(){
           '</select>' +
          '</span>' +
          '<input type="text" value="" name="post[families][][name]" class="uk-width-3-4" placeholder="请输入家属姓名">' +
+         '<input type="text" value="" name="post[families][][height]" class="uk-width-1-1" style="margin-top:5px;" placeholder="如果是儿童请输入身高">' +
+         '<input type="text" id="phone" value="" name="post[families][][id_number]" class="uk-width-1-1" style="margin-top:5px;" placeholder="身份证号，请认真填写">'+
        '</div>' +
     '</div>';
     $('.families-div').after(insert_html)

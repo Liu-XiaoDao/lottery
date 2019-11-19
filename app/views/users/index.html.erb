@@ -54,7 +54,9 @@
     <thead>
       <tr>
         <th>姓名</th>
-        <th>电话</th>
+        <th>是否参加</th>
+        <th>是否乘车</th>
+        <th>是否午餐</th>
         <th>家属</th>
         <th>组长</th>
         <th>删除</th>
@@ -63,10 +65,13 @@
     <% @users.each do |user| %>
       <tr>
       	<td><%= user.name %></td>
-      	<td><%= user.phone %></td>
+      	<td><%= user.is_attendance %></td>
+      	<td><%= user.is_car %></td>
+      	<td><%= user.is_lunch %></td>
       	<td>
           <% user.families.each do |family| %>
-            姓名:<%= family.name %>, 类型:<%= family.family_type %><br>
+            姓名:<%= family.name %>, 类型:<%= family.family_type %><%if family.family_type != '成人'%>, 身高:<%= family.height %><%end%><br>
+            身份证号:<%= family.id_number %><br>
           <% end %>
         </td>
         <td><%= user.user_list.try(:leader_name)%></td>
