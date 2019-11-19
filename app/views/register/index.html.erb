@@ -66,17 +66,28 @@
 
     <h3 class="tm-article-subtitle">家属</h3>
     <div class="uk-form-row families-div">
-       <div class="uk-form-controls">
+<!--       <div class="uk-form-controls">
          <span class="id-pre uk-width-1-4">
-           <select id="pre" name="post[families][][type]">
-             <option value="成人">成人</option>
+           <select class="families_type" name="post[families][][type]">
              <option value="儿童">儿童</option>
+             <option value="成人">成人</option>
           </select>
          </span>
          <input type="text" value="" name="post[families][][name]" class="uk-width-3-4" placeholder="请输入家属姓名">
-         <input type="text" value="" name="post[families][][height]" class="uk-width-1-1" style="margin-top:5px;" placeholder="如果是儿童请输入身高">
-         <input type="text" id="phone" value="" name="post[families][][id_number]" class="uk-width-1-1" style="margin-top:5px;" placeholder="身份证号，请认真填写">
-       </div>
+         <input type="text" value="" name="post[families][][height]" class="uk-width-1-1" style="margin-top:5px;" placeholder="如果是儿童请输入身高(cm)">
+         <input type="text" value="" name="post[families][][id_number]" class="uk-width-1-1" style="margin-top:5px;" placeholder="身份证号，请认真填写">
+         <label for="">是否用午餐：</label>
+           <select id="pre" name="post[families][][is_lunch]">
+             <option value="用餐">用餐</option>
+             <option value="不用餐">不用餐</option>
+          </select>
+         <br />
+         <label for="">是否乘车：</label>
+           <select id="pre" name="post[families][][is_car]">
+             <option value="乘坐大巴">乘坐大巴</option>
+             <option value="自驾">自驾</option>
+          </select>
+</div>-->
     </div>
 
      <div class="uk-form-row">
@@ -90,6 +101,12 @@
       </label>
     </div>
   <% end %>
+  <h3 class="tm-article-subtitle" style="color:red;">注意事项</h3>
+  <ul class="uk-list">
+    <li>成人:350, 儿童:150(120cm以下)</li>
+    <li>身份证号用于购买保险</li>
+    <li></li>
+  </ul>
 </div>
 <!-- 之前_scripts中内容在这 -->
 
@@ -98,32 +115,62 @@ $(function(){
   var fn_btn_submit = function() {
     var username = $('#username').val();
     var phone    = $('#phone').val();
+    var inputs   = $(':input[name*="families"]');
+    var submit_tag = true;
+    inputs.each(function(){
+      if ($(this).val() == '') {
+        UIkit.notify('提交失败，家属信息填写不完整', {status:'warning'});
+        submit_tag = false;
+        return false;
+      }
+    });
     if (username == '') {
         UIkit.notify('姓名为空', {status:'warning'});
         return false;
     }
-    return true;
+    return submit_tag;
   }
 
   var fn_btn_add = function() {
     var insert_html = '<div class="uk-form-row">' +
        '<div class="uk-form-controls">' +
          '<span class="id-pre uk-width-1-4">' +
-           '<select id="pre" name="post[families][][type]">' +
+           '<select class="families_type" name="post[families][][type]">' +
+             '<option value="儿童">儿童</option>' +
              '<option value="成人">成人</option>' +
-            '<option value="儿童">儿童</option>' +
           '</select>' +
          '</span>' +
          '<input type="text" value="" name="post[families][][name]" class="uk-width-3-4" placeholder="请输入家属姓名">' +
          '<input type="text" value="" name="post[families][][height]" class="uk-width-1-1" style="margin-top:5px;" placeholder="如果是儿童请输入身高">' +
-         '<input type="text" id="phone" value="" name="post[families][][id_number]" class="uk-width-1-1" style="margin-top:5px;" placeholder="身份证号，请认真填写">'+
+         '<input type="text" value="" name="post[families][][id_number]" class="uk-width-1-1" style="margin-top:5px;" placeholder="身份证号，请认真填写">'+
+         '<label for="">是否用午餐：</label>'+
+         '<select id="pre" name="post[families][][is_lunch]">'+
+             '<option value="用餐">用餐</option>'+
+             '<option value="不用餐">不用餐</option>'+
+          '</select>'+
+         '<br />'+
+         '<label for="">是否乘车：</label>'+
+           '<select id="pre" name="post[families][][is_car]">'+
+             '<option value="乘坐大巴">乘坐大巴</option>'+
+             '<option value="自驾">自驾</option>'+
+          '</select>'+
        '</div>' +
     '</div>';
     $('.families-div').after(insert_html)
+    $('.families_type').change(change_families_type);
   }
 
   $('#btn_submit').click(fn_btn_submit);
   $('#btn_add').click(fn_btn_add);
+
+  var change_families_type = function() {
+    if ($(this).val() == '成人') {
+      $(this).parents().next().next().val('N/A');
+    } else {
+      $(this).parents().next().next().val('');
+    }
+  }
+  $('.families_type').change(change_families_type);
 });
 </script>
 <style type="text/css" media="screen">

@@ -27,7 +27,7 @@ class RegisterController < ApplicationController
        families = params[:post][:families]
        families.each do |people|
          if people[:name].present?
-           @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number], height: people[:height])
+           @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number], height: people[:height], is_car: people[:is_car], is_lunch: people[:is_lunch])
          end
        end
      end
@@ -53,6 +53,12 @@ class RegisterController < ApplicationController
         flash["danger"] = "该员工#{username}不存在！"
         return nil
       end
+
+      if User.find_by_name(username).present?
+        flash["danger"] = "该员工#{username}已报名！"
+        return nil
+      end
+
       return true
     end
 
