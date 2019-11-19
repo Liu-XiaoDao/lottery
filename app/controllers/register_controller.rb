@@ -6,6 +6,10 @@ class RegisterController < ApplicationController
     @user = User.new
   end
 
+  def research_index
+
+  end
+
   def create
     if check_user(yk_user(:username))
       create_user

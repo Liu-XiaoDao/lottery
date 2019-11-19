@@ -41,6 +41,10 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def research
+    @user = User.find_by_name_and_id(params[:post][:username],params[:post][:user_id])
+  end
+
   def json_users
     @users = User.where(is_active: true)
     render json: {info:@users}

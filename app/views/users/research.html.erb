@@ -1,0 +1,42 @@
+<div class="register-box">
+  <h1 class="title">报名结果</h1>
+
+    <div class="uk-form-row">
+      <label style="font-weight: bold;">姓名: </label> <%= @user.name %>
+    </div>
+    <div class="uk-form-row">
+      <label style="font-weight: bold;">是否参加: </label> <%= @user.is_attendance %>
+    </div>
+    <div class="uk-form-row">
+      <label style="font-weight: bold;">是否乘车: </label> <%= @user.is_car %>
+    </div>
+    <div class="uk-form-row">
+      <label style="font-weight: bold;">是否用午餐: </label> <%= @user.is_lunch %>
+    </div>
+
+
+
+
+    <h3 class="tm-article-subtitle">家属</h3>
+    <div class="uk-form-row families-div">
+      <% @user.families.each do |family| %>
+        <ul class="uk-list">
+          <li><label style="font-weight: bold;">姓名: </label> <%= family.name %>(<%= family.family_type %>)</li>
+          <li><label style="font-weight: bold;">身高: </label> <%= family.height %></li>
+          <li><label style="font-weight: bold;">身份证号: </label> <%= family.id_number %></li>
+          <li><label style="font-weight: bold;">是否乘车: </label> <%= family.is_car %></li>
+          <li><label style="font-weight: bold;">是否用午餐: </label> <%= family.is_lunch %></li>
+        </ul>
+      <% end %>
+    </div>
+
+
+</div>
+<style type="text/css" media="screen">
+  .tm-article-subtitle {
+    padding-left: 6px;
+    border-left: 3px solid #1FA2D6;
+    font-size: 16px;
+    line-height: 16px;
+  }
+</style>

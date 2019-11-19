@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   root 'welcome#index'
   get '/activity_introduction' => 'welcome#activity_introduction'
+  get '/research' => 'register#research_index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     get 'active', on: :collection
     get 'reset', on: :collection
     post 'admin_create', on: :collection
+    get 'research', on: :collection
   end
 
   resources :activitys do

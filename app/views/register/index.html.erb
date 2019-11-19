@@ -92,6 +92,7 @@
 
      <div class="uk-form-row">
       <button class="uk-button" id="btn_add" type="button">+</button>
+      <button class="uk-button" id="btn_remove" type="button">-</button>
       </label>
     </div>
 
@@ -103,7 +104,8 @@
   <% end %>
   <h3 class="tm-article-subtitle" style="color:red;">注意事项</h3>
   <ul class="uk-list">
-    <li>成人:350, 儿童:150(120cm以下)</li>
+    <li>家属成人或1.2m以上儿童350元/人</li>
+    <li>1.2m以下儿童收费 155元/人</li>
     <li>身份证号用于购买保险</li>
     <li></li>
   </ul>
@@ -132,7 +134,7 @@ $(function(){
   }
 
   var fn_btn_add = function() {
-    var insert_html = '<div class="uk-form-row">' +
+    var insert_html = '<div class="uk-form-row families_person">' +
        '<div class="uk-form-controls">' +
          '<span class="id-pre uk-width-1-4">' +
            '<select class="families_type" name="post[families][][type]">' +
@@ -160,8 +162,13 @@ $(function(){
     $('.families_type').change(change_families_type);
   }
 
+  var fn_btn_remove = function() {
+    $('.families_person').first().remove();
+  }
+
   $('#btn_submit').click(fn_btn_submit);
   $('#btn_add').click(fn_btn_add);
+  $('#btn_remove').click(fn_btn_remove);
 
   var change_families_type = function() {
     if ($(this).val() == '成人') {

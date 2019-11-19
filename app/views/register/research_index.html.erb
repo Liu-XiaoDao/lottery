@@ -1,0 +1,53 @@
+<div class="register-box">
+  <h1 class="title">查询报名结果</h1>
+  <%= form_for :register, url: research_users_path, method: :get, html: { class: "uk-form uk-form-stacked" } do |f| %>
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">姓名</label>
+      <div class="uk-form-controls">
+        <input type="text" id="username" value="" name="post[username]" class="uk-width-1-1" placeholder="请输入报名时填写姓名">
+      </div>
+    </div>
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">系统id</label>
+      <div class="uk-form-controls">
+        <input type="text" id="user_id" value="" name="post[user_id]" class="uk-width-1-1" placeholder="系统id">
+      </div>
+    </div>
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">
+      <button class="uk-button uk-button-primary" id="btn_submit" type="submit">点击查询</button>
+      </label>
+    </div>
+  <% end %>
+</div>
+<!-- 之前_scripts中内容在这 -->
+<script>
+$(function(){
+  var fn_btn_submit = function() {
+    var username = $('#username').val();
+    var user_id = $('#user_id').val();
+    if (username == '') {
+        UIkit.notify('姓名为空', {status:'warning'});
+        return false;
+    }
+    if (user_id == '') {
+        UIkit.notify('系统id为空', {status:'warning'});
+        return false;
+    }
+    return true;
+  }
+
+  $('#btn_submit').click(fn_btn_submit);
+
+});
+</script>
+<style type="text/css" media="screen">
+  .tm-article-subtitle {
+    padding-left: 6px;
+    border-left: 3px solid #1FA2D6;
+    font-size: 16px;
+    line-height: 16px;
+  }
+</style>
