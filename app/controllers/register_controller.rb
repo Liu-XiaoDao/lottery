@@ -60,7 +60,7 @@ class RegisterController < ApplicationController
       end
 
       if User.find_by_name(username).present?
-        flash["danger"] = "该员工#{username}已报名！"
+        flash["danger"] = "该员工#{username}已报名,请勿重复报名！"
         return nil
       end
 
