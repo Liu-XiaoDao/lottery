@@ -15,7 +15,7 @@
       <tr>
         <td><%= user_list.id %></td>
       	<td><%= user_list.name %></td>
-        <td><%= user_list.user.present? ? "参加" : "" %></td>
+        <td><%= user_list.user.present? ? user_list.user.is_attendance : "没有报名" %></td>
         <td><%= user_list.user.present? ? user_list.user.is_car : "" %></td>
         <td><%= user_list.user.present? ? user_list.user.is_lunch : "" %></td>
         <td>
