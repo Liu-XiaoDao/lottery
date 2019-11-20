@@ -4,8 +4,13 @@ class User < ApplicationRecord
 	#validates :attendance,  uniqueness: { case_sensitive: false }#工号必须唯一
   belongs_to :user_list
   has_many :families, dependent: :destroy
+  after_create :sent_msg #发送报名通知
 
   def self.signin_count
     where(is_active: true).count
+  end
+
+  def sent_msg
+    NotificationMailer.register_msg(self).deliver
   end
 end
