@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <% user_lists.each do |user_list| %>
-      <tr>
+      <tr <%= "class=uk-form-danger" if user.is_attendance == "不参加" %> >
         <td><%= user_list.id %></td>
       	<td><%= user_list.name %></td>
         <td><%= user_list.user.present? ? user_list.user.is_attendance : "" %></td>

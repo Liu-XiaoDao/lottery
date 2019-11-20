@@ -63,7 +63,7 @@
       </tr>
     </thead>
     <% @users.each do |user| %>
-      <tr>
+      <tr <%= "class=uk-form-danger" if user.is_attendance == "不参加" %> >
       	<td><%= user.id %></td>
       	<td><%= user.name %></td>
       	<td><%= user.is_attendance %></td>
