@@ -52,6 +52,7 @@
   <table class="uk-table uk-table-hover">
     <thead>
       <tr>
+        <th>ID</th>
         <th>姓名</th>
         <th>是否参加</th>
         <th>是否乘车</th>
@@ -63,6 +64,7 @@
     </thead>
     <% @users.each do |user| %>
       <tr>
+      	<td><%= user.id %></td>
       	<td><%= user.name %></td>
       	<td><%= user.is_attendance %></td>
       	<td><%= user.is_car %></td>
