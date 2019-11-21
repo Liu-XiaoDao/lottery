@@ -8,6 +8,7 @@
       <th>是否乘车</th>
       <th>是否午餐</th>
       <th>家属</th>
+      <th>备注</th>
     </tr>
   </thead>
   <% user_lists.each do |user_list| %>
@@ -25,6 +26,7 @@
             <% end %>
           <% end %>
         </td>
+        <td><%= user_list.user.present? ? user_list.user.notes : "" %></td>
       </tr>
   <% end %>
 </table>

@@ -58,6 +58,7 @@
         <th>是否乘车</th>
         <th>是否午餐</th>
         <th>家属</th>
+        <th>备注</th>
         <th>组长</th>
         <th>删除</th>
       </tr>
@@ -75,6 +76,7 @@
             身份证号:<%= family.id_number %>, 是否用午餐:<%= family.is_lunch %>, 是否乘车:<%= family.is_car %><br>
           <% end %>
         </td>
+      	<td><%= user.notes %></td>
         <td><%= user.user_list.try(:leader_name)%></td>
       	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>
       </tr>

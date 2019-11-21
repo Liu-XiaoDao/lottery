@@ -26,6 +26,7 @@ class RegisterController < ApplicationController
     @user.is_attendance = params[:post][:is_attendance]
     @user.is_car = params[:post][:is_car]
     @user.is_lunch = params[:post][:is_lunch]
+    @user.notes = params[:post][:notes]
     @user.user_list = UserList.find_by_name params[:post][:username]
     @user.save
 
