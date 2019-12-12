@@ -68,7 +68,7 @@
       	<td><%= user.is_attendance %></td>
       	<td>
           <% user.families.each do |family| %>
-            姓名:<%= family.name %>, 类型:<%= family.family_type %> 手机号码:<%= family.id_number %>
+            姓名:<%= family.name %>, 类型:<%= family.family_type %> 手机号码:<%= family.id_number %><br>
           <% end %>
         </td>
       	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>

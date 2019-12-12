@@ -9,9 +9,9 @@
   <%= form_for :register, url: register_index_path, method: :post, html: { class: "uk-form uk-form-stacked" } do |f| %>
 
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">姓名</label>
+      <label class="uk-form-label" for="">开户姓名</label>
       <div class="uk-form-controls">
-        <input type="text" id="username" value="" name="post[username]" class="uk-width-1-1" placeholder="请输入你的真实姓名">
+        <input type="text" id="username" value="" name="post[username]" class="uk-width-1-1" placeholder="请输入开户姓名">
       </div>
     </div>
 
@@ -19,6 +19,19 @@
       <label class="uk-form-label" for="">手机号码</label>
       <div class="uk-form-controls">
         <input type="number" id="phone" value="" name="post[phone]" class="uk-width-1-1" placeholder="请输入你的手机号码">
+      </div>
+    </div>
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">活动类型</label>
+      <div class="uk-form-controls">
+         <span class="id-pre uk-width-1-1">
+           <select id="pre" name="post[is_attendance]">
+             <option value="两个都参加">两个都参加</option>
+             <option value="每月1G流量">每月1G流量</option>
+             <option value="每月100分钟通话">每月100分钟通话</option>
+          </select>
+         </span>
       </div>
     </div>
 
@@ -75,6 +88,16 @@ $(function(){
        '<div class="uk-form-controls">' +
          '<input type="text" value="" name="post[families][][id_number]" class="uk-width-1-1" style="margin-top:5px;" placeholder="请输入手机号">' +
        '</div>' +
+       '<label class="uk-form-label" for="">活动类型</label>' +
+       '<div class="uk-form-controls">' +
+        '<span class="id-pre uk-width-1-1">' +
+          '<select id="pre" name="post[families][][type]">' +
+            '<option value="两个都参加">两个都参加</option>' +
+            '<option value="每月1G流量">每月1G流量</option>' +
+            '<option value="每月100分钟通话">每月100分钟通话</option>' +
+          '</select>' +
+         '</span>' +
+      '</div>' +
     '</div>';
     $('.families-div').after(insert_html)
     $('.families_type').change(change_families_type);

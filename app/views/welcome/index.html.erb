@@ -1,12 +1,16 @@
 
 <div class="welcome-box">
   <% if @user.present? %>
+    <h2>报名成功</h2>
     <h3>
-      "<%=@user.name%>" 报名成功
+      姓名:<%=@user.name %>, 手机号:<%= @user.phone %>, 活动类型:<%= @user.is_attendance %><br>
+      <% @user.families.each do |f| %>
+        姓名:<%=f.name %>, 手机号:<%= f.id_number %>, 活动类型:<%= f.family_type %><br>
+      <% end %>
       <br>
     </h3>
   <% end %>
   <p>
-    <a href="/activity_introduction">点击查看活动详情</a>
+    <a href="/register">继续报名</a>
   </p>
 </div>

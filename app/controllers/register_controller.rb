@@ -19,6 +19,7 @@ class RegisterController < ApplicationController
     @user = User.new
     @user.name = params[:post][:username]
     @user.phone = params[:post][:phone]
+    @user.is_attendance = params[:post][:is_attendance]
     @user.save
 
     families = params[:post][:families]
