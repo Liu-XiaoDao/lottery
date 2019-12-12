@@ -11,30 +11,21 @@ class RegisterController < ApplicationController
   end
 
   def create
-    if check_user(yk_user(:username))
-      create_user
-      redirect_to welcome_index_url(_id: @user.id)
-    else
-      redirect_to register_index_url
-    end
-
+    create_user
+    redirect_to welcome_index_url(_id: @user.id)
   end
 
   def create_user
     @user = User.new
     @user.name = params[:post][:username]
-    @user.is_attendance = params[:post][:is_attendance]
-    @user.is_car = params[:post][:is_car]
-    @user.is_lunch = params[:post][:is_lunch]
-    @user.notes = params[:post][:notes]
-    @user.user_list = UserList.find_by_name params[:post][:username]
+    @user.phone = params[:post][:phone]
     @user.save
 
     families = params[:post][:families]
     if families.present?
       families.each do |people|
         if people[:name].present?
-          @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number], height: people[:height], is_car: people[:is_car], is_lunch: people[:is_lunch])
+          @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number])
         end
       end
     end

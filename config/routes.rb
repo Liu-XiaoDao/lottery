@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
-  root 'welcome#index'
+  root 'register#index'
   get '/activity_introduction' => 'welcome#activity_introduction'
   get '/research' => 'register#research_index'
 
