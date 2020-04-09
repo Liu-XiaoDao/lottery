@@ -5,6 +5,11 @@ class User < ApplicationRecord
   has_many :families, dependent: :destroy
   after_create :sent_msg #发送报名通知
 
+  def self.to_xlsx(records)
+    export_fields = ["name"]
+    SpreadsheetService.new.generate(export_fields, records)
+  end
+
   def self.signin_count
     where(is_active: true).count
   end

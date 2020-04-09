@@ -11,25 +11,18 @@ class RegisterController < ApplicationController
   end
 
   def create
-    create_user
-    redirect_to welcome_index_url(_id: @user.id)
+    if check_user(params[:post][:username])
+      create_user
+      redirect_to welcome_index_url(_id: @user.id)
+    else
+      redirect_to register_index_url
+    end
   end
 
   def create_user
     @user = User.new
     @user.name = params[:post][:username]
-    @user.phone = params[:post][:phone]
-    @user.is_attendance = params[:post][:is_attendance]
     @user.save
-
-    families = params[:post][:families]
-    if families.present?
-      families.each do |people|
-        if people[:name].present?
-          @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number])
-        end
-      end
-    end
   end
 
   private
@@ -47,10 +40,10 @@ class RegisterController < ApplicationController
     end
 
     def check_user(username)
-      if UserList.find_by_name(username).blank?
-        flash["danger"] = "该员工#{username}不存在！"
-        return nil
-      end
+      # if UserList.find_by_name(username).blank?
+        # flash["danger"] = "该员工#{username}不存在！"
+        # return nil
+      # end
 
       if User.find_by_name(username).present?
         flash["danger"] = "该员工#{username}已报名,请勿重复报名！"

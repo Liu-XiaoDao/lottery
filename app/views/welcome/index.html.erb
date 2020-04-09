@@ -3,10 +3,7 @@
   <% if @user.present? %>
     <h2>报名成功</h2>
     <h3>
-      姓名:<%=@user.name %>, 手机号:<%= @user.phone %>, 活动类型:<%= @user.is_attendance %><br>
-      <% @user.families.each do |f| %>
-        姓名:<%=f.name %>, 手机号:<%= f.id_number %>, 活动类型:<%= f.family_type %><br>
-      <% end %>
+      姓名:<%=@user.name %>
       <br>
     </h3>
   <% end %>

@@ -3,17 +3,22 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.paginate page: params[:page], per_page: 18
+
+    respond_to { |format|
+      format.html
+      format.xlsx { send_data User.to_xlsx(@users).stream.string, filename: "报名名单.xlsx", disposition: 'attachment' }
+    }
   end
 
   def admin_create
     @user = User.new
     @user.name = params[:user][:username]
-    @user.attendance = params[:user][:attendance]
-    @user.avatar_url = "/default_avatar-thumb.jpg"
-    @user.pre = params[:user][:pre]
-    @user.phone = params[:user][:phone]
-    @user.year =  Date.today.year
-    @user.is_active = 1
+    # @user.attendance = params[:user][:attendance]
+    # @user.avatar_url = "/default_avatar-thumb.jpg"
+    # @user.pre = params[:user][:pre]
+    # @user.phone = params[:user][:phone]
+    # @user.year =  Date.today.year
+    # @user.is_active = 1
     @user.save
     if @user.save
       flash["success"] = "添加成功"
