@@ -10,8 +10,8 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'it'
-set :domain, '117.50.59.164'
-set :deploy_to, '/home/ubuntu/web/it'
+set :domain, '106.75.232.62'
+set :deploy_to, '/var/www/it'
 set :repository, 'git@github.com:Liu-XiaoDao/lottery.git'
 set :branch, 'it'
 set :rails_env, 'production'
