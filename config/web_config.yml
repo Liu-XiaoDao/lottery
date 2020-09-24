@@ -1,9 +1,9 @@
 # 下面是系統配置
 development:
-  web_name: 显示器摇号
+  web_name: 电脑摇号
   address: 开放办公区
-  time: 2019年6月1日 09:30--12:00
+  time: 2020年9月24日 09:30--12:00
 production:
-  web_name: 显示器摇号
+  web_name: 电脑摇号
   address: 三楼开放办公区
-  time: 2020年5月1日(周五) 09:00--17:00
+  time: 待定
