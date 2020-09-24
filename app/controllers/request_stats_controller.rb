@@ -1,4 +1,5 @@
 class RequestStatsController < ApplicationController
+  http_basic_authenticate_with name: "admin", password: "Abcam123$"
   layout 'template'
 
   def index
