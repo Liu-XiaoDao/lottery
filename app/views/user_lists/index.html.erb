@@ -8,14 +8,11 @@
   </div>
 <% end %>
 
-<div id="upload-drop" class="uk-placeholder uk-text-center">
-  <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将文件拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select" type="file"></a>.
-</div>
 
 <!-- 添加弹框 -->
 <div class="uk-alert" data-uk-alert="">
   <button class="uk-button uk-button-primary uk-margin-left" data-uk-modal="{target:'#create'}">添加</button>
-  <a class="uk-button uk-button-primary uk-margin-left" href="/user_lists/leader_index">分组名单</a>
+  <a class="uk-button uk-button-primary uk-margin-left" href="/user_lists.xlsx">导出</a>
 </div>
 <div id="create" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
   <div class="uk-modal-dialog">
@@ -44,7 +41,6 @@
     <tr>
       <th>ID</th>
       <th>姓名</th>
-      <th>组长</th>
       <th colspan="2">操作</th>
     </tr>
   </thead>
@@ -52,8 +48,6 @@
       <tr>
         <td><%= user_list.id %></td>
       	<td><%= user_list.name %></td>
-        <td><%= user_list.leader_name %></td>
-        <td><%= link_to '修改', edit_user_list_path(user_list) %></td>
       	<td><%= link_to '删除', user_list_path(user_list), method: :delete, data: { confirm: '你确定要删除吗?' } %></td>
       </tr>
   <% end %>

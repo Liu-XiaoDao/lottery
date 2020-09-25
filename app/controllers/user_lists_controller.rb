@@ -3,6 +3,11 @@ class UserListsController < ApplicationController
 
   def index
     @user_lists = UserList.all.paginate page: params[:page], per_page: 18
+
+    respond_to { |format|
+      format.html
+      format.xlsx { send_data UserList.to_xlsx(UserList.all).stream.string, filename: "显示器摇号报名名单.xlsx", disposition: 'attachment' }
+    }
   end
 
   def leader_index()
