@@ -6,6 +6,10 @@ class RegisterController < ApplicationController
     @user = User.new
   end
 
+  def index_displayer
+    @user_list = UserList.new
+  end
+
   def research_index
 
   end

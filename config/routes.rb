@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'register#index'
   get '/activity_introduction' => 'welcome#activity_introduction'
   get '/research' => 'register#research_index'
+  get '/displayer' => 'register#index_displayer', as: 'register_displayer'
+  get '/welcome_index_displayer' => 'welcome#index_displayer', as: 'welcome_index_displayer'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do

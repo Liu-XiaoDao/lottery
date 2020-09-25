@@ -8,6 +8,13 @@ class WelcomeController < ApplicationController
     @count_active = User.where(is_active: true).count
   end
 
+  def index_displayer
+    if params[:_id] && UserList.find(params[:_id])
+      @user = UserList.find(params[:_id])
+    end
+    @count = UserList.count
+  end
+
   def scan_code
     render layout: false
   end

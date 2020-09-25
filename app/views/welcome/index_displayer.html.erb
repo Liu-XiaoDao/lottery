@@ -1,0 +1,13 @@
+
+<div class="welcome-box">
+  <% if @user.present? %>
+    <h2>报名成功</h2>
+    <h3>
+      姓名:<%=@user.name %>
+      <br>
+    </h3>
+  <% end %>
+  <p>
+    <a href="/displayer">继续报名</a>
+  </p>
+</div>

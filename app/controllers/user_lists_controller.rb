@@ -9,13 +9,12 @@ class UserListsController < ApplicationController
   end
 
   def create
-    @user_list = UserList.new(params.require(:user_list).permit(:name))
+    @user_list = UserList.new(params.require(:post).permit(:name))
     if @user_list.save
-      flash["success"] = "添加成功"
+      redirect_to welcome_index_displayer_url(_id: @user_list.id)
     else
-      flash["danger"] = "添加失败#{@user_list.errors.full_messages[0]}"
+      redirect_to register_displayer_url
     end
-    redirect_to user_lists_url
   end
 
   def edit
