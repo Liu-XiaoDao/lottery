@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     respond_to { |format|
       format.html
-      format.xlsx { send_data User.to_xlsx(@users).stream.string, filename: "报名名单.xlsx", disposition: 'attachment' }
+      format.xlsx { send_data User.to_xlsx(User.all).stream.string, filename: "报名名单.xlsx", disposition: 'attachment' }
     }
   end
 
