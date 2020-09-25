@@ -2,6 +2,7 @@ class UserList < ApplicationRecord
   #default_scope { order(id: :desc) }
   belongs_to :leader, class_name: "UserList", optional: true
   has_one :user
+  after_create :sent_msg #发送报名通知
 
 
   def leader_name
@@ -29,5 +30,9 @@ class UserList < ApplicationRecord
       create_record << user_list
     end
     create_record
+  end
+
+  def sent_msg
+    NotificationMailer.register_msg(self).deliver
   end
 end
