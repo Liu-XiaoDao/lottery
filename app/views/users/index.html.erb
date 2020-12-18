@@ -54,12 +54,11 @@
       <tr>
         <th>ID</th>
         <th>姓名</th>
-        <th>是否参加</th>
-        <th>是否乘车</th>
-        <th>是否午餐</th>
-        <th>家属</th>
-        <th>备注</th>
-        <th>组长</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>手机号码</th>
+        <th>学历</th>
+        <th>爱好</th>
         <th>删除</th>
       </tr>
     </thead>
@@ -67,17 +66,11 @@
       <tr <%= "class=uk-form-danger" if user.is_attendance == "不参加" %> >
       	<td><%= user.id %></td>
       	<td><%= user.name %></td>
-      	<td><%= user.is_attendance %></td>
-      	<td><%= user.is_car %></td>
-      	<td><%= user.is_lunch %></td>
-      	<td>
-          <% user.families.each do |family| %>
-            姓名:<%= family.name %>, 类型:<%= family.family_type %><%if family.family_type != '成人'%>, 身高:<%= family.height %><%end%><br>
-            身份证号:<%= family.id_number %>, 是否用午餐:<%= family.is_lunch %>, 是否乘车:<%= family.is_car %><br>
-          <% end %>
-        </td>
-      	<td><%= user.notes %></td>
-        <td><%= user.user_list.try(:leader_name)%></td>
+      	<td><%= user.age %></td>
+      	<td><%= user.pre %></td>
+      	<td><%= user.phone %></td>
+      	<td><%= user.attendance %></td>
+        <td><%= user.notes %></td>
       	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>
       </tr>
     <% end %>

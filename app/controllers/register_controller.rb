@@ -23,21 +23,13 @@ class RegisterController < ApplicationController
   def create_user
     @user = User.new
     @user.name = params[:post][:username]
-    @user.is_attendance = params[:post][:is_attendance]
-    @user.is_car = params[:post][:is_car]
-    @user.is_lunch = params[:post][:is_lunch]
+    @user.age = params[:post][:age]
+    @user.pre = params[:post][:pre]
+    @user.phone = params[:post][:phone]
+    @user.attendance = params[:post][:attendance]
     @user.notes = params[:post][:notes]
     @user.user_list = UserList.find_by_name params[:post][:username]
     @user.save
-
-    families = params[:post][:families]
-    if families.present?
-      families.each do |people|
-        if people[:name].present?
-          @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number], height: people[:height], is_car: people[:is_car], is_lunch: people[:is_lunch])
-        end
-      end
-    end
   end
 
   private
@@ -75,5 +67,4 @@ class RegisterController < ApplicationController
       end
       return true
     end
-
 end

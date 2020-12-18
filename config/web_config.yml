@@ -1,9 +1,9 @@
 # 下面是系統配置
 development:
-  web_name: 测试-“绿色梦想，青春六月”---西湖花圃健步走活动
-  address: 杭州花圃
-  time: 2019年6月1日 09:30--12:00
+  web_name: 测试-工会活动--xxx
+  address: XXX
+  time: 2021年01月xx日(周六) 09:00--17:00
 production:
-  web_name: 工会活动--杭州历史之旅
-  address: 宋城景区
-  time: 2019年12月7日(周六) 09:00--17:00
+  web_name: 工会活动--xxx
+  address: XXX
+  time: 2021年01月xx日(周六) 09:00--17:00
