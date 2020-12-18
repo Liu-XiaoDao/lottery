@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   layout 'template'
+  http_basic_authenticate_with name: "yk_labour_union", password: "YKgonghui!123?"
 
   def index
     @users = User.all.paginate page: params[:page], per_page: 18

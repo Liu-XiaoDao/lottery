@@ -1,0 +1,8 @@
+log/
+tmp/
+public/images/
+test/
+
+Dockerfile
+.env.*
+*.md
