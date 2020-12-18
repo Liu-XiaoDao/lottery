@@ -1,9 +1,11 @@
 # 下面是系統配置
 development:
-  web_name: 测试-工会活动--xxx
-  address: XXX
-  time: 2021年01月xx日(周六) 09:00--17:00
+  web_name: abcam & 阿里巴巴 联谊活动
+  sub_title: 长路携手，我想和你在一起
+  address: 上城区机械功能区党群人才服务中心
+  time: 2021年01月10日(周天) 13:30--17:30
 production:
-  web_name: 阿里巴巴 & abcam 联谊活动 — 长路携手，我想和你在一起
+  web_name: abcam & 阿里巴巴 联谊活动
+  sub_title: 长路携手，我想和你在一起
   address: 上城区机械功能区党群人才服务中心
   time: 2021年01月10日(周天) 13:30--17:30
