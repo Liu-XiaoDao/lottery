@@ -1,6 +1,7 @@
 class MessageService
   def self.send_msg(phone, session_id)
     # gem install aliyunsdkcore
+    Rails.logger.info '调用短信服务'
     client = RPCClient.new(
       access_key_id:     ENV['AccessKey_ID'],
       access_key_secret: ENV['AccessKey_Secret'],
@@ -23,6 +24,7 @@ class MessageService
     )
 
     print response
+    Rails.logger.info response
 
   end
 end
