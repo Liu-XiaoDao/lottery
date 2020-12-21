@@ -12,5 +12,6 @@ class User < ApplicationRecord
 
   def sent_msg
     NotificationMailer.register_msg(self).deliver
+    MessageService.send_msg(phone, id)
   end
 end
