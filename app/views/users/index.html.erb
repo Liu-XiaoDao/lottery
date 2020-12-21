@@ -1,6 +1,13 @@
 <% provide :c_active, "users" %>
 <%= render 'shared/navigation' %>
 
+<% flash.each do |name, msg| %>
+  <div class="uk-alert uk-alert-<%= name %>" data-uk-alert="">
+    <a href="" class="uk-alert-close uk-close"></a>
+    <p><%= msg %></p>
+  </div>
+<% end %>
+
 <!-- 添加弹框 -->
 <div class="uk-alert" data-uk-alert="">
   <button class="uk-button uk-button-primary uk-margin-left" data-uk-modal="{target:'#create'}">添加</button>
