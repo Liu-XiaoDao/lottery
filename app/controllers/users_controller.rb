@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   http_basic_authenticate_with name: "yk_labour_union", password: "YKgonghui!123?", except: :research
 
   def index
-    @users = User.all.paginate page: params[:page], per_page: 18
+    @users = User.all.paginate page: params[:page], per_page: 25
   end
 
   def admin_create
@@ -28,6 +28,20 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     @user.destroy
     redirect_to users_path
+  end
+
+  def edit
+    @user = User.find params[:id]
+  end
+
+  def update
+    @user = User.find params[:id]
+    if @user.update_attributes(params.require(:post).permit(:name, :age, :pre, :notes, :phone, :attendance))
+      flash["success"] = "修改成功"
+    else
+      flash["danger"] = "修改i失败"
+    end
+    redirect_to users_url
   end
 
   def active

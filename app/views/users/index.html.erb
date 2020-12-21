@@ -4,6 +4,7 @@
 <!-- 添加弹框 -->
 <div class="uk-alert" data-uk-alert="">
   <button class="uk-button uk-button-primary uk-margin-left" data-uk-modal="{target:'#create'}">添加</button>
+  <button disable="disable" class="uk-button uk-button-primary uk-margin-left">报名总数: <%= User.count %></button>
 </div>
 <div id="create" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
   <div class="uk-modal-dialog">
@@ -59,6 +60,7 @@
         <th>手机号码</th>
         <th>学历</th>
         <th>爱好</th>
+        <th>修改</th>
         <th>删除</th>
       </tr>
     </thead>
@@ -71,7 +73,8 @@
       	<td><%= user.phone %></td>
       	<td><%= user.attendance %></td>
         <td><%= user.notes %></td>
-      	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>
+        <td><%= link_to '修改', edit_user_path(user) %></td>
+      	<td><a data-confirm="你确定要删除吗?" href="/users/delete?id=<%=user.id%>">删除</a></td>
       </tr>
     <% end %>
   </table>
