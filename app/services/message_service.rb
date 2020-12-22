@@ -27,4 +27,8 @@ class MessageService
     Rails.logger.info response
 
   end
+
+  def self.send_msg_usms(phone, session_id)
+    system("/usr/bin/python3 /var/www/usms.py #{phone} #{session_id}")
+  end
 end
