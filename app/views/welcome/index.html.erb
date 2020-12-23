@@ -14,10 +14,10 @@
   <% end %>
   <p>当前参加：<%=@count%>人</p>
   <p>
-  <% if  Date.today < Date.parse('2020-12-25')%>
+  <% if  Date.today < Date.parse('2020-12-23')%>
     <a href="/register">报名入口</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
   <% else %>
-    亲，你来晚了，报名已结束
+    亲，报名已截止&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
   <% end %>
   </p>
   <p>
