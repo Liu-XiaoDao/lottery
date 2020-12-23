@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   http_basic_authenticate_with name: "yk_labour_union", password: "YKgonghui!123?", except: :research
 
   def index
-    @users = User.all.paginate page: params[:page], per_page: 25
+    @users = User.all.paginate page: params[:page], per_page: 50
   end
 
   def admin_create
