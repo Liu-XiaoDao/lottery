@@ -28,7 +28,7 @@ class RegisterController < ApplicationController
     @user.phone = params[:post][:phone]
     @user.attendance = params[:post][:attendance]
     @user.notes = params[:post][:notes]
-    @user.user_list = UserList.find_by_name params[:post][:username]
+    # @user.user_list = UserList.find_by_name params[:post][:username]
     @user.save
   end
 
@@ -47,13 +47,13 @@ class RegisterController < ApplicationController
     end
 
     def check_user(username)
-      if UserList.find_by_name(username).blank?
-        flash["danger"] = "该员工#{username}不存在！"
-        return nil
-      end
+      # if UserList.find_by_name(username).blank?
+        # flash["danger"] = "该员工#{username}不存在！"
+        # return nil
+      # end
 
       if User.find_by_name(username).present?
-        flash["danger"] = "该员工#{username}已报名,请勿重复报名！"
+        flash["danger"] = "#{username}已报名,请勿重复报名！"
         return nil
       end
 

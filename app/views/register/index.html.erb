@@ -99,6 +99,10 @@ $(function(){
         UIkit.notify('手机号码为空', {status:'warning'});
         return false;
     }
+    if (!(/^1[3456789]\d{9}$/.test(phone))) {
+        UIkit.notify('手机号码有误', {status:'warning'});
+        return false;
+    }
     return true;
   }
 
