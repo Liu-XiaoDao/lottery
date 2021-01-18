@@ -9,14 +9,14 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :application_name, 'lottery'
-set :domain, '106.12.96.28'
-set :deploy_to, '/home/xiaodao/web/labour_union'
+set :application_name, 'annual_party'
+set :domain, '106.75.232.62'
+set :deploy_to, '/var/www/annual_party'
 set :repository, 'git@github.com:Liu-XiaoDao/lottery.git'
-set :branch, 'labour_union'
+set :branch, 'master'
 set :rails_env, 'production'
 # Optional settings:
-set :user, 'xiaodao'          # Username in the server to SSH to.
+set :user, 'ubuntu'          # Username in the server to SSH to.
 #   set :port, '30000'           # SSH port number.
 set :forward_agent, true     # SSH forward_agent.
 
