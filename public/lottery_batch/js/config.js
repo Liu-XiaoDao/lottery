@@ -9,7 +9,7 @@ window.prizeLevel = [{
 		'text': '四等奖',
 		'count': 45, //总个数
 		'complete': false,
-		'surplus': 10,	//剩余个数
+		'surplus': 45,	//剩余个数
 		'n': 3	//一次抽取个数
 	},{
 		'label': 'level3',
