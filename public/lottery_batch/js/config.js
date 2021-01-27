@@ -6,8 +6,8 @@ var levelXF = 45,	//幸福奖 300
 //奖项类别
 window.prizeLevel = [{
 		'label': 'levelXF',
-		'text': '幸福奖',
-		'count': 10, //总个数
+		'text': '四等奖',
+		'count': 45, //总个数
 		'complete': false,
 		'surplus': 10,	//剩余个数
 		'n': 3	//一次抽取个数
