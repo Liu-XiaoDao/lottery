@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get '/lottery/milky_way' => 'lottery#milky_way'
   get '/lottery/signin' => 'lottery#signin'
   get '/lottery/signin_test' => 'lottery#signin_test'
+  # 慈善抽奖
+  get '/lottery/charity' => 'lottery#charity'
+  get '/lottery/charity_result' => 'lottery#charity_result'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do

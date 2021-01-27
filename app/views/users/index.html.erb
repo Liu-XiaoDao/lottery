@@ -53,9 +53,7 @@
   <table class="uk-table uk-table-hover">
     <thead>
       <tr>
-        <th>头像</th>
         <th>姓名</th>
-        <th>电话</th>
         <th>工牌</th>
         <th>获奖</th>
         <th>激活</th>
@@ -64,9 +62,7 @@
     </thead>
     <% @users.each do |user| %>
       <tr>
-        <td><img src="<%= user.avatar_url %>" style="height:50px; border: 1px #eee solid; border-radius: 5px;" /></td>
       	<td><%= user.name %></td>
-      	<td><%= user.phone %></td>
       	<td><%= "#{user.pre}#{user.attendance}" %></td>
         <td><%= user.lottery %></td>
       	<td><%= user.is_active ? "已激活" : "<a href='/users/active?id=#{user.id}'>激活</a>".html_safe %></td>
