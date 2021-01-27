@@ -205,7 +205,7 @@
                 .map(function(m){
                   choosed[getKey(m)] = 1;
                   list[m.index].style.color = color;
-                  return m.name + '<br/>' + m.phone; 
+                  return m.name; 
                 });
             localStorage.setItem('choosed', JSON.stringify(choosed));
             return ret;
