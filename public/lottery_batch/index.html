@@ -49,7 +49,7 @@
 			var index = 0;
 			var isTimer = false;
 			var isStop = true;	//抽奖停止
-			var time = 3;
+			var time = 1;
 			var isOver = false;
 			
 			var camera, scene, renderer;
@@ -564,20 +564,20 @@
 
 
 			//倒计时
-            function timer() {
-                if (time == 0) {
-					isTimer = false;
-					$('#tip2, #countdown').fadeOut();
-					lotteryAni();
-                    time = 3;
-                } else {
-					isTimer = true;
-					$('#countdown').text(time);
-					TweenLite.fromTo($('#countdown'), 0.3, { autoAlpha: 0, scale: 0 }, { autoAlpha: .8, scale: 1, ease: Back.easeInOut, onComplete: function(){
-						time--;
-						setTimeout(function () {
-							timer();
-						},1000);
+        function timer() {
+          if (time == 0) {
+				  	isTimer = false;
+					  $('#tip2, #countdown').fadeOut();
+					  lotteryAni();
+              time = 1;
+            } else {
+					      isTimer = true;
+					      $('#countdown').text('GO');
+					      TweenLite.fromTo($('#countdown'), 0.3, { autoAlpha: 0, scale: 0 }, { autoAlpha: .8, scale: 1, ease: Back.easeInOut, onComplete: function(){
+						    time--;
+						    setTimeout(function () {
+							    timer();
+						    },1000);
 					}});
 					
                 }
