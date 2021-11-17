@@ -40,4 +40,11 @@ Rails.application.routes.draw do
   get '/home/qrcode' => 'home#qrcode'
   post '/home/upload_register' => 'home#upload_register'
   post '/home/upload_signin' => 'home#upload_signin'
+
+  resources :inventories do
+    get :research, on: :collection
+    get :import,         on: :collection
+    post :upload, on: :collection
+    get :import_preview, on: :collection
+  end
 end

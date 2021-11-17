@@ -1,0 +1,70 @@
+<% provide :c_active, "inventories" %>
+<%= render 'shared/navigation' %>
+
+<% flash.each do |name, msg| %>
+  <div class="uk-alert uk-alert-<%= name %>" data-uk-alert="">
+    <a href="" class="uk-alert-close uk-close"></a>
+    <p><%= msg %></p>
+  </div>
+<% end %>
+
+<div id="upload-drop" class="uk-placeholder uk-text-center">
+  <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将文件拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select" type="file"></a>.
+</div>
+
+<% if @inventories.present? %>
+  <table class="uk-table uk-table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Ab ID</th>
+        <th>Size</th>
+        <th>Unit</th>
+        <th>Fridge</th>
+      </tr>
+    </thead>
+    <% @inventories.each do |inventory| %>
+      <tr>
+      	<td><%= inventory.id %></td>
+      	<td><%= inventory.abid %></td>
+      	<td><%= inventory.size %></td>
+      	<td><%= inventory.unit %></td>
+      	<td><%= inventory.fridge %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @inventories, renderer: WillPaginate::ActionView::BlogLinkRenderer %>
+<% end %>
+
+<!-- 之前_scripts中内容在这 -->
+
+<script type="text/javascript">
+$(function(){
+  var progressbar = $("#progressbar"),
+      bar         = progressbar.find('.uk-progress-bar'),
+      settings    = {
+        action: '/inventories/upload', // 上传路径 url
+        allow : '*.(jpg|jpeg|gif|png|xlsx)', // 只允许上传图片
+        loadstart: function() {
+            bar.css("width", "0%").text("0%");
+            progressbar.removeClass("uk-hidden");
+        },
+        progress: function(percent) {
+            percent = Math.ceil(percent);
+            bar.css("width", percent+"%").text(percent+"%");
+        },
+        allcomplete: function(response) {
+            bar.css("width", "100%").text("100%");
+            setTimeout(function(){
+                progressbar.addClass("uk-hidden");
+            }, 250);
+            console.log(response);
+            console.log(typeof(response));
+            location.href = '/inventories/import_preview?cache_key=' + response;
+        }
+    };
+
+  var select = UIkit.uploadSelect($("#upload-select"), settings),
+      drop   = UIkit.uploadDrop($("#upload-drop"), settings);
+});
+</script>

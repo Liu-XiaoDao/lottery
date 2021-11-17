@@ -1,24 +1,24 @@
-<% provide :c_active, "user_lists" %>
+<% provide :c_active, "inventories" %>
 <%= render 'shared/navigation' %>
 
 <div class="uk-grid" data-uk-grid-margin="">
   <div class="uk-width-medium-1-1 uk-row-first">
     <div class="uk-panel uk-panel-box uk-text-center">
-      <p><strong>请确认下面名单是否正确！</strong> 确认无误后点右侧按钮导入. <a class="uk-button uk-button-primary uk-margin-left" href="/user_lists/import?cache_key=<%=@user_lists_cache_key%>">Import</a></p>
+      <p><strong>请确认下面数据是否正确！</strong> 确认无误后点右侧按钮导入. <a class="uk-button uk-button-primary uk-margin-left" href="/inventories/import?cache_key=<%=@inventories_cache_key%>">Import</a></p>
     </div>
   </div>
 </div>
 
-<% if @user_lists.present? %>
+<% if @inventories.present? %>
   <table class="uk-table uk-table-hover">
     <thead>
       <tr>
         <th>姓名</th>
       </tr>
     </thead>
-    <% @user_lists.each do |user_list| %>
+    <% @inventories.each do |inventory| %>
         <tr>
-        	<td><%= user_list.name %></td>
+        	<td><%= inventory.name %></td>
         </tr>
     <% end %>
   </table>

@@ -1,29 +1,9 @@
 <nav class="uk-navbar">
-  <a class="uk-navbar-brand" href="#">ABCAM</a>
+  <a class="uk-navbar-brand" href="#">ABCAM-产品查询</a>
   <ul class="uk-navbar-nav uk-hidden-small">
+    <li class="<%= check_if_active 'inventories',yield(:c_active) %>"><a href="/inventories">产品列表</a></li>
+
     <li class="<%= check_if_active 'users',yield(:c_active) %>"><a href="/users">报名列表</a></li>
     <li class="<%= check_if_active 'user_lists',yield(:c_active) %>"><a href="/user_lists">员工列表</a></li>
-    <li class="uk-parent <%= check_if_active 'home',yield(:c_active) %>" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
-      <a href="">系统设置 <i class="uk-icon-caret-down"></i></a>
-      <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" style="top: 40px; left: 0px;">
-        <ul class="uk-nav uk-nav-navbar">
-          <li><a href="/home/qrcode">二维码</a></li>
-          <li><a href="/user_requests">访问记录</a></li>
-          <li><a href="/request_stats">访问统计</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="uk-parent" data-uk-dropdown="" aria-haspopup="true" aria-expanded="false">
-      <a href="">快速链接 <i class="uk-icon-caret-down"></i></a>
-      <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" style="top: 40px; left: 0px;">
-        <ul class="uk-nav uk-nav-navbar">
-          <li><a target="_blank" href="/welcome">Home</a></li>
-          <li><a target="_blank" href="/register">注册</a></li>
-          <li><a target="_blank" href="/signin">激活</a></li>
-          <li class="uk-nav-divider"></li>
-          <li><a target="_blank" href="/draw">时来运转</a></li>
-        </ul>
-      </div>
-    </li>
   </ul>
 </nav>

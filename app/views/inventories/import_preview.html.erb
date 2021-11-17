@@ -1,0 +1,33 @@
+<% provide :c_active, "inventories" %>
+<%= render 'shared/navigation' %>
+
+<div class="uk-grid" data-uk-grid-margin="">
+  <div class="uk-width-medium-1-1 uk-row-first">
+    <div class="uk-panel uk-panel-box uk-text-center">
+      <p><strong>请确认下面名单是否正确！</strong> 确认无误后点右侧按钮导入. <a class="uk-button uk-button-primary uk-margin-left" href="/inventories/import?cache_key=<%=@inventories_cache_key%>">Import</a></p>
+    </div>
+  </div>
+</div>
+
+<% if @inventories.present? %>
+  <table class="uk-table uk-table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Ab ID</th>
+        <th>Size</th>
+        <th>Unit</th>
+        <th>Fridge</th>
+      </tr>
+    </thead>
+    <% @inventories.each do |inventory| %>
+        <tr>
+          <td><%= inventory.id %></td>
+          <td><%= inventory.abid %></td>
+          <td><%= inventory.size %></td>
+          <td><%= inventory.unit %></td>
+          <td><%= inventory.fridge %></td>
+        </tr>
+    <% end %>
+  </table>
+<% end %>
