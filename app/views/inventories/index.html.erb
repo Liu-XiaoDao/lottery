@@ -48,7 +48,7 @@ $(function(){
       bar         = progressbar.find('.uk-progress-bar'),
       settings    = {
         action: '/inventories/upload', // 上传路径 url
-        allow : '*.(jpg|jpeg|gif|png|xlsx)', // 只允许上传图片
+        allow : '*.(xlsx)', // 只允许上传图片
         loadstart: function() {
             bar.css("width", "0%").text("0%");
             progressbar.removeClass("uk-hidden");

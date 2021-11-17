@@ -1,5 +1,6 @@
 class InventoriesController < ApplicationController
   layout 'template'
+  http_basic_authenticate_with name: "abid_admin", password: "Abcam123", only: [:index, :upload]
 
   def index
     @inventories = Inventory.all.paginate page: params[:page], per_page: 50
@@ -30,22 +31,5 @@ class InventoriesController < ApplicationController
       redirect_to inventories_url
     end
 
-  end
-
-  def import_preview
-    @inventories_cache_key = params[:cache_key]
-    @inventories = Rails.cache.read(params[:cache_key])
-  end
-
-  def import
-    cr, er = 0, 0
-    @inventories = Rails.cache.read(params[:cache_key])
-    @inventories.map do |t|
-      t.save ? cr += 1 : er += 1
-    end
-    Rails.cache.delete(params[:cache_key])
-    info = (er == 0) ? :success : :danger
-    flash[info] = "create: " + cr.to_s  + " error: " + er.to_s
-    redirect_to inventories_url
   end
 end

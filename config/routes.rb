@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
-  root 'welcome#index'
+  root 'inventories#research_index'
   get '/activity_introduction' => 'welcome#activity_introduction'
   get '/research' => 'register#research_index'
   get '/abid_research' => 'inventories#research_index'
@@ -44,9 +44,7 @@ Rails.application.routes.draw do
 
   resources :inventories do
     get :research, on: :collection
-    get :import,         on: :collection
     post :upload, on: :collection
-    get :import_preview, on: :collection
   end
 
   resources :fridges
