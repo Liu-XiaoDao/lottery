@@ -5,8 +5,8 @@ class Inventory < ApplicationRecord
     SpreadsheetService.new.generate(export_fields, records)
   end
 
-  def self.import_preview(file)
-    create_record = []
+  def self.import(file)
+    # create_record = []
 
     spreadsheet = SpreadsheetService.new.parse(file)
     headers = spreadsheet.row(1)
@@ -17,8 +17,8 @@ class Inventory < ApplicationRecord
       inventory.size = row["Size"]
       inventory.unit = row["Unit"]
       inventory.fridge = row["Fridge"]
-      create_record << inventory
+      inventory.save
     end
-    create_record
+    # create_record
   end
 end

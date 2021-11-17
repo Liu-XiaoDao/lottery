@@ -1,0 +1,33 @@
+<% provide :c_active, "fridge" %>
+<%= render 'shared/navigation' %>
+
+<% flash.each do |name, msg| %>
+  <div class="uk-alert uk-alert-<%= name %>" data-uk-alert="">
+    <a href="" class="uk-alert-close uk-close"></a>
+    <p><%= msg %></p>
+  </div>
+<% end %>
+
+<div class="uk-alert" data-uk-alert="">
+  <button disable="disable" class="uk-button uk-button-primary uk-margin-left">总数: <%= Fridge.count %></button>
+</div>
+
+<% if @fridges.present? %>
+  <table class="uk-table uk-table-hover">
+    <thead>
+      <tr>
+        <th>Fridge</th>
+        <th>Site</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <% @fridges.each do |fridge| %>
+      <tr>
+      	<td><%= fridge.fridge %></td>
+      	<td><%= fridge.site %></td>
+      	<td><%= fridge.created_at %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @fridges, renderer: WillPaginate::ActionView::BlogLinkRenderer %>
+<% end %>

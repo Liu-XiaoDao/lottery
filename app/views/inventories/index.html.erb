@@ -8,6 +8,10 @@
   </div>
 <% end %>
 
+<div class="uk-alert" data-uk-alert="">
+  <button disable="disable" class="uk-button uk-button-primary uk-margin-left">总数: <%= Inventory.count %></button>
+</div>
+
 <div id="upload-drop" class="uk-placeholder uk-text-center">
   <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> 将文件拖拽至此 或 <a class="uk-form-file">选择一个文件<input id="upload-select" type="file"></a>.
 </div>
@@ -60,7 +64,7 @@ $(function(){
             }, 250);
             console.log(response);
             console.log(typeof(response));
-            location.href = '/inventories/import_preview?cache_key=' + response;
+            location.href = '/inventories';
         }
     };
 

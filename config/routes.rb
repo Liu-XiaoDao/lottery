@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get '/activity_introduction' => 'welcome#activity_introduction'
   get '/research' => 'register#research_index'
+  get '/abid_research' => 'inventories#research_index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
@@ -47,4 +48,6 @@ Rails.application.routes.draw do
     post :upload, on: :collection
     get :import_preview, on: :collection
   end
+
+  resources :fridges
 end

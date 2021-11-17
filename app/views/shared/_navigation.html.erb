@@ -2,6 +2,9 @@
   <a class="uk-navbar-brand" href="#">ABCAM-产品查询</a>
   <ul class="uk-navbar-nav uk-hidden-small">
     <li class="<%= check_if_active 'inventories',yield(:c_active) %>"><a href="/inventories">产品列表</a></li>
+    <li class="<%= check_if_active 'fridges',yield(:c_active) %>"><a href="/fridges">位置列表</a></li>
+
+    <li><a href="/abid_research" target="_blank">查询页面</a></li>
 
     <li class="<%= check_if_active 'users',yield(:c_active) %>"><a href="/users">报名列表</a></li>
     <li class="<%= check_if_active 'user_lists',yield(:c_active) %>"><a href="/user_lists">员工列表</a></li>

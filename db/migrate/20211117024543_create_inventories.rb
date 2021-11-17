@@ -5,7 +5,7 @@ class CreateInventories < ActiveRecord::Migration[5.1]
       # t.string 'product_type'
       # t.string 'product_name'
       t.integer 'size'
-      t.string 'unit', limit: 10
+      t.string 'unit'
       # t.string 'list_price'
       # t.string 'vial_type'
       # t.string 'is_unpublished'

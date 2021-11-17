@@ -11,7 +11,7 @@ gem 'rails', '~> 5.1.4'
 
 
 
-# gem 'mysql2', '>= 0.3.18', '< 0.5'
+gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'will_paginate'   #分页
 gem 'rails-i18n'   #多语言
 gem 'mini_magick'

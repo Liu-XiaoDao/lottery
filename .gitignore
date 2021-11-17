@@ -26,3 +26,5 @@
 
 # Ignore email config.
 email.yml
+
+config/database.yml

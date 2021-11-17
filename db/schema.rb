@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211117024543) do
+ActiveRecord::Schema.define(version: 20211117131205) do
 
-  create_table "activities", force: :cascade do |t|
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "name"
     t.string "date"
     t.string "address"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20211117024543) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "families", force: :cascade do |t|
+  create_table "families", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "name"
     t.string "family_type"
     t.integer "user_list_id"
@@ -34,28 +34,35 @@ ActiveRecord::Schema.define(version: 20211117024543) do
     t.string "is_lunch"
   end
 
-  create_table "inventories", force: :cascade do |t|
+  create_table "fridges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string "fridge"
+    t.string "site"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "abid"
     t.integer "size"
-    t.string "unit", limit: 10
+    t.string "unit"
     t.integer "fridge"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "request_stats", force: :cascade do |t|
+  create_table "request_stats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "path"
     t.integer "count"
     t.text "params_stats"
-    t.float "max_time"
-    t.float "min_time"
-    t.float "avg_time"
+    t.float "max_time", limit: 24
+    t.float "min_time", limit: 24
+    t.float "avg_time", limit: 24
     t.datetime "last_requested_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_lists", force: :cascade do |t|
+  create_table "user_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "name", limit: 20
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,10 +70,10 @@ ActiveRecord::Schema.define(version: 20211117024543) do
     t.integer "leader_id"
   end
 
-  create_table "user_requests", force: :cascade do |t|
+  create_table "user_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer "request_stat_id"
     t.string "url"
-    t.float "time"
+    t.float "time", limit: 24
     t.integer "memory_usage"
     t.string "path"
     t.text "params"
@@ -75,7 +82,7 @@ ActiveRecord::Schema.define(version: 20211117024543) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "name"
     t.string "attendance"
     t.boolean "is_active", default: false
