@@ -20,7 +20,7 @@ class InventoriesController < ApplicationController
 
       file = params[:files][0]
       # 保存的文件名
-      save_file_name = "#{Time.now.strftime("%Y_%m_%d_%H_%M_%S")}_#{file.original_filename}"
+      save_file_name = "#{Time.now.strftime("%Y_%m_%d_%H_%M_%S")}.xlsx"
       File.open("#{Rails.root}/public/uploads/#{save_file_name}", "wb") do |f|
           f.write(file.read)
       end
