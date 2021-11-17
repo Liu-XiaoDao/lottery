@@ -25,7 +25,7 @@ class InventoriesController < ApplicationController
           f.write(file.read)
       end
 
-      system("/usr/bin/python3 /var/www/inventory_xl.py #{Rails.root}/public/uploads/#{save_file_name}")
+      system("/usr/bin/python3 /var/www/inventory_xl.py #{Rails.root}/public/uploads/#{save_file_name} > #{Rails.root}/log/#{Time.now.strftime("%Y_%m_%d_%H_%M_%S")}.txt 2>&1")
 
       redirect_to inventories_url
     end
