@@ -11,7 +11,7 @@ class InventoriesController < ApplicationController
   end
 
   def research
-    @inventories = ActiveRecord::Base.connection.execute("SELECT `inventories`.abid, `inventories`.size, `inventories`.unit, `inventories`.fridge, count(*) FROM `inventories` WHERE abid = '#{params[:post][:abid]}' GROUP BY size, fridge")
+    @inventories = ActiveRecord::Base.connection.execute("SELECT `inventories`.abid, `inventories`.size, `inventories`.unit, `inventories`.fridge, count(*) FROM `inventories` WHERE abid = '#{params[:post][:abid]}' GROUP BY size, fridge, unit")
   end
 
   def upload
