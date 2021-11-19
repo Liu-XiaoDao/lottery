@@ -1,7 +1,7 @@
 <div class="register-box">
   <h1 class="title">Abcam库存查询</h1>
   <p>*以下库存数据更新截止至前一天下午3点半,会与实时数据稍有误差</p>
-    <% if @inventories.present? %>
+    <% if @inventories.to_a.present? %>
       <table class="uk-table uk-table-hover">
         <thead>
           <tr>
@@ -21,7 +21,7 @@
         <% end %>
       </table>
     <% else %>
-      AbID不匹配，查询失败
+      AbID: <%= params[:post][:abid] %> 没有找到库存
     <% end %>
   <br />
 
