@@ -13,7 +13,7 @@
         </thead>
         <% @inventories.each do |inventory| %>
             <tr>
-              <td>Ab<%= inventory[0] %></td>
+              <td>ab<%= inventory[0] %></td>
               <td><%= inventory[1] %><%= inventory[2] %></td>
               <td><%= inventory[4] %></td>
               <td><%= Fridge.find_by_fridge(inventory[3]).try(:site) %></td>
