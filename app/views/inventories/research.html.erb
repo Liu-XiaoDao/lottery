@@ -21,7 +21,7 @@
         <% end %>
       </table>
     <% else %>
-      AbID: <%= params[:post][:abid] %> 没有找到库存
+      AbID: <%= params[:post][:abid] if params[:post] && params[:post][:abid] %> 没有找到库存
     <% end %>
   <br />
 
