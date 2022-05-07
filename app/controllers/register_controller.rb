@@ -7,7 +7,8 @@ class RegisterController < ApplicationController
   end
 
   def index_displayer
-    @user_list = UserList.new
+    # @user_list = UserList.new
+    redirect_to register_index_url
   end
 
   def research_index
