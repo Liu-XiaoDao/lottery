@@ -15,7 +15,7 @@ class InventoriesController < ApplicationController
     abid = params[:post][:abid] if params[:post] && params[:post][:abid]
 
     if abid.present?
-      @inventories = ActiveRecord::Base.connection.execute("SELECT `inventories`.abid, `inventories`.size, `inventories`.unit, `inventories`.fridge, count(*) FROM `inventories` WHERE abid = '#{abid.gsub(/[a-zA-Z]|\W/, "")}' GROUP BY size, fridge, unit")
+      @inventories = Inventory.where(abid: abid.gsub(/[a-zA-Z]|\W/, ""))
     end
   end
 

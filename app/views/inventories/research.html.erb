@@ -1,7 +1,7 @@
 <div class="register-box">
   <h1 class="title">Abcam库存查询</h1>
   <p>*以下库存数据更新截止至前一天下午3点半,会与实时数据稍有误差</p>
-    <% if @inventories.to_a.present? %>
+    <% if @inventories.present? %>
       <table class="uk-table uk-table-hover">
         <thead>
           <tr>
@@ -13,10 +13,10 @@
         </thead>
         <% @inventories.each do |inventory| %>
             <tr>
-              <td>ab<%= inventory[0] %></td>
-              <td><%= inventory[1] %><%= inventory[2] %></td>
-              <td><%= inventory[4] %></td>
-              <td><%= Fridge.find_by_fridge(inventory[3]).try(:site) %></td>
+              <td>ab<%= inventory.abid %></td>
+              <td><%= inventory.size %><%= inventory.unit %></td>
+              <td><%= inventory.available_quantity %></td>
+              <td><%= Fridge.find_by_fridge(inventory.fridge).try(:site) %></td>
             </tr>
         <% end %>
       </table>

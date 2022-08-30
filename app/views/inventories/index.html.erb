@@ -25,6 +25,7 @@
         <th>Size</th>
         <th>Unit</th>
         <th>Fridge</th>
+        <th>Available Quantity</th>
       </tr>
     </thead>
     <% @inventories.each do |inventory| %>
@@ -34,6 +35,7 @@
       	<td><%= inventory.size %></td>
       	<td><%= inventory.unit %></td>
       	<td><%= inventory.fridge %></td>
+      	<td><%= inventory.available_quantity %></td>
       </tr>
     <% end %>
   </table>
