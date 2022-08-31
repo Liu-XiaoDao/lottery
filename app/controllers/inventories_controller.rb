@@ -15,7 +15,7 @@ class InventoriesController < ApplicationController
     abid = params[:post][:abid] if params[:post] && params[:post][:abid]
 
     if abid.present?
-      @inventories = Inventory.where(abid: abid.gsub(/[a-zA-Z]|\W/, ""))
+      @inventories = Inventory.where(abid: "AB#{abid.gsub(/[a-zA-Z]|\W/, "")}").where("available_quantity > 0")
     end
   end
 
