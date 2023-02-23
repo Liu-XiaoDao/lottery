@@ -38,6 +38,7 @@
       <tr>
         <th>ID</th>
         <th>姓名</th>
+        <th>电脑类型</th>
         <th>删除</th>
       </tr>
     </thead>
@@ -45,6 +46,7 @@
       <tr <%= "class=uk-form-danger" if user.is_attendance == "不参加" %> >
       	<td><%= user.id %></td>
       	<td><%= user.name %></td>
+      	<td><%= user.is_attendance %></td>
       	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>
       </tr>
     <% end %>
