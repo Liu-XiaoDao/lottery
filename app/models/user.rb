@@ -6,7 +6,7 @@ class User < ApplicationRecord
   after_create :sent_msg #发送报名通知
 
   def self.to_xlsx(records)
-    export_fields = ["name"]
+    export_fields = ["name", "is_attendance"]
     SpreadsheetService.new.generate(export_fields, records)
   end
 
