@@ -25,7 +25,8 @@ class RegisterController < ApplicationController
     @user.name = params[:post][:username]
     @user.is_attendance = params[:post][:is_attendance]
     @user.is_car = params[:post][:is_car]
-    @user.is_lunch = params[:post][:is_lunch]
+    @user.id_number = params[:post][:id_number]
+    @user.phone = params[:post][:phone]
     @user.notes = params[:post][:notes]
     @user.user_list = UserList.find_by_name params[:post][:username]
     @user.save
@@ -34,7 +35,7 @@ class RegisterController < ApplicationController
     if families.present?
       families.each do |people|
         if people[:name].present?
-          @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number], height: people[:height], is_car: people[:is_car], is_lunch: people[:is_lunch])
+          @user.families.create(name: people[:name], family_type: people[:type], id_number: people[:id_number], height: people[:height])
         end
       end
     end
