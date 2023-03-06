@@ -56,7 +56,8 @@
         <th>姓名</th>
         <th>是否参加</th>
         <th>是否乘车</th>
-        <th>是否午餐</th>
+        <th>身份证号</th>
+        <th>电话号码</th>
         <th>家属</th>
         <th>备注</th>
         <th>组长</th>
@@ -69,11 +70,12 @@
       	<td><%= user.name %></td>
       	<td><%= user.is_attendance %></td>
       	<td><%= user.is_car %></td>
-      	<td><%= user.is_lunch %></td>
+      	<td><%= user.id_number %></td>
+      	<td><%= user.phone %></td>
       	<td>
           <% user.families.each do |family| %>
             姓名:<%= family.name %>, 类型:<%= family.family_type %><%if family.family_type != '成人'%>, 身高:<%= family.height %><%end%><br>
-            身份证号:<%= family.id_number %>, 是否用午餐:<%= family.is_lunch %>, 是否乘车:<%= family.is_car %><br>
+            身份证号:<%= family.id_number %> <br>
           <% end %>
         </td>
       	<td><%= user.notes %></td>
