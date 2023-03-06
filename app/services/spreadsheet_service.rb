@@ -20,11 +20,22 @@ class SpreadsheetService
 
     worksheet.change_row_height(0, 18)
 
+    row_index = 1
+
     records.each_with_index do |record, row|
+
       fields.each_with_index do |field, col|
-        worksheet.add_cell(row+1, col, record.send(field).to_s)
+        worksheet.add_cell(row_index, col, record.send(field).to_s)
       end
-      worksheet.change_row_height(row+1, 18)
+      worksheet.change_row_height(row_index, 18)
+      row_index = row_index + 1
+
+      record.families.each_with_index do |family, r|
+        fields.each_with_index do |field, col|
+          worksheet.add_cell(row_index, col, family.send(field).to_s)
+        end
+        row_index = row_index + 1
+      end
     end
 
     workbook

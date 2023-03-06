@@ -15,4 +15,8 @@ class Family < ApplicationRecord
 
   def notes
   end
+
+  def leader_id
+    user.try(:leader_id)
+  end
 end
