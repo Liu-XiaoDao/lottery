@@ -1,3 +1,18 @@
 class Family < ApplicationRecord
   belongs_to :user
+
+  def is_attendance
+    user.try(:is_attendance)
+  end
+
+  def is_car
+    user.try(:is_car)
+  end
+
+  def phone
+    user.try(:phone)
+  end
+
+  def notes
+  end
 end

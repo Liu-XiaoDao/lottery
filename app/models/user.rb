@@ -10,8 +10,20 @@ class User < ApplicationRecord
     where(is_active: true).count
   end
 
+  def self.to_xlsx(records)
+    export_fields = ["name", "is_attendance", "is_car", "id_number", "phone", "family_type", "height", "notes"]
+    SpreadsheetService.new.generate(export_fields, records)
+  end
+
   def sent_msg
     # NotificationMailer.register_msg(self).deliver
     system("/usr/bin/python3 /var/www/usms.py #{phone} #{id}")
+  end
+
+  def family_type
+    "公司员工"
+  end
+
+  def height
   end
 end

@@ -4,6 +4,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.paginate page: params[:page], per_page: 18
+
+    respond_to { |format|
+      format.html
+      format.json { render json: @users}
+      format.xlsx { send_data User.to_xlsx(User.all).stream.string, filename: "报名名单.xlsx", disposition: 'attachment' }
+    }
   end
 
   def admin_create
