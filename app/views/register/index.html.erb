@@ -25,7 +25,7 @@
     <div class="uk-form-row">
       <label class="uk-form-label" for="">身份证号</label>
       <div class="uk-form-controls">
-        <input type="text" id="phone" value="" name="post[id_number]" class="uk-width-1-1" placeholder="身份证号，请认真填写">
+        <input type="text" id="id_number" value="" name="post[id_number]" class="uk-width-1-1" placeholder="身份证号，请认真填写">
       </div>
     </div>
 
@@ -101,8 +101,11 @@
   <% end %>
   <h3 class="tm-article-subtitle" style="color:red;">注意事项</h3>
   <ul class="uk-list">
-    <li>家属成人或1.2m以上儿童350元/人</li>
-    <li>1.2m以下儿童收费 155元/人</li>
+    <li>宜康在职员工免费</li>
+    <li>1.5m以上儿童和成人同价, 自驾200元/人, 乘坐大巴260元/人</li>
+    <li>1.5m以下儿童(家属)费用由工会承担</li>
+    <li>自驾同事需在活动当天10:15前到达百草园后统一入园</li>
+    <li>中餐位置安排会根据报名情况, 后续邮件通知大家</li>
     <li>身份证号用于购买保险</li>
     <li>不参加活动，也需要填写姓名，是否参加字段选择不参加,其他忽略</li>
   </ul>
@@ -114,6 +117,7 @@ $(function(){
   var fn_btn_submit = function() {
     var username = $('#username').val();
     var phone    = $('#phone').val();
+    var id_number    = $('#id_number').val();
     var inputs   = $(':input[name*="families"]');
     var submit_tag = true;
     inputs.each(function(){
@@ -125,6 +129,14 @@ $(function(){
     });
     if (username == '') {
         UIkit.notify('姓名为空', {status:'warning'});
+        return false;
+    }
+    if (phone == '') {
+        UIkit.notify('电话为空', {status:'warning'});
+        return false;
+    }
+    if (id_number == '') {
+        UIkit.notify('身份证为空', {status:'warning'});
         return false;
     }
     return submit_tag;
