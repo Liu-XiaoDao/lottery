@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
-  http_basic_authenticate_with name: "yk_labour_union", password: "YKgonghui!123?"
+  # http_basic_authenticate_with name: "yk_labour_union", password: "YKgonghui!123?"
   before_action :load_config
 
   def process_action *args
