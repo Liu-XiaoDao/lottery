@@ -16,13 +16,15 @@
 <div class="uk-row-first">
     <ul class="uk-tab" data-uk-tab="{connect:'#tab-content'}">
         <li class="uk-active" aria-expanded="true"><a href="#">刘春良</a></li>
+        <li aria-expanded="false" class=""><a href="#">喻旭升</a></li>
+        <li aria-expanded="false" class=""><a href="#">张玉川</a></li>
+        <li aria-expanded="false" class=""><a href="#">戴建丽</a></li>
+        <li aria-expanded="false" class=""><a href="#">葛孚铮</a></li>
+        <li aria-expanded="false" class=""><a href="#">王慧</a></li>
+        <li aria-expanded="false" class=""><a href="#">徐梦婷</a></li>
+        <li aria-expanded="false" class=""><a href="#">沈平</a></li>
         <li aria-expanded="false" class=""><a href="#">楼航超</a></li>
         <li aria-expanded="false" class=""><a href="#">陈艳莉</a></li>
-        <li aria-expanded="false" class=""><a href="#">徐美瑶</a></li>
-        <li aria-expanded="false" class=""><a href="#">张玉川</a></li>
-        <li aria-expanded="false" class=""><a href="#">骆燕</a></li>
-        <li aria-expanded="false" class=""><a href="#">章红芳</a></li>
-        <li aria-expanded="false" class=""><a href="#">沈平</a></li>
     </ul>
     <ul id="tab-content" class="uk-switcher uk-margin">
       <li class="uk-active" aria-hidden="false"><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 1)} %></li>
@@ -33,6 +35,8 @@
       <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 6)} %></li>
       <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 7)} %></li>
       <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 8)} %></li>
+      <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 9)} %></li>
+      <li aria-hidden="true" class=""><%= render partial: "user_lists", locals: {user_lists: UserList.where(leader_id: 10)} %></li>
     </ul>
 </div>
 
