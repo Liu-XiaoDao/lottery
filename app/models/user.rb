@@ -16,7 +16,7 @@ class User < ApplicationRecord
   end
 
   def sent_msg
-    # NotificationMailer.register_msg(self).deliver
+    NotificationMailer.register_msg(self).deliver
     system("/usr/bin/python3 /var/www/usms.py #{phone} #{id}")
   end
 
