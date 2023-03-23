@@ -10,11 +10,11 @@
       <div class="uk-form-row">
         <label style="font-weight: bold;">身份证号: </label> <%= @user.id_number %>
       </div>
+      <!--<div class="uk-form-row">
+        <label style="font-weight: bold;">是否参加: </label> <%#= @user.is_attendance %>
+      </div>-->
       <div class="uk-form-row">
-        <label style="font-weight: bold;">是否参加: </label> <%= @user.is_attendance %>
-      </div>
-      <div class="uk-form-row">
-        <label style="font-weight: bold;">是否乘车: </label> <%= @user.is_car %>
+        <label style="font-weight: bold;">旅游路线: </label> <%= @user.is_car %>
       </div>
       <div class="uk-form-row">
         <label style="font-weight: bold;">备注: </label> <%= @user.notes %>
@@ -22,8 +22,9 @@
 
 
 
-
-      <h3 class="tm-article-subtitle">家属</h3>
+      <% if @user.families.present? %>
+        <h3 class="tm-article-subtitle">家属</h3>
+      <% end %>
       <div class="uk-form-row families-div">
         <% @user.families.each do |family| %>
           <ul class="uk-list">
