@@ -19,4 +19,8 @@ class Family < ApplicationRecord
   def leader_id
     user.try(:leader_id)
   end
+
+  def gsyg
+    user.try(:name)
+  end
 end
