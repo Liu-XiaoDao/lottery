@@ -6,7 +6,7 @@
       <img src="<%#= @user.avatar_url %>" style="width: 100px; border: 1px #eee solid; border-radius: 5px;" />
     </p> -->
     <h3>
-      热烈欢迎 "<%=@user.name%>" 的加入
+      "<%=@user.name%>" 报名成功
       <br>
       有任何问题可以联系徐冯晓，或者行政部门
       <br>
@@ -15,13 +15,13 @@
   <% end %>
   <p>当前参加：<%=@count%>人</p>
   <p>
-    报名结束, 有问题请联系徐冯晓&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
+    <a href="/register">报名入口</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
   <!-- 亲，你来晚了，等着小组长统计吧 -->
   </p>
   <p>
-    活动日期：<%= @web_config["time"] %> <br />
-    活动地点：<%= @web_config["address"] %><br />
-    请在邮件中查看活动详情<br />
+    <!--活动日期：<%= @web_config["time"] %> <br />
+      活动地点：<%= @web_config["address"] %><br />-->
+    请在邮件中查看详情<br />
     <!--<a href="/activity_introduction">点击查看活动详情</a>-->
   </p>
 </div>

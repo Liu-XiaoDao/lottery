@@ -5,16 +5,19 @@
         <label style="font-weight: bold;">姓名: </label> <%= @user.name %>
       </div>
       <div class="uk-form-row">
-        <label style="font-weight: bold;">电话号码: </label> <%= @user.phone %>
+        <label style="font-weight: bold;">性别: </label> <%= @user.is_attendance %>
+      </div>
+      <div class="uk-form-row">
+        <label style="font-weight: bold;">已婚/未婚: </label> <%= @user.is_lunch %>
+      </div>
+      <div class="uk-form-row">
+        <label style="font-weight: bold;">手机号码: </label> <%= @user.phone %>
       </div>
       <div class="uk-form-row">
         <label style="font-weight: bold;">身份证号: </label> <%= @user.id_number %>
       </div>
-      <!--<div class="uk-form-row">
-        <label style="font-weight: bold;">是否参加: </label> <%#= @user.is_attendance %>
-      </div>-->
       <div class="uk-form-row">
-        <label style="font-weight: bold;">旅游路线: </label> <%= @user.is_car %>
+        <label style="font-weight: bold;">套餐: </label> <%= @user.is_car %>
       </div>
       <div class="uk-form-row">
         <label style="font-weight: bold;">备注: </label> <%= @user.notes %>

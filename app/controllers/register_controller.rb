@@ -25,6 +25,7 @@ class RegisterController < ApplicationController
     @user.name = params[:post][:username]
     @user.is_attendance = params[:post][:is_attendance]
     @user.is_car = params[:post][:is_car]
+    @user.is_lunch = params[:post][:is_lunch]
     @user.id_number = params[:post][:id_number]
     @user.phone = params[:post][:phone]
     @user.notes = params[:post][:notes]
