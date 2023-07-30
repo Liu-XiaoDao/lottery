@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   def sent_msg
     # NotificationMailer.register_msg(self).deliver
-    system("/usr/bin/python3 /var/www/usms.py #{phone} #{id}")
+    # system("/usr/bin/python3 /var/www/usms.py #{phone} #{id}")
   end
 
   def family_type
