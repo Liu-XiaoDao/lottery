@@ -5,30 +5,30 @@
       <th>ID</th>
       <th>姓名</th>
       <th>是否参加</th>
-      <th>是否乘车</th>
+      <!--<th>是否乘车</th>
       <th>身份证号</th>
       <th>电话号码</th>
       <th>家属</th>
-      <th>备注</th>
+      <th>备注</th>-->
     </tr>
   </thead>
   <% user_lists.each do |user_list| %>
-      <tr <%= "class=uk-form-danger" if user_list.user.try(:is_attendance) == "不参加" %> >
+      <tr <%= "class=uk-form-danger" if user_list.user.try(:is_car) == "不参加" %> >
         <td><%= user_list.id %></td>
       	<td><%= user_list.name %></td>
-        <td><%= user_list.user.present? ? user_list.user.is_attendance : "" %></td>
         <td><%= user_list.user.present? ? user_list.user.is_car : "" %></td>
-        <td><%= user_list.user.present? ? user_list.user.id_number : "" %></td>
-        <td><%= user_list.user.present? ? user_list.user.phone : "" %></td>
+        <!--<td><%#= user_list.user.present? ? user_list.user.is_car : "" %></td>
+        <td><%#= user_list.user.present? ? user_list.user.id_number : "" %></td>
+        <td><%#= user_list.user.present? ? user_list.user.phone : "" %></td>
         <td>
-          <% if user_list.user.present? %>
-            <% user_list.user.families.each do |family| %>
-              姓名:<%= family.name %>, 类型:<%= family.family_type %><%if family.family_type != '成人'%>, 身高:<%= family.height %><%end%><br>
-              身份证号:<%= family.id_number %><br>
-            <% end %>
-          <% end %>
+          <%# if user_list.user.present? %>
+            <%# user_list.user.families.each do |family| %>
+              姓名:<%#= family.name %>, 类型:<%#= family.family_type %><%#if family.family_type != '成人'%>, 身高:<%#= family.height %><%#end%><br>
+              身份证号:<%#= family.id_number %><br>
+            <%# end %>
+          <%# end %>
         </td>
-        <td><%= user_list.user.present? ? user_list.user.notes : "" %></td>
+        <td><%#= user_list.user.present? ? user_list.user.notes : "" %></td>-->
       </tr>
   <% end %>
 </table>

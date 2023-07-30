@@ -8,7 +8,8 @@
     <h3>
       "<%=@user.name%>" 报名成功
       <br>
-      有任何问题可以联系徐冯晓，或者行政部门
+      <!--有任何问题可以联系徐冯晓，或者行政部门-->
+      有任何问题可以联系你的小组长(<span style="color:red;"><%=@user.user_list.try(:leader_name)%></span>)，或者工会成员
       <br>
       系统id(<span style="color:red;"><%= @user.id %></span>, 已通过短信发送)用于查询<a href="/users/research?utf8=✓&post[username]=<%=@user.name%>&post[user_id]=<%=@user.id%>">报名结果</a>
     </h3>
@@ -19,8 +20,8 @@
   <!-- 亲，你来晚了，等着小组长统计吧 -->
   </p>
   <p>
-    <!--活动日期：<%= @web_config["time"] %> <br />
-      活动地点：<%= @web_config["address"] %><br />-->
+    活动日期：<%= @web_config["time"] %> <br />
+    活动地点：<%= @web_config["address"] %><br />
     请在邮件中查看详情<br />
     <!--<a href="/activity_introduction">点击查看活动详情</a>-->
   </p>

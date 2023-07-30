@@ -1,6 +1,7 @@
 class RegisterController < ApplicationController
   layout 'template'
   before_action :check_params, only: [:create]
+  before_action :check_attenance, only: [:create]
 
   def index
     @user = User.new
@@ -49,6 +50,22 @@ class RegisterController < ApplicationController
       else
         flash["danger"] = "参数缺失，注册失败"
         redirect_to register_index_url
+      end
+    end
+
+    def check_attenance
+      if params[:post].blank? || params[:post][:is_car].blank?
+        flash["danger"] = "参数缺失，注册失败"
+        redirect_to register_index_url
+      elsif params[:post][:is_car] == "不参加"
+        return true
+      else
+        if User.where(is_car: params[:post][:is_car]).count >= 180
+          flash["danger"] = "剩余座席不足，注册失败"
+          redirect_to register_index_url
+        else
+          return true
+        end
       end
     end
 
