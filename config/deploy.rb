@@ -10,7 +10,7 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'labour_union'
-set :domain, '106.75.232.62'
+set :domain, '117.50.194.54'
 set :deploy_to, '/var/www/labour_union'
 set :repository, 'git@github.com:Liu-XiaoDao/lottery.git'
 set :branch, 'labour_union'
