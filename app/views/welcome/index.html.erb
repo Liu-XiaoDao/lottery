@@ -8,16 +8,16 @@
     <h3>
       "<%=@user.name%>" 报名成功
       <br>
-      <!--有任何问题可以联系徐冯晓，或者行政部门-->
-      有任何问题可以联系你的小组长(<span style="color:red;"><%=@user.user_list.try(:leader_name)%></span>)，或者工会成员
+      有任何问题可以联系徐冯晓，或者行政部门
+      <!--有任何问题可以联系你的小组长(<span style="color:red;"><%=@user.user_list.try(:leader_name)%></span>)，或者工会成员-->
       <br>
       系统id(<span style="color:red;"><%= @user.id %></span>)用于查询<a href="/users/research?utf8=✓&post[username]=<%=@user.name%>&post[user_id]=<%=@user.id%>">报名结果</a>
     </h3>
   <% end %>
   <p>当前参加：<%=@count%>人</p>
   <p>
-  <!--<a href="/register">报名入口</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>-->
-  线上报名已结束, 有任何问题请联系小组长&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
+  <a href="/register">报名入口</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
+  <!--线上报名已结束, 有任何问题请联系小组长&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>-->
   <!-- 亲，你来晚了，等着小组长统计吧 -->
   </p>
   <p>

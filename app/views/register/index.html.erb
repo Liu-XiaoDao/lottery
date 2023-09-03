@@ -54,15 +54,28 @@
       </div>
     </div>-->
 
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">车型/颜色</label>
+      <div class="uk-form-controls">
+        <input type="text" id="phone" value="" name="post[phone]" class="uk-width-1-1" placeholder="车型/颜色">
+      </div>
+    </div>
 
     <div class="uk-form-row">
-      <label class="uk-form-label" for="">电影选择</label>
+      <label class="uk-form-label" for="">车牌号</label>
+      <div class="uk-form-controls">
+        <input type="text" id="id_number" value="" name="post[id_number]" class="uk-width-1-1" placeholder="车牌号">
+      </div>
+    </div>
+
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">缴费周期</label>
       <div class="uk-form-controls">
          <span class="id-pre uk-width-1-1">
            <select id="pre" name="post[is_car]">
-             <option value="8.11 封神+海鲜自助">8.11 封神+海鲜自助&nbsp;&nbsp;&nbsp;&nbsp;剩余:<%= 180 - User.where(is_car: "8.11 封神+海鲜自助").count %></option>
-             <option value="8.18 孤注一掷+海鲜自助">8.18 孤注一掷+海鲜自助&nbsp;&nbsp;&nbsp;&nbsp;剩余:<%= 180 - User.where(is_car: "8.18 孤注一掷+海鲜自助").count %></option>
-             <option value="有事不能参加, 很遗憾T_T">有事不能参加, 很遗憾T_T</option>
+             <option value="2023.10.01-2023.03.31">2023.10.01-2023.03.31</option>
+             <option value="2023.10.01-2023.09.30">2023.10.01-2023.09.30</option>
           </select>
          </span>
       </div>
