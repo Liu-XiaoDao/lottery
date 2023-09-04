@@ -55,11 +55,11 @@
       <tr>
         <th>ID</th>
         <th>姓名</th>
-        <!--<th>性别</th>
-        <th>婚姻状况</th>
-        <th>电话号码</th>
-        <th>身份证号</th>-->
-        <th>电影&日期</th>
+        <th>车型/颜色</th>
+        <th>车牌号</th>
+        <th>联系方式</th>
+        <th>缴费周期</th>
+        <th>是否参与摇号</th>
         <!--<th>备注</th>-->
         <th>删除</th>
       </tr>
@@ -68,11 +68,11 @@
       <tr <%= "class=uk-form-danger" if user.is_car == "有事不能参加, 很遗憾T_T" %> >
       	<td><%= user.id %></td>
       	<td><%= user.name %></td>
-      	<!--<td><%#= user.is_attendance %></td>
-      	<td><%#= user.is_lunch %></td>
-      	<td><%#= user.phone %></td>
-        <td><%#= user.id_number %></td>-->
+      	<td><%= user.is_lunch %></td>
+        <td><%= user.id_number %></td>
+      	<td><%= user.phone %></td>
       	<td><%= user.is_car %></td>
+      	<td><%= user.is_attendance %></td>
         <!--<td><%#= user.notes %></td>-->
       	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>
       </tr>
