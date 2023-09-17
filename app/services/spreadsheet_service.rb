@@ -25,14 +25,14 @@ class SpreadsheetService
     records.each_with_index do |record, row|
 
       fields.each_with_index do |field, col|
-        worksheet.add_cell(row_index, col, record.send(field).to_s)
+        worksheet.add_cell(row_index, col, record.send(field).to_s).change_fill(row%2 == 0 ? 'F0FFFF':'FAFFF0')
       end
       worksheet.change_row_height(row_index, 18)
       row_index = row_index + 1
 
       record.families.each_with_index do |family, r|
         fields.each_with_index do |field, col|
-          worksheet.add_cell(row_index, col, family.send(field).to_s)
+          worksheet.add_cell(row_index, col, family.send(field).to_s).change_fill(row%2 == 0 ? 'F0FFFF':'FAFFF0')
         end
         row_index = row_index + 1
       end
