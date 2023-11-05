@@ -55,11 +55,13 @@
       <tr>
         <th>ID</th>
         <th>姓名</th>
+        <th>年龄段</th>
+        <!--
         <th>联系方式</th>
         <th>身份证号</th>
-        <th>是否乘坐大巴</th>
         <th>备注</th>
         <th>家属</th>
+        -->
         <!--<th>备注</th>-->
         <th>删除</th>
       </tr>
@@ -68,16 +70,18 @@
       <tr <%= "class=uk-form-danger" if user.is_car == "有事不能参加, 很遗憾T_T" %> >
       	<td><%= user.id %></td>
       	<td><%= user.name %></td>
-      	<td><%= user.phone %></td>
-        <td><%= user.id_number %></td>
       	<td><%= user.is_car %></td>
-      	<td><%= user.notes %></td>
+        <!--
+      	<td><%#= user.phone %></td>
+        <td><%#= user.id_number %></td>
+      	<td><%#= user.notes %></td>
         <td>
-          <% user.families.each do |family| %>
-            姓名:<%= family.name %>, 类型:<%= family.family_type %><%if family.family_type != '成人'%>, 身高:<%= family.height %><%end%><br>
-            身份证号:<%= family.id_number %> <br>
-          <% end %>
+          <%# user.families.each do |family| %>
+            姓名:<%#= family.name %>, 类型:<%#= family.family_type %><%#if family.family_type != '成人'%>, 身高:<%#= family.height %><%#end%><br>
+            身份证号:<%#= family.id_number %> <br>
+          <%# end %>
         </td>
+        -->
         <!--<td><%#= user.notes %></td>-->
       	<td><a href="/users/delete?id=<%=user.id%>">删除</a></td>
       </tr>

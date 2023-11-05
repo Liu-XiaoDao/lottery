@@ -16,13 +16,17 @@
   <% end %>
   <p>当前参加：<%=@count%>人</p>
   <p>
-  <!--<a href="/register">报名入口</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>-->
-  线上报名已结束, 有任何问题请联系徐冯晓&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
+  <a href="/register">报名入口</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
+  <!--线上报名已结束, 有任何问题请联系徐冯晓&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>-->
   <!-- 亲，你来晚了，等着小组长统计吧 -->
   </p>
   <p>
-    日期：<%= @web_config["time"] %> <br />
-    地点：<%= @web_config["address"] %><br />
+    <% if @web_config["time"] %>
+      日期：<%= @web_config["time"] %> <br />
+    <% end %>
+    <% if @web_config["address"] %>
+      地点：<%= @web_config["address"] %><br />
+    <% end %>
     请在邮件中查看详情<br />
     <!--<a href="/activity_introduction">点击查看活动详情</a>-->
   </p>
