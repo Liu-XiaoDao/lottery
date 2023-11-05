@@ -28,10 +28,10 @@
   <!-- 亲，你来晚了，等着小组长统计吧 -->
   </p>
   <p>
-    <% if @web_config["time"] %>
+    <% if @web_config["time"].present? %>
       日期：<%= @web_config["time"] %> <br />
     <% end %>
-    <% if @web_config["address"] %>
+    <% if @web_config["address"].present? %>
       地点：<%= @web_config["address"] %><br />
     <% end %>
     请在邮件中查看详情<br />
