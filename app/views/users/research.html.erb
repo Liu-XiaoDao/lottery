@@ -1,11 +1,17 @@
 <div class="register-box">
-  <h1 class="title">报名结果</h1>
+  <h1 class="title">登记结果</h1>
     <% if @user.present? %>
       <div class="uk-form-row">
         <label style="font-weight: bold;">姓名: </label> <%= @user.name %>
       </div>
       <div class="uk-form-row">
-        <label style="font-weight: bold;">年龄段: </label> <%= @user.is_car %>
+        <label style="font-weight: bold;">联系方式: </label> <%= @user.phone %>
+      </div>
+      <div class="uk-form-row">
+        <label style="font-weight: bold;">直属领导: </label> <%= @user.is_lunch %>
+      </div>
+      <div class="uk-form-row">
+        <label style="font-weight: bold;">出行方式: </label> <%= @user.is_car %>
       </div>
       <!--
       <div class="uk-form-row">
