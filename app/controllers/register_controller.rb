@@ -60,7 +60,7 @@ class RegisterController < ApplicationController
       elsif params[:post][:is_car] == "有事不能参加, 很遗憾T_T"
         return true
       else
-        if User.where(is_car: params[:post][:is_car]).count >= 180
+        if User.where(is_car: params[:post][:is_car]).count >= 1800
           flash["danger"] = "剩余座席不足，注册失败"
           redirect_to register_index_url
         else
