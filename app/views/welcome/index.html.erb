@@ -16,13 +16,14 @@
   <% end %>
   <p>当前人数：<%=@count%>人</p>
   <p>
-  <!--
-  <a href="/register">登记入口</a>
-  &nbsp;&nbsp;/&nbsp;&nbsp;
-  <a href="/research">查询入口</a>
-  -->
-  线上登记已结束, 有任何问题请联系徐冯晓&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
-  <!-- 亲，你来晚了，等着小组长统计吧 -->
+    <% if Time.now < Time.parse("2024-03-11 12:00") %>
+      <a href="/register">登记入口</a>
+      &nbsp;&nbsp;/&nbsp;&nbsp;
+      <a href="/research">查询入口</a>
+    <% else %>
+      线上登记已结束, 有任何问题请联系徐冯晓&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
+    <% end %>
+    <!-- 亲，你来晚了，等着小组长统计吧 -->
   </p>
   <p>
     <% if @web_config["time"].present? %>

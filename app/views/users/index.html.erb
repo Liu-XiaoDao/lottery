@@ -56,8 +56,10 @@
         <th>ID</th>
         <th>姓名</th>
         <th>联系方式</th>
-        <th>直属领导</th>
-        <th>出行方式</th>
+        <th>车型/颜色</th>
+        <th>车牌号</th>
+        <th>缴费周期</th>
+        <th>是否参与摇号</th>
         <!--
         <th>身份证号</th>
         <th>备注</th>
@@ -73,7 +75,9 @@
       	<td><%= user.name %></td>
         <td><%= user.phone %></td>
       	<td><%= user.is_lunch %></td>
+      	<td><%= user.id_number %></td>
       	<td><%= user.is_car %></td>
+      	<td><%= user.is_attendance %></td>
         <!--
       	<td><%#= user.phone %></td>
         <td><%#= user.id_number %></td>
