@@ -3,10 +3,13 @@ development:
   # web_name: 测试-“绿色梦想，青春六月”---西湖花圃健步走活动
   # address: 杭州花圃
   # time: 2019年6月1日 09:30--12:00
-  web_name: 宜康工会夏季观影活动
-  address: '时代联合影院Gmax厅&星伦多海鲜自助'
-  time: '2023年8月11日/2023年8月18日 13:30 - 18:30'
+  # web_name: 宜康工会夏季观影活动
+  # address: '时代联合影院Gmax厅&星伦多海鲜自助'
+  # time: '2023年8月11日/2023年8月18日 13:30 - 18:30'
+  web_name: '2024年abcam旅游活动'
+  address: ''
+  time: ''
 production:
-  web_name: '党支部2024年4月南浔古镇红色之旅'
-  address: '南浔古镇'
-  time: '2024年4月13日/2024年4月14日'
+  web_name: '2024年abcam旅游活动'
+  address: ''
+  time: ''

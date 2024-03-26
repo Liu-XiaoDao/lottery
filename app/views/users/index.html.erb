@@ -57,10 +57,10 @@
         <th>姓名</th>
         <th>联系方式</th>
         <th>身份证号</th>
-        <th>出行日期</th>
+        <th>路线选择</th>
+        <th>备注</th>
         <th>家属</th>
         <!--
-        <th>备注</th>
         <th>车型/颜色</th>
         <th>车牌号</th>
         <th>缴费周期</th>
@@ -77,13 +77,13 @@
         <td><%= user.phone %></td>
       	<td><%= user.id_number %></td>
       	<td><%= user.is_car %></td>
+      	<td><%= user.notes %></td>
 
         <!--
       	<td><%#= user.is_lunch %></td>
       	<td><%#= user.is_attendance %></td>
       	<td><%#= user.phone %></td>
         <td><%#= user.id_number %></td>
-      	<td><%#= user.notes %></td>
         -->
         <td>
           <% user.families.each do |family| %>
