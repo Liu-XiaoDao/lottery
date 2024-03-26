@@ -9,11 +9,11 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :application_name, 'labour_union'
+set :application_name, 'abcam_tour'
 set :domain, '117.50.194.54'
-set :deploy_to, '/var/www/labour_union'
+set :deploy_to, '/var/www/abcam_tour'
 set :repository, 'git@github.com:Liu-XiaoDao/lottery.git'
-set :branch, 'labour_union'
+set :branch, 'tour'
 set :rails_env, 'production'
 # Optional settings:
 set :user, 'ubuntu'          # Username in the server to SSH to.
