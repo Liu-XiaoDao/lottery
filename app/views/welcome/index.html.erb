@@ -8,7 +8,7 @@
     <h3>
       "<%=@user.name%>" 登记成功
       <br>
-      有任何问题可以联系徐冯晓，或者行政部门
+      有任何问题可以联系蔡静
       <!--有任何问题可以联系你的小组长(<span style="color:red;"><%=@user.user_list.try(:leader_name)%></span>)，或者工会成员-->
       <br>
       系统id(<span style="color:red;"><%= @user.id %></span>)用于查询<a href="/users/research?utf8=✓&post[username]=<%=@user.name%>&post[user_id]=<%=@user.id%>">登记结果</a>
@@ -16,12 +16,12 @@
   <% end %>
   <p>当前人数：<%=@count%>人</p>
   <p>
-    <% if Time.now < Time.parse("2024-03-22 12:00") %>
+    <% if Time.now < Time.parse("2024-03-29 18:00") %>
       <a href="/register">登记入口</a>
       &nbsp;&nbsp;/&nbsp;&nbsp;
       <a href="/research">查询入口</a>
     <% else %>
-      线上登记已结束, 有任何问题请联系徐冯晓&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
+      线上登记已结束, 有任何问题请联系蔡静&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/research">查询入口</a>
     <% end %>
     <!-- 亲，你来晚了，等着小组长统计吧 -->
   </p>
