@@ -11,5 +11,5 @@ development:
   time: ''
 production:
   web_name: '2024年abcam旅游活动'
-  address: '武义温泉, 上海迪士尼, 福建霞浦, 西宁青海湖, 日本本州, 韩国济洲岛'
+  address: '武义/上海/福建/西宁/日本/韩国'
   time: '2024年4月至6月'
