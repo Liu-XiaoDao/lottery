@@ -87,8 +87,7 @@
         -->
         <td>
           <% user.families.each do |family| %>
-            姓名:<%= family.name %>, 类型:<%= family.family_type %><%if family.family_type != '成人'%>, 身高:<%= family.height %><%end%><br>
-            身份证号:<%= family.id_number %> <br>
+            姓名:<%= family.name %>, 类型:<%= family.family_type %><%if family.family_type != '成人'%>, 身高:<%= family.height %><%end%>, 身份证号:<%= family.id_number %> <br>
           <% end %>
         </td>
         <!--<td><%#= user.notes %></td>-->

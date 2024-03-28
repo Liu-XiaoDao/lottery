@@ -13,7 +13,7 @@ class User < ApplicationRecord
   def self.to_xlsx(records)
     # export_fields = ["name", "is_attendance", "is_lunch", "phone", "id_number", "is_car", "notes"]
     # export_fields = ["name", "is_car"]
-    export_fields = ["name", "phone", "is_lunch", "id_number", "is_car", "is_attendance"]
+    export_fields = ["name", "is_attendance", "is_car", "id_number", "phone", "family_type", "height", "notes", "leader_id", "gsyg"]
     SpreadsheetService.new.generate(export_fields, records)
   end
 
