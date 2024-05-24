@@ -15,6 +15,69 @@
       </div>
     </div>
 
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">性别</label>
+      <div class="uk-form-controls">
+        <span class="id-pre uk-width-1-1">
+           <select id="pre" name="post[is_attendance]">
+             <option value="女">女</option>
+             <option value="男">男</option>
+          </select>
+         </span>
+      </div>
+    </div>
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">已婚/未婚(男性可忽略)</label>
+      <div class="uk-form-controls">
+         <span class="id-pre uk-width-1-1">
+           <select id="pre" name="post[is_lunch]">
+             <option value=""></option>
+             <option value="未婚">未婚</option>
+             <option value="已婚">已婚</option>
+          </select>
+         </span>
+      </div>
+    </div>
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">手机号码</label>
+      <div class="uk-form-controls">
+        <input type="number" id="phone" value="" name="post[phone]" class="uk-width-1-1" placeholder="请输入你的手机号码">
+      </div>
+    </div>
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">身份证号</label>
+      <div class="uk-form-controls">
+        <input type="text" id="id_number" value="" name="post[id_number]" class="uk-width-1-1" placeholder="身份证号，请认真填写">
+      </div>
+    </div>
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">套餐选择</label>
+      <div class="uk-form-controls">
+         <span class="id-pre uk-width-1-1">
+           <select id="pre" name="post[is_car]">
+             <option value="常规套餐">常规套餐</option>
+             <option value="关爱女性套餐">关爱女性套餐</option>
+             <option value="护肝套餐">护肝套餐</option>
+             <option value="甲状腺套餐">甲状腺套餐</option>
+             <option value="消化系统套餐">消化系统套餐</option>
+             <option value="心血管疾病套餐">心血管疾病套餐</option>
+             <option value="肿瘤套餐">肿瘤套餐</option>
+          </select>
+         </span>
+      </div>
+    </div>
+
+    <div class="uk-form-row">
+      <label class="uk-form-label" for="">备注</label>
+      <div class="uk-form-controls">
+        <textarea id="notes" cols="30" rows="5" placeholder="特殊需求请备注" class="uk-width-1-1" name="post[notes]"></textarea>
+      </div>
+    </div>
+
 <!--
     <div class="uk-form-row">
       <label class="uk-form-label" for="">手机号码</label>
@@ -54,7 +117,6 @@
          </span>
       </div>
     </div>
--->
 
     <div class="uk-form-row">
       <label class="uk-form-label" for="">参会方式</label>
@@ -67,6 +129,7 @@
          </span>
       </div>
     </div>
+-->
 
     <!--<div class="uk-form-row">
       <label class="uk-form-label" for="">性别</label>
@@ -156,7 +219,7 @@
   <h3 class="tm-article-subtitle" style="color:red;">注意事项</h3>
   <ul class="uk-list uk-list-disc">
     <li>请用微信扫玛报名</li>
-    <li>报名后不支持在线修改, 有问题请联系周小乔</li>
+    <li>报名后不支持在线修改, 有问题请联系徐冯晓</li>
   </ul>
 </div>
 <!-- 之前_scripts中内容在这 -->
@@ -165,8 +228,8 @@
 $(function(){
   var fn_btn_submit = function() {
     var username = $('#username').val();
-    //var phone    = $('#phone').val();
-    //var id_number    = $('#id_number').val();
+    var phone    = $('#phone').val();
+    var id_number    = $('#id_number').val();
     var inputs   = $(':input[name*="families"]');
     var submit_tag = true;
     inputs.each(function(){
