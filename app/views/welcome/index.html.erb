@@ -16,7 +16,7 @@
   <% end %>
   <p>当前参加：<%=@count%>人</p>
   <p>
-    <% if Time.now < Time.parse("2024-09-13 12:00") %>
+    <% if Time.now < Time.parse(Activity.desc) %>
       <a href="/register">报名入口</a>
       &nbsp;&nbsp;/&nbsp;&nbsp;
       <a href="/research">查询入口</a>
@@ -26,11 +26,11 @@
   <!-- 亲，你来晚了，等着小组长统计吧 -->
   </p>
   <p>
-    <% if @web_config["time"].present? %>
-      日期：<%= @web_config["time"] %> <br />
+    <% if Activity.time.present? %>
+      日期：<%= Activity.time %> <br />
     <% end %>
-    <% if @web_config["address"].present? %>
-      地点：<%= @web_config["address"] %><br />
+    <% if Activity.address.present? %>
+      地点：<%= Activity.address %><br />
     <% end %>
     请在邮件中查看详情<br />
     <!--<a href="/activity_introduction">点击查看活动详情</a>-->
