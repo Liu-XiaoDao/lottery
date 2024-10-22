@@ -67,6 +67,7 @@
     <% @users.each do |user| %>
       <tr <%= "class=uk-form-danger" if user.is_car == "有事不能参加, 很遗憾T_T" %> >
       	<td><%= user.id %></td>
+      	<td><%= user.name %></td>
       	<td><%= user.is_car %></td>
       	<td><%= user.is_attendance %></td>
       	<td><%= user.notes %></td>
