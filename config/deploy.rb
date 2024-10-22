@@ -13,7 +13,7 @@ set :application_name, 'abcam_tour'
 set :domain, '117.50.194.54'
 set :deploy_to, '/var/www/abcam_tour'
 set :repository, 'git@github.com:Liu-XiaoDao/lottery.git'
-set :branch, 'family_day'
+set :branch, 'annual_party_baoming'
 set :rails_env, 'production'
 # Optional settings:
 set :user, 'ubuntu'          # Username in the server to SSH to.
